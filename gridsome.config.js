@@ -7,54 +7,33 @@
 module.exports = {
   siteName: 'TuneSource',
   templates: {
-    // Tune: [
-    //   {
-    //     path: '/tune/:id/:shlug',
-    //     component: './src/components/Card.vue'
-    //   }
-    // ],
-    // googleSheet: [
-    //   {
-    //     path: '/tune/:Id',
-    //     component: './src/templates/googleSheet.vue'
-    //   }
-    // ],
     googleSheet: [
       {
         path: '/tune/:tuneId/:shlug',
-        component: './src/templates/googleSheet.vue'
-      }
-    ]
+        component: './src/templates/googleSheet.vue',
+      },
+    ],
   },
   plugins: [
     {
       use: '@gridsome/source-airtable',
       options: {
-        apiKey: 'key8aW0IUe0jZYUVN',
-        baseId: 'appY0wjOYEZ8hqbPy',
+        apiKey: process.env.AIRTABLE_API,
+        baseId: process.env.AIRTABLE_BASEID,
         tableName: 'tunes',
         typeName: 'tunes',
         route: '/tune/:id',
-        select: {}
-      }
+        select: {},
+      },
     },
-    // {
-    //   use: 'gridsome-source-google-sheets',
-    //   options: {
-    //     sheetId: '1cZ_4uSP-uIHuU0iNm_Z1a-IcvWfFkxXQxtvVUPiKYdA',
-    //     apiKey: 'AIzaSyDkGg8NyrGoqeqLcDRKzgWhnGMVE8VFmGY',
-    //     route: '/tune/:Id'
-    //     // type: 'TYPE_NAME', //Optional - default is googleSheet. Used for graphql queries.
-    //   }
-    // },
     {
       use: 'gridsome-source-google-sheets',
       options: {
-        sheetId: '18S1_eIU9kOISjpcFSbrhbhJ35zzRQQccEh2RKjMzIZw',
-        apiKey: 'AIzaSyDkGg8NyrGoqeqLcDRKzgWhnGMVE8VFmGY',
-        route: '/tune/:tuneId/:shlug'
+        sheetId: process.env.GOOG_SHEET_ID,
+        apiKey: process.env.GOOG_SHEETS_API,
+        route: '/tune/:tuneId/:shlug',
         // type: 'TYPE_NAME', //Optional - default is googleSheet. Used for graphql queries.
-      }
-    }
-  ]
+      },
+    },
+  ],
 };
