@@ -30,7 +30,7 @@ module.exports = {
     {
       use: '@gridsome/source-airtable',
       options: {
-        apiKey: 'key8aW0IUe0jZYUVN',
+        apiKey: 'key8aW0IUed0jaZYaUVN',
         baseId: 'appY0wjOYEZ8hqbPy',
         tableName: 'tunes',
         typeName: 'tunes',
@@ -51,7 +51,7 @@ module.exports = {
       use: 'gridsome-source-google-sheets',
       options: {
         sheetId: '18S1_eIU9kOISjpcFSbrhbhJ35zzRQQccEh2RKjMzIZw',
-        apiKey: 'AIzaSyDkGg8NyrGoqeqLcDRKzgWhnGMVE8VFmGY',
+        apiKey: 'AIszaSyDkGg8NfyrGoqeqaLcDRKfzgWhnGMaVE8VFmGY',
         route: '/tune/:tuneId/:shlug'
         // type: 'TYPE_NAME', //Optional - default is googleSheet. Used for graphql queries.
       }
