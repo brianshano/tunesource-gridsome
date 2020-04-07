@@ -6,42 +6,59 @@
       src="~/assets/celtic-knot-tri-circles.png"
       width="135"
     />
-    <!-- <g-image
-        alt="Example image"
-        src="https://tunesource.net/static/media/celtic-knot-tri-circles-white.b9fc2e4d.svg"
-        width="135"
-      />-->
 
     <h1>Welcome to TuneSource</h1>
 
-    <p>search tunes</p>
+    <h2>Google Sheets Source</h2>
 
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener"
-        >Gridsome Docs</a
-      >
-      <a
-        href="https://github.com/gridsome/gridsome"
-        target="_blank"
-        rel="noopener"
-        >GitHub {title}</a
-      >
-    </p>
-    <ul v-if="$page.posts.edges.length" class="cardList">
-      <li v-for="edge in $page.posts.edges" :key="edge.node.id">
-        <!-- {{ edge.node.title }} -->
-        <Card v-bind:id="edge.node.id" v-bind:title="edge.node.title" />
+    <ul v-if="$page.allGoogleSheet.edges.length" class="cardList">
+      <li v-for="page in $page.allGoogleSheet.edges" :key="page.tuneId">
+        <g-link :to="page.node.path"
+          ><Card
+            v-bind:id="page.node.tuneId"
+            v-bind:shlug="page.node.shlug"
+            v-bind:title="page.node.title"
+        /></g-link>
       </li>
     </ul>
   </Layout>
+  <!-- query {
+  posts: allTunes {
+    edges{
+      node{
+        title
+        shlug
+        id
+        tuneId
+        rhythm
+      }
+    }
+  }
+} -->
 </template>
+
+<page-query>
+query {
+  allGoogleSheet{
+    edges{
+      node{
+        title
+        tuneId
+        shlug
+        path
+      }
+    }
+  }
+}
+
+</page-query>
 
 <script>
 import Card from '~/components/Card.vue';
 
 export default {
   metaInfo: {
-    title: 'Hello, world!'
+    title: 'TuneSource'
   },
   components: {
     Card
@@ -57,19 +74,38 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
-</style>
-
-<page-query>
-query {
-  posts: allTunes {
-    edges{
-      node{
-        title
-        id
-        tuneId
-        rhythm
-      }
-    }
-  }
+body {
+  --body-color: #ebf4f1;
+  --bg: #091a28;
+  --bg-secondary: #071521;
+  --bg-teritary: #0e2233;
+  --bg-transparent: rgba(9, 26, 40, 0.88);
+  --border-color: #0d2538;
+  --border-color-darker: #0d2538;
+  --inline-code-text: #e24cb2;
+  --inline-code-bg: rgba(212, 53, 159, 0.1);
+  --primary-color: #00835c;
+  --primary-color-dark: #00a672;
+  --glow: 2px 2px 15px 0 #071521;
 }
-</page-query>
+body {
+  /* color: hsla(0, 0%, 0%, 0.8); */
+  color: #f5f5f5;
+  font-family: 'Jost', 'Helvetica', 'Helvetica Neue', 'Segoe UI', 'Helvetica',
+    'Arial', sans-serif;
+  font-weight: normal;
+  word-wrap: break-word;
+  font-kerning: normal;
+  -moz-font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+  -ms-font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+  -webkit-font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+  font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+}
+body,
+html {
+  background-color: var(--bg);
+  touch-action: manipulation;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+</style>
