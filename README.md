@@ -1,14 +1,7 @@
-# Default starter for Gridsome
+[![Netlify Status](https://api.netlify.com/api/v1/badges/75185151-2fdf-4e02-91ca-c52532478ed4/deploy-status)](https://app.netlify.com/sites/tunesourcev2/deploys)
 
-This is the project you get when you run `gridsome create new-project`.
+# Tunesource using Gridsome / VueJS
 
-### 1. Install Gridsome CLI tool if you don't have
+`gridsome develop` to start a local dev server at `http://localhost:8080`
 
-`npm install --global @gridsome/cli`
-
-### 2. Create a Gridsome project
-
-1. `gridsome create my-gridsome-site` to install default starter
-2. `cd my-gridsome-site` to open the folder
-3. `gridsome develop` to start a local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+`gridsome build` to build static site
