@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@gridsome/source-airtable": "^0.1.4",
+    "abcjs": "^5.12.0",
     "gridsome": "^0.7.0",
     "gridsome-source-google-sheets": "^0.4.1"
   }
