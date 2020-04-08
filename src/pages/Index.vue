@@ -1,11 +1,7 @@
 <template>
   <Layout>
     <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image
-      alt="Example image"
-      src="~/assets/celtic-knot-tri-circles.png"
-      width="135"
-    />
+    
 
     <h1>Welcome to TuneSource</h1>
     <ul v-if="$page.allGoogleSheet.edges.length" class="cardList">
@@ -15,9 +11,11 @@
             v-bind:id="page.node.tuneId"
             v-bind:shlug="page.node.shlug"
             v-bind:title="page.node.title"
+            v-bind:rhythm="page.node.rhythm"
         /></g-link>
       </li>
     </ul>
+    
   </Layout>
  
 </template>
@@ -41,6 +39,7 @@ query {
         tuneId
         shlug
         path
+        rhythm
       }
     }
   }
@@ -73,8 +72,8 @@ export default {
 .cardList {
   display: flex;
   flex-wrap: wrap;
-
   list-style: none;
+  justify-content: space-evenly;
 }
 .cardList a {
   color: black;

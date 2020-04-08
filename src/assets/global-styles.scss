@@ -1,0 +1,81 @@
+body {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+// Set your colors
+$primary: #8c67ef;
+$primary-invert: findColorInvert($primary);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert),
+    "twitter": ($twitter, $twitter-invert)
+);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+.layout {
+  width: 100vw;
+  height: 100%;
+  margin: 0 auto;
+  background-color: #5c7997;
+}
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: #ffffff05;
+  padding: .5rem;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 20px;
+  height: 80px;
+  background-color: #091a28;
+}
+.header-title {
+  text-align: center;
+}
+.header-title a{
+  color: white;
+  font-size: 2rem;
+}
+  .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav a{
+  color: white;
+  font-size: 1rem;
+}
+
+footer.footer{
+  background-color: #0000003d;
+  color: #f5f5f5;
+}

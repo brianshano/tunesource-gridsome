@@ -1,13 +1,15 @@
 <template>
   <TuneLayout>
-  
-    <h3 v-if="$page.googleSheet.title">{{ $page.googleSheet.title }}</h3>
-    <div>Slug: {{ $page.googleSheet.shlug }}</div>
-    <div>Rhythm: {{ $page.googleSheet.rhythm }}</div>
-    <div>Tune ID: {{ $page.googleSheet.tuneId }}</div>
-    <div id="paper"></div>
-    <div id="audio"></div>
-
+    
+      <h3 v-if="$page.googleSheet.title">{{ $page.googleSheet.title }}</h3>
+      <div>Slug: {{ $page.googleSheet.shlug }}</div>
+      <div>Rhythm: {{ $page.googleSheet.rhythm }}</div>
+      <div>Tune ID: {{ $page.googleSheet.tuneId }}</div>
+      <div class="notation">
+      <div id="paper"></div>
+      </div>
+      <div id="audio"></div>
+    
     <ClientOnly>
     <p>this is client only</p>
     </ClientOnly>
@@ -33,7 +35,7 @@ export default {
     // console.log(`!!abcTuneHeader:` + this.$page.googleSheet.abcheader);
     // abcjs.renderAbc('paper', abcTune, {});
     var cursorControl = { };
-    var abcOptions = { add_classes: true };
+    var abcOptions = { add_classes: true, responsive: "resize", };
     var audioParams = { chordsOff: true };
     if (abcjs.synth.supportsAudio()) {
       var synthControl = new abcjs.synth.SynthController();
@@ -86,3 +88,15 @@ query Post($path: String!) {
   }
 }
 </page-query>
+
+<style>
+#audio {
+  padding: 2rem 1rem;
+  width: 100%;
+  background-color: #424242;
+}
+.notation {
+   border: 1px solid brown;
+  background-color: white;
+}
+</style>
