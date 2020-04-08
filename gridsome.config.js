@@ -10,22 +10,22 @@ module.exports = {
     googleSheet: [
       {
         path: '/tune/:tuneId/:shlug',
-        component: './src/templates/googleSheet.vue',
+        component: './src/templates/Tune.vue',
       },
     ],
   },
   plugins: [
-    {
-      use: '@gridsome/source-airtable',
-      options: {
-        apiKey: process.env.AIRTABLE_API,
-        baseId: process.env.AIRTABLE_BASEID,
-        tableName: 'tunes',
-        typeName: 'tunes',
-        route: '/tune/:id',
-        select: {},
-      },
-    },
+    // {
+    //   use: '@gridsome/source-airtable',
+    //   options: {
+    //     apiKey: process.env.AIRTABLE_API,
+    //     baseId: process.env.AIRTABLE_BASEID,
+    //     tableName: 'tunes',
+    //     typeName: 'tunes',
+    //     route: '/tune/:id',
+    //     select: {},
+    //   },
+    // },
     {
       use: 'gridsome-source-google-sheets',
       options: {

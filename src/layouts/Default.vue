@@ -22,7 +22,10 @@ query {
   }
 }
 </static-query>
-
+<script>
+export default {
+}
+</script>
 <style>
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,

@@ -4,7 +4,7 @@
 
     <!-- <g-link :to="this.shlug"> -->
     <!-- <g-link :to="{ name: 'tune', params: { id: this.shlug } }"> -->
-    <b><div v-html="this.title"/></b>
+    <b><div v-html="this.title" /></b>
     <!-- </g-link> -->
     <div v-html="this.id" />
   </div>
@@ -12,26 +12,26 @@
 <script>
 export default {
   metaInfo: {
-    title: 'TuneSource'
+    title: 'TuneSource',
   },
   name: 'Card',
   props: {
     id: [String, Number],
     title: [String],
-    shlug: [String]
+    shlug: [String],
     // tuneId: [String],
     // rhythm: [String]
   },
   data() {
     return {
-      message: 'Try change me!'
+      message: 'Try change me!',
     };
   },
   methods: {
     onClick() {
       this.message = 'Here you go :)';
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -41,13 +41,23 @@ export default {
   margin: 1rem;
   background: #f5f5f54f;
   border: 1px solid #ccc;
+  width: 10rem;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
-<static-query>
+<!--static-query>
 query {
-  tunes(id:"this.id") {
-    title
+  googleSheet(path: $path){
     shlug
+    title
+    abc
+    abcheader
+    rhythm
+    tempo
+    tuneId
   }
 }
-</static-query>
+<static-query-->

@@ -22,26 +22,24 @@
       </li>
     </ul>
   </Layout>
-  <!-- query {
-  posts: allTunes {
-    edges{
-      node{
-        title
-        shlug
-        id
-        tuneId
-        rhythm
-      }
-    }
-  }
-} -->
+ 
 </template>
-
+<script>
+export default() {
+  const page = 1;
+}
+</script>
 <page-query>
 query {
-  allGoogleSheet{
+  allGoogleSheet(perPage: 20, page: 1) @paginate {
+    pageInfo {
+      totalPages
+      currentPage
+    }
     edges{
       node{
+         abc
+        abcheader
         title
         tuneId
         shlug
@@ -58,11 +56,11 @@ import Card from '~/components/Card.vue';
 
 export default {
   metaInfo: {
-    title: 'TuneSource'
+    title: 'TuneSource',
   },
   components: {
-    Card
-  }
+    Card,
+  },
 };
 </script>
 
@@ -73,7 +71,15 @@ export default {
 .cardList {
   display: flex;
   flex-wrap: wrap;
+
+  list-style: none;
 }
+.cardList a {
+  color: black;
+  text-decoration: none;
+}
+</style>
+<!--
 body {
   --body-color: #ebf4f1;
   --bg: #091a28;
@@ -108,4 +114,4 @@ html {
   width: 100%;
   transition: background-color 0.3s;
 }
-</style>
+-->
