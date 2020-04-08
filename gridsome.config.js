@@ -15,17 +15,6 @@ module.exports = {
     ],
   },
   plugins: [
-    // {
-    //   use: '@gridsome/source-airtable',
-    //   options: {
-    //     apiKey: process.env.AIRTABLE_API,
-    //     baseId: process.env.AIRTABLE_BASEID,
-    //     tableName: 'tunes',
-    //     typeName: 'tunes',
-    //     route: '/tune/:id',
-    //     select: {},
-    //   },
-    // },
     {
       use: 'gridsome-source-google-sheets',
       options: {
