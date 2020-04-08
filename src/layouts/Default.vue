@@ -8,7 +8,6 @@
         <g-link class="nav__link" to="/">Home</g-link>
         <g-link class="nav__link" to="/about/">About</g-link>
         <g-link class="nav__link" to="/tune/">Tune</g-link>
-        <g-link class="nav__link" to="/tune/">Tune</g-link>
       </nav>
     </header>
     <slot />
@@ -22,10 +21,6 @@ query {
   }
 }
 </static-query>
-<script>
-export default {
-}
-</script>
 <style>
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,

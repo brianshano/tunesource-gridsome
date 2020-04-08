@@ -1,14 +1,10 @@
-<template
-  ><div class="card">
-    <!-- <div v-html="$static.tunes.title" /> -->
-
-    <!-- <g-link :to="this.shlug"> -->
-    <!-- <g-link :to="{ name: 'tune', params: { id: this.shlug } }"> -->
+<template>
+  <div class="card">
     <b><div v-html="this.title" /></b>
-    <!-- </g-link> -->
     <div v-html="this.id" />
   </div>
 </template>
+
 <script>
 export default {
   metaInfo: {
@@ -27,11 +23,6 @@ export default {
       message: 'Try change me!',
     };
   },
-  methods: {
-    onClick() {
-      this.message = 'Here you go :)';
-    },
-  },
 };
 </script>
 
@@ -48,16 +39,3 @@ export default {
   align-items: center;
 }
 </style>
-<!--static-query>
-query {
-  googleSheet(path: $path){
-    shlug
-    title
-    abc
-    abcheader
-    rhythm
-    tempo
-    tuneId
-  }
-}
-<static-query-->
