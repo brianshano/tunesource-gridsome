@@ -31,9 +31,9 @@
 
 export default() {
   metaInfo: {
-    title: 'TuneSource',
+    title: '1TuneSource',
   },
-  name: 'TuneSource',
+  name: 'T1uneSource',
   components: {
     // Pager,
     Search
@@ -75,7 +75,7 @@ export default {
     }));
   },
   metaInfo: {
-    title: 'TuneSource',
+    title: '2TuneSource',
   },
   components: {
     Card,
