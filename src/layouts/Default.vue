@@ -3,19 +3,15 @@
     <header class="header">
       <div class="header-title">
         <g-link to="/"><h1>{{ $static.metadata.siteName }}</h1></g-link>
-        <h2>Irish Trad Session Tunes Library</h2>
-        <g-image
+        <h1>Irish Trad Session Tunes Library</h1>
+       <!--g-image
       alt="Example image"
       src="~/assets/celtic-knot-tri-circles.png"
       width="135"
-    />
+    /-->
       </div>
       
-      <!--nav-- class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/about/">About</g-link>
-        <g-link class="nav__link" to="/tune/">Tune</g-link>
-      </!--nav-->
+
     </header>
     <div class="container">
     <transition name="fade" appear>
