@@ -4,17 +4,19 @@
     <header class="header">
       <div class="header-title">
         <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-        <g-image
+        <h1>Irish Trad Session Tunes Library</h1>
+
+        <!--g-image
       alt="Example image"
       src="~/assets/celtic-knot-tri-circles.png"
       width="135"
-    />
+    /-->
       </div>
-      <nav class="nav">
+      <!--nav-- class="nav">
         <g-link class="nav__link" to="/">Home</g-link>
         <g-link class="nav__link" to="/about/">About</g-link>
         <g-link class="nav__link" to="/tune/">Tune</g-link>
-      </nav>
+      </!--nav-->
     </header>
       <div class="container">
     <slot/>
@@ -31,16 +33,8 @@ query {
 }
 </static-query>
 <script>
-  // import abcjs from 'abcjs';
   export default {
     mounted: function() {
     },
   }
 </script>
-<style>
-
-
-.nav__link {
-  
-}
-</style>

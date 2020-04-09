@@ -1,10 +1,8 @@
 <template>
   <TuneLayout>
-    
-      <h3 v-if="$page.googleSheet.title">{{ $page.googleSheet.title }}</h3>
-      <div>Slug: {{ $page.googleSheet.shlug }}</div>
-      <div>Rhythm: {{ $page.googleSheet.rhythm }}</div>
-      <div>Tune ID: {{ $page.googleSheet.tuneId }}</div>
+      <h1 class="tune-info tune-title" v-if="$page.googleSheet.title">{{ $page.googleSheet.title }}</h1>
+      <div class="tune-subline"><div class="tune-info tune-rhythm">{{ $page.googleSheet.rhythm }}</div>
+      <div class="tune-info tune-id">Tune ID: {{ $page.googleSheet.tuneId }}</div></div>
       <div class="notation">
         <div id="paper"></div>
       </div>
@@ -23,16 +21,11 @@ export default {
   mounted: function() {
         const abcjs = require('abcjs');
     console.log('In TuneLayout');
-      // const abcTune = this.$page.googleSheet.abc;
       console.log('abcjs', abcjs)
 
-    // console.log('abcTune', abcTune)
       const abcTune = this.$page.googleSheet.abcheader+' '+this.$page.googleSheet.abc;
-      const title = this.$page.googleSheet.title;
+      // const title = this.$page.googleSheet.title;
       console.log(`!!abcTune:` + abcTune);
-    // console.log('mounted', this.$path)
-    // console.log(`!!abcTuneHeader:` + this.$page.googleSheet.abcheader);
-    // abcjs.renderAbc('paper', abcTune, {});
     var cursorControl = { };
     var abcOptions = { add_classes: true, responsive: "resize", };
     var audioParams = { chordsOff: true };
@@ -66,18 +59,73 @@ export default {
         "Audio is not supported in this browser.";
 	  }
   },
-  
+ 
   name: 'hello',
-  metaInfo: {
-    title: `TuneTitle here`,
-    meta: [
-      { name: 'author', content: 'John Doe' }
-    ],
-    link: [
-      { rel: 'stylesheet', href: '/css/index.css' },
-    ]
-    // etc...
+   metaInfo() {
+
+    const { title } = this.$page.googleSheet;
+    const { rhythm } = this.$page.googleSheet;
+    const { path } = this.$page.googleSheet;
+    // const { title } = this.$page.googleSheet;
+    const meta = [
+      // open-graph tags
+      {
+        key: 'og:title',
+        name: 'og:title',
+        content: title,
+      },
+      {
+        key: 'twitter:title',
+        name: 'twitter:title',
+        content: title,
+      },
+        { name: 'twitter:description', content: rhythm },
+        {
+          name: 'description',
+          content: rhythm
+        },
+        {
+          property: 'og:description',
+          content: rhythm
+        },
+        {
+          property: 'og:image',
+          content: '.src/assets/static/src/assets/celtic-knot-tri-circles.png'
+        },
+        {
+          property: 'og:url',
+          content: 'http://tunesource.net'+path
+        },
+        {
+          property: 'og:site_name',
+          content: 'http://tunesource.net'
+        },
+        {
+          property: 'og:type',
+          content: 'website'
+        },
+       
+        // twitter card
+        {
+          name: 'twitter:card',
+          content: '.src/assets/static/src/assets/celtic-knot-tri-circles.png'
+            ? 'summary_large_image'
+            : 'summary'
+        },
+        {
+          name: 'twitter:creator',
+          content: 'brianshano'
+        },
+      ];
+    console.log('METAtitle', title)
+    console.log('METAmeta', meta)
+    return {
+      title:title ? title : "TuneSource",
+      meta
+
+    }
   },
+
   data() {
 			return {
 				synthControl: null,
@@ -94,6 +142,8 @@ query Post($path: String!) {
     abcheader
     tempo
     tuneId
+    rhythm
+    path
   }
 }
 </page-query>
@@ -103,6 +153,27 @@ query Post($path: String!) {
   padding: 3rem 1rem;
   width: 100%;
   background-color: #424242;
+}
+
+.tune-info {
+  color: white;
+  text-align: center;
+}
+
+.tune-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  @media (min-width: 768px) {
+    font-size: 1.6rem;
+    border: 1px solid red;
+  }
+
+}
+
+.tune-subline {
+  display: flex;
+  justify-content: space-between;
 }
 
 </style>
