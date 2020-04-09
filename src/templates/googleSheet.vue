@@ -6,7 +6,7 @@
       <div>Rhythm: {{ $page.googleSheet.rhythm }}</div>
       <div>Tune ID: {{ $page.googleSheet.tuneId }}</div>
       <div class="notation">
-      <div id="paper"></div>
+        <div id="paper"></div>
       </div>
       <div id="audio"></div>
     
@@ -18,9 +18,7 @@
 
 
 <script>
-// import abcjs from 'abcjs';
 import 'abcjs/abcjs-audio.css';
-// import ('abcjs');
 export default {
   mounted: function() {
         const abcjs = require('abcjs');
@@ -30,6 +28,7 @@ export default {
 
     // console.log('abcTune', abcTune)
       const abcTune = this.$page.googleSheet.abcheader+' '+this.$page.googleSheet.abc;
+      const title = this.$page.googleSheet.title;
       console.log(`!!abcTune:` + abcTune);
     // console.log('mounted', this.$path)
     // console.log(`!!abcTuneHeader:` + this.$page.googleSheet.abcheader);
@@ -69,6 +68,16 @@ export default {
   },
   
   name: 'hello',
+  metaInfo: {
+    title: `TuneTitle here`,
+    meta: [
+      { name: 'author', content: 'John Doe' }
+    ],
+    link: [
+      { rel: 'stylesheet', href: '/css/index.css' },
+    ]
+    // etc...
+  },
   data() {
 			return {
 				synthControl: null,
@@ -91,12 +100,9 @@ query Post($path: String!) {
 
 <style>
 #audio {
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
   width: 100%;
   background-color: #424242;
 }
-.notation {
-   border: 1px solid brown;
-  background-color: white;
-}
+
 </style>
