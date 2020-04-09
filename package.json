@@ -7,12 +7,21 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "@gridsome/source-airtable": "^0.1.4",
     "abcjs": "^5.12.0",
     "buefy": "^0.8.15",
     "gridsome": "^0.7.0",
     "gridsome-source-google-sheets": "^0.4.1",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "gridsome-plugin-manifest": "^0.3.4",
+    "prettier": "^2.0.4",
+    "vue-eslint-parser": "^7.0.0"
   }
 }

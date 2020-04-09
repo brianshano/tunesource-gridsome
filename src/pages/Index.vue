@@ -2,7 +2,7 @@
   <Layout>
     <!-- Learn how to use images here: https://gridsome.org/docs/images -->
     
-
+    <Search />
     <h1>Welcome to TuneSource</h1>
     <ul v-if="$page.allGoogleSheet.edges.length" class="cardList">
       <li v-for="page in $page.allGoogleSheet.edges" :key="page.tuneId">
@@ -15,18 +15,34 @@
         /></g-link>
       </li>
     </ul>
-    
+    <div class="pagination">
+      <Pager :info="$page.allGoogleSheet.pageInfo"/>
+    </div>
   </Layout>
  
 </template>
 <script>
+// import Pager from 'gridsome'
+// import Search from '~/components/Search.vue'
+// import { Pager } from "gridsome";
+
+
+
+
 export default() {
-  const page = 1;
+  metaInfo: {
+    title: 'TuneSource',
+  },
+  name: 'TuneSource',
+  components: {
+    // Pager,
+    Search
+  }
 }
 </script>
 <page-query>
-query {
-  allGoogleSheet(perPage: 20, page: 1) @paginate {
+query ($page: Int){
+  allGoogleSheet(perPage: 10, page: $page) @paginate {
     pageInfo {
       totalPages
       currentPage
@@ -49,6 +65,8 @@ query {
 
 <script>
 import Card from '~/components/Card.vue';
+import { Pager } from "gridsome";
+
 
 export default {
   mounted: function() {
@@ -61,6 +79,7 @@ export default {
   },
   components: {
     Card,
+    Pager
   },
 };
 </script>

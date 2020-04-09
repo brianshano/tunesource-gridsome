@@ -3,8 +3,8 @@
 
 import DefaultLayout from '~/layouts/Default.vue';
 import TuneLayout from '~/layouts/TuneLayout.vue';
-// import abcjs from 'abcjs';
-// import 'abcjs/abcjs-audio.css';
+// import Pager from 'gridsome';
+import Search from '~/components/Search.vue';
 import '~/assets/global-styles.scss'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
@@ -25,6 +25,8 @@ export default function(Vue, { router, head, isClient }) {
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout);
   Vue.component('TuneLayout', TuneLayout);
+  Vue.component('Search', Search);
+  // Vue.component('Pager', Pager);
   Vue.use(Buefy, {
     defaultIconPack: 'fas' // Font Awesome Solid
 
