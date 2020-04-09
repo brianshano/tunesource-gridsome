@@ -21,6 +21,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-vue": "^6.2.2",
     "gridsome-plugin-manifest": "^0.3.4",
+    "gridsome-plugin-service-worker": "^0.1.4",
     "prettier": "^2.0.4",
     "vue-eslint-parser": "^7.0.0"
   }

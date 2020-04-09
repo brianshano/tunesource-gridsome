@@ -26,6 +26,17 @@ module.exports = {
           lang: "en",
       },
   },
+  {
+    use: "gridsome-plugin-service-worker",
+    options: {
+      networkFirst: {
+        routes: [
+          "/",
+          /\.(js|css|png)$/, // means "every JS, CSS, and PNG images"
+        ],
+      },
+    },
+  },
     // {
     //   use: 'gridsome-plugin-pwa',
     //   options: {
