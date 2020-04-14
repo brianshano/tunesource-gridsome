@@ -12,7 +12,8 @@
     <div class="notation">
       <div id="paper"></div>
     </div>
-    <div id="audio"></div>
+    <AudioPlayer />
+
     <div v-if="$page.googleSheet.url" class="youtube">
       <!--iframe
         width="560"
@@ -32,55 +33,15 @@
 
 <script>
 import 'abcjs/abcjs-audio.css';
+import AudioPlayer from '../components/AudioPlayer';
 export default {
   mounted: function () {
-    const abcjs = require('abcjs');
-    console.log('In TuneLayout');
-    console.log('abcjs', abcjs);
     console.log('data', this.$data.ytid);
     this.$data.ytid =
       'https://www.youtube.com/embed/' + this.$page.googleSheet.url;
-    const abcTune =
-      this.$page.googleSheet.abcheader + ' ' + this.$page.googleSheet.abc;
-    // const title = this.$page.googleSheet.title;
-    console.log(`!!abcTune:` + abcTune);
-    var cursorControl = {};
-    var abcOptions = { add_classes: true, responsive: 'resize' };
-    var audioParams = { chordsOff: true };
-    if (abcjs.synth.supportsAudio()) {
-      var synthControl = new abcjs.synth.SynthController();
-      synthControl.load('#audio', cursorControl, {
-        displayLoop: true,
-        displayRestart: true,
-        displayPlay: true,
-        displayProgress: true,
-        displayWarp: true,
-      });
-
-      var visualObj = abcjs.renderAbc('paper', abcTune, abcOptions);
-      var createSynth = new abcjs.synth.CreateSynth();
-      createSynth
-        .init({ visualObj: visualObj[0] })
-        .then(function () {
-          synthControl
-            .setTune(visualObj[0], false, audioParams)
-            .then(function () {
-              console.log('Audio successfully loaded.');
-            })
-            .catch(function (error) {
-              console.warn('Audio problem:', error);
-            });
-        })
-        .catch(function (error) {
-          console.warn('Audio problem:', error);
-        });
-    } else {
-      document.querySelector('#audio').innerHTML =
-        'Audio is not supported in this browser.';
-    }
   },
 
-  name: 'hello',
+  name: 'TuneDisplay',
   metaInfo() {
     const { title } = this.$page.googleSheet;
     const { rhythm } = this.$page.googleSheet;
@@ -143,12 +104,8 @@ export default {
       meta,
     };
   },
-
-  data() {
-    return {
-      synthControl: null,
-      ytid: '',
-    };
+  components: {
+    AudioPlayer,
   },
 };
 </script>
