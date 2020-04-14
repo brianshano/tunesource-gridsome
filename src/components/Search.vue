@@ -20,14 +20,20 @@
 <script>
 export default {
   mounted() {
-    const list = this.$page.allGoogleSheet.edges.node.forEach((node) => {
-      return node;
+    console.log('mounted', this.$page.allGoogleSheet.edges);
+
+    const list = this.$page.allGoogleSheet.edges.map((tune) => {
+      console.log('tune', tune);
+      return { shlug: tune.node.shlug, title: tune.node.title };
     });
-    console.log('mounted', list);
+    console.log('mounted11', list);
+    this.data = list;
   },
   data() {
+    console.log('loste', this);
     return {
-      data: [
+      data: [],
+      dataTest: [
         { shlug: 'molly-st-george', title: 'Molly St. George' },
         { shlug: 'Planxty-Davis', title: 'Planxty Davis' },
         { shlug: 'lady-iveagh', title: 'Lady Iveagh' },
@@ -56,7 +62,7 @@ export default {
   },
   computed: {
     filteredDataArray() {
-      if (this.name.length > 1) {
+      if (this.name.length > 0) {
         let testes = this.data.filter((option) => {
           console.log('searching', this.name, option.title);
           return (
@@ -78,16 +84,15 @@ export default {
 </script>
 <page-query>
 query {
-  allGoogleSheet(filter: { featured: { eq: "1" }}) @paginate {
+  allGoogleSheet(sortBy: "featured") {
     edges{
       node{
-         abc
-        abcheader
+        
         title
         tuneId
         shlug
         path
-        rhythm
+
       }
     }
   }

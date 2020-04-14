@@ -2,7 +2,7 @@
   <Layout>
     <!-- Learn how to use images here: https://gridsome.org/docs/images -->
 
-    <!--Search /-->
+    <Search />
     <h1>Welcome to TuneSource</h1>
     <ul v-if="$page.allGoogleSheet.edges.length" class="cardList">
       <li v-for="page in $page.allGoogleSheet.edges" :key="page.tuneId">
