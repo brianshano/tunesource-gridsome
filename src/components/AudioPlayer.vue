@@ -8,7 +8,7 @@
 // import 'font-awesome/css/font-awesome.min.css';
 import 'abcjs/abcjs-audio.css';
 import 'abcjs/abcjs-midi.css';
-import abcjs from 'abcjs';
+// import abcjs from 'abcjs';
 
 export default {
   name: 'Audio',
@@ -28,7 +28,8 @@ export default {
   },
 
   mounted: function () {
-    // const abcjs = require('abcjs');
+    // importing kills the build so use require for now...
+    const abcjs = require('abcjs');
     console.log('In TuneLayout');
     console.log('abcjs', abcjs);
     console.log('data', this.$data.ytid);
