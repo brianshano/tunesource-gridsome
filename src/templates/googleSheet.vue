@@ -15,7 +15,7 @@
         <div id="audio">Audio Player here</div>
       </div>
     </div>
-    <AudioPlayer />
+    <AudioPlayer v-bind="$page.googleSheet" />
 
     <div v-if="$page.googleSheet.url" class="youtube">
       <!--iframe
