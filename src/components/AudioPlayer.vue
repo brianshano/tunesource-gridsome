@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script defer>
 // import 'font-awesome/css/font-awesome.min.css';
 import 'abcjs/abcjs-audio.css';
 import 'abcjs/abcjs-midi.css';
