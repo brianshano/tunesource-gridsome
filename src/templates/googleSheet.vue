@@ -11,6 +11,9 @@
     </div>
     <div class="notation">
       <div id="paper"></div>
+      <div class="audioplayer">
+        <div id="audio">Audio Player here</div>
+      </div>
     </div>
     <AudioPlayer />
 
