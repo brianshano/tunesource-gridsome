@@ -1,6 +1,6 @@
 <template>
   <div class="audioplayer">
-    <div id="audio">Audio Player here</div>
+    <!--div id="audio">Audio Player here</div-->
   </div>
 </template>
 
@@ -13,12 +13,16 @@ import 'abcjs/abcjs-midi.css';
 export default {
   name: 'Audio',
   props: {
-    id: [String, Number],
-    title: [String],
+    title: {
+      type: String,
+      // default: {},
+    },
+    tuneId: [String, Number],
     shlug: [String],
     rhythm: [String],
-    // tuneId: [String],
-    // rhythm: [String]
+    abc: [String],
+    abcheader: [String],
+    url: [String],
   },
   data() {
     return {
@@ -30,13 +34,11 @@ export default {
   mounted: function () {
     // importing kills the build so use require for now...
     const abcjs = require('abcjs');
-    console.log('In TuneLayout');
+    console.log('In TuneLayout', this.title, this.shlug, this.tuneId);
     console.log('abcjs', abcjs);
     console.log('data', this.$data.ytid);
-    this.$data.ytid =
-      'https://www.youtube.com/embed/' + this.$page.googleSheet.url;
-    const abcTune =
-      this.$page.googleSheet.abcheader + ' ' + this.$page.googleSheet.abc;
+    this.$data.ytid = 'https://www.youtube.com/embed/' + this.url;
+    const abcTune = this.abcheader + ' ' + this.abc;
     // const title = this.$page.googleSheet.title;
     console.log(`!!abcTune:` + abcTune);
     var cursorControl = {};
