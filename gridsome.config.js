@@ -5,12 +5,13 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'tunesource',
+  siteName: 'TuneSource',
   templates: {
     googleSheet: [
       {
         path: '/tune/:tuneId/:shlug',
-        component: './src/templates/Tune.vue',
+        // path: '/:shlug',
+        component: './src/templates/googleSheet.vue',
       },
     ],
   },
@@ -44,6 +45,16 @@ module.exports = {
       },
     },
     {
+      use: 'gridsome-source-google-sheets',
+      options: {
+        sheetId: process.env.GOOG_SHEET_ID,
+        apiKey: process.env.GOOG_SHEETS_API,
+        route: '/tune/:tuneId/:shlug',
+        route: '/:shlug',
+        // type: 'TYPE_NAME', //Optional - default is googleSheet. Used for graphql queries.
+      },
+    },
+    {
       use: 'gridsome-plugin-service-worker',
       options: {
         networkFirst: {
@@ -54,32 +65,16 @@ module.exports = {
         },
       },
     },
-    // {
-    //   use: 'gridsome-plugin-pwa',
-    //   options: {
-    //       title: 'TuneSource',
-    //       startUrl: '/',
-    //       display: 'standalone',
-    //       statusBarStyle: 'default',
-    //       manifestPath: 'manifest.json',
-    //       disableServiceWorker: false,
-    //       serviceWorkerPath: 'service-worker.js',
-    //       cachedFileTypes: 'js,json,css,html,png,jpg,jpeg,svg',
-    //       shortName: 'TuneSource',
-    //       themeColor: '#5c7997',
-    //       backgroundColor: '#091a28',
-    //       icon: './src/assets/favicons/favicon-32x32.png',
-    //       msTileImage: './src/assets/favicons/ms-icon-144x144.png',
-    //       msTileColor: '#091a28'
-    //   }
-    // },
     {
-      use: 'gridsome-source-google-sheets',
+      use: 'gridsome-plugin-tailwindcss',
+      /* These are the default options. You don't need to set any options to get going.*/
       options: {
-        sheetId: process.env.GOOG_SHEET_ID,
-        apiKey: process.env.GOOG_SHEETS_API,
-        route: '/tune/:tuneId/:shlug',
-        // type: 'TYPE_NAME', //Optional - default is googleSheet. Used for graphql queries.
+        // tailwindConfig: './some/file/js',
+        // purgeConfig: {},
+        // presetEnvConfig: {},
+        shouldPurge: false /* this was preventing outher library css files loading (abcjs-audio) */,
+        // shouldImport: true,
+        // shouldTimeTravel: true
       },
     },
   ],

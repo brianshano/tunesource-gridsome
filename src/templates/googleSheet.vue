@@ -1,79 +1,80 @@
 <template>
-  <TuneLayout>
-    <h1 class="tune-info tune-title" v-if="$page.googleSheet.title">
-      {{ $page.googleSheet.title }}
-    </h1>
-    <div class="tune-subline">
-      <div class="tune-info tune-rhythm">{{ $page.googleSheet.rhythm }}</div>
-      <div class="tune-info tune-id">
-        Tune ID: {{ $page.googleSheet.tuneId }}
-      </div>
-    </div>
-    <div class="notation">
-      <div id="paper"></div>
-      <div class="audioplayer">
-        <div id="audio">Audio Player here</div>
-      </div>
-    </div>
-    <AudioPlayer v-bind="$page.googleSheet" />
-
-    <div v-if="$page.googleSheet.url" class="youtube">
-      <!--iframe
-        width="560"
-        height="315"
-        src="{{ytid}}"
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe-->
-      <!--p>We have a URL {{ $page.googleSheet.url }} and {{ ytid }}</p-->
-    </div>
-    <ClientOnly>
-      <p>this is client only</p>
-    </ClientOnly>
-  </TuneLayout>
+  <Layout>
+    <!--h1>{{ $page.googleSheet.title }}</h1-->
+    <TuneCard :tune="$page.googleSheet" />
+  </Layout>
 </template>
-
+<page-query>
+  query Sheet ($path: String!){
+    googleSheet(path: $path) {
+      title
+      abc
+      id
+      rhythm
+      abcheader
+      path
+      abcheader
+      key
+    }
+  }
+</page-query>
 <script>
 import 'abcjs/abcjs-audio.css';
-import AudioPlayer from '../components/AudioPlayer';
-export default {
-  mounted: function () {
-    console.log('data', this.$data.ytid);
-    this.$data.ytid =
-      'https://www.youtube.com/embed/' + this.$page.googleSheet.url;
-  },
+import TuneCard from '~/components/TuneCard.vue';
 
-  name: 'TuneDisplay',
+export default {
+  metaInfo: {
+    title: 'TuneSource!',
+  },
+  components: {
+    TuneCard,
+  },
   metaInfo() {
     const { title } = this.$page.googleSheet;
     const { rhythm } = this.$page.googleSheet;
     const { path } = this.$page.googleSheet;
+    const { abcheader } = this.$page.googleSheet;
+    const descriptionMeta = abcheader
+      .split(/\r\n|\r|\n/)
+      .filter((line, index) => {
+        return index > 0;
+      })
+      .map((line) => {
+        return `${line.substring(2)},`;
+      })
+      .join(' ');
+    // return newLines.toString();
     // const { title } = this.$page.googleSheet;
+    console.log('META', title);
     const meta = [
       // open-graph tags
       {
         key: 'og:title',
         name: 'og:title',
-        content: title,
+        content: `${title} - ${rhythm.charAt(0).toUpperCase() +
+          rhythm.slice(1)} on TuneSource`,
       },
       {
         key: 'twitter:title',
         name: 'twitter:title',
-        content: title,
+        content: `${title} - ${rhythm.charAt(0).toUpperCase() +
+          rhythm.slice(1)} on TuneSource`,
       },
-      { name: 'twitter:description', content: rhythm },
+      {
+        name: 'twitter:description',
+        content: `TuneSource tunes database - ${descriptionMeta}`,
+      },
       {
         name: 'description',
-        content: rhythm,
+        content: `TuneSource tunes database - ${descriptionMeta}`,
       },
       {
         property: 'og:description',
-        content: rhythm,
+        content: `TuneSource tunes database - ${descriptionMeta}`,
       },
       {
         property: 'og:image',
-        content: '.src/assets/celtic-knot-tri-circles.png',
+        content: '/assets/img/favicon-48.png',
       },
       {
         property: 'og:url',
@@ -100,65 +101,11 @@ export default {
         content: 'brianshano',
       },
     ];
-    console.log('METAtitle', title);
     console.log('METAmeta', meta);
     return {
       title: title ? title : 'TuneSource',
       meta,
     };
   },
-  components: {
-    AudioPlayer,
-  },
 };
 </script>
-<page-query>
-query Post($path: String!) {
-  googleSheet(path: $path){
-    shlug
-    title
-    abc
-    abcheader
-    tempo
-    tuneId
-    url
-    rhythm
-    path
-  }
-}
-</page-query>
-
-<style>
-#audio {
-  padding: 3rem 1rem;
-  width: 100%;
-  background-color: #424242;
-}
-
-.tune-info {
-  color: white;
-  text-align: center;
-}
-
-.tune-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  @media (min-width: 768px) {
-    font-size: 1.6rem;
-    border: 1px solid red;
-  }
-}
-
-.tune-subline {
-  display: flex;
-  justify-content: space-between;
-}
-
-.youtube {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
-</style>
