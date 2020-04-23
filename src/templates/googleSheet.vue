@@ -51,14 +51,16 @@ export default {
       {
         key: 'og:title',
         name: 'og:title',
-        content: `${title} - ${rhythm.charAt(0).toUpperCase() +
-          rhythm.slice(1)} on TuneSource`,
+        content: `${title} - ${
+          rhythm.charAt(0).toUpperCase() + rhythm.slice(1)
+        } on TuneSource`,
       },
       {
         key: 'twitter:title',
         name: 'twitter:title',
-        content: `${title} - ${rhythm.charAt(0).toUpperCase() +
-          rhythm.slice(1)} on TuneSource`,
+        content: `${title} - ${
+          rhythm.charAt(0).toUpperCase() + rhythm.slice(1)
+        } on TuneSource`,
       },
       {
         name: 'twitter:description',
@@ -74,7 +76,8 @@ export default {
       },
       {
         property: 'og:image',
-        content: '/assets/img/favicon-48.png',
+        content:
+          'https://res.cloudinary.com/bshano/image/upload/f_auto/v1587633025/tunesource/tunesource-open-graph2.png',
       },
       {
         property: 'og:url',
@@ -92,7 +95,7 @@ export default {
       // twitter card
       {
         name: 'twitter:card',
-        content: '.src/assets/celtic-knot-tri-circles.png'
+        content: 'https://res.cloudinary.com/bshano/image/upload/f_auto/v1587633025/tunesource/tunesource-open-graph2.png'
           ? 'summary_large_image'
           : 'summary',
       },

@@ -6,6 +6,7 @@
 
 module.exports = {
   siteName: 'TuneSource',
+  siteUrl: 'https://tunesourcev2.netlify.app/',
   templates: {
     googleSheet: [
       {
@@ -75,6 +76,23 @@ module.exports = {
         shouldPurge: false /* this was preventing outher library css files loading (abcjs-audio) */,
         // shouldImport: true,
         // shouldTimeTravel: true
+      },
+    },
+    {
+      use: '@gridsome/plugin-sitemap',
+      options: {
+        cacheTime: 600000, // default
+        exclude: ['/exclude-me'],
+        config: {
+          '/tune/*': {
+            changefreq: 'weekly',
+            priority: 1,
+          },
+          '/about': {
+            changefreq: 'monthly',
+            priority: 0.7,
+          },
+        },
       },
     },
   ],
