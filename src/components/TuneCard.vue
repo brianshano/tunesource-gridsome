@@ -5,7 +5,7 @@
       <div class="text-sm sm:text-base lg:text-lg">
         {{
           $page.googleSheet.rhythm.charAt(0).toUpperCase() +
-            $page.googleSheet.rhythm.slice(1)
+          $page.googleSheet.rhythm.slice(1)
         }}
         in
         {{ $page.googleSheet.key }}
@@ -79,7 +79,7 @@ export default {
     TuneLinker,
   },
   computed: {
-    extractedSuggestions: function() {
+    extractedSuggestions: function () {
       const hashtag = this.tune.abcheader
         .split(' ')
         .filter((v) => v.startsWith('#'));
@@ -96,7 +96,7 @@ export default {
       }
     },
   },
-  mounted: function() {
+  mounted: function () {
     const abcjs = require('abcjs');
     const abcTune = this.tune.abcheader + ' ' + this.tune.abc;
     // given that there are two elements in the DOM with the IDs "paper" and "audio"
@@ -120,17 +120,17 @@ export default {
       const createSynth = new abcjs.synth.CreateSynth();
       createSynth
         .init({ visualObj: visualObj[0] })
-        .then(function() {
+        .then(function () {
           synthControl
             .setTune(visualObj[0], false, audioParams)
-            .then(function() {
+            .then(function () {
               console.log('Audio successfully loaded.');
             })
-            .catch(function(error) {
+            .catch(function (error) {
               console.warn('Audio problem:', error);
             });
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.warn('Audio problem:', error);
         });
     } else {
@@ -168,14 +168,14 @@ section {
   font-family: 'Encode Sans Expanded', sans-serif;
 }
 .footer {
-  text-align: center;
+  /*text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #f5f5f5;*/
   background-color: #444;
-  color: #f5f5f5;
 }
 
 container {

@@ -95,5 +95,18 @@ module.exports = {
         },
       },
     },
+    {
+      use: 'gridsome-plugin-flexsearch',
+      options: {
+        collections: [
+          {
+            typeName: 'googleSheet',
+            indexName: 'googleSheet',
+            fields: ['title', 'shlug', 'abcheader', 'rhythm', 'key', 'path'],
+          },
+        ],
+        searchFields: ['title', 'shlug', 'rhythm'],
+      },
+    },
   ],
 };
