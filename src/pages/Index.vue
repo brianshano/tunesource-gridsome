@@ -3,65 +3,63 @@
     <h2 class="title text-xs sm:text-sm lg:text-base pt-4">
       Search the library of traditional and folk tunes.
     </h2>
-    <div class="container home">
-      <div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
-        <div
-          v-for="page in $page.allGoogleSheet.edges"
-          :key="page.tuneId"
-          class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-4"
-        >
-          <!--img
-            class="w-full "
-            src="../assets/celtic-knot-tri-circles.svg"
-            alt="Sunset in the mountains"
-          /-->
-          <g-link :to="page.node.path">
-            <div class="px-4 py-2">
-              <div class="font-bold text-lg sm:text-xl text-center">
-                {{ page.node.title }}
+    <section>
+      <div class="container home">
+        <Search />
+      </div>
+    </section>
+    <section>
+      <div class="container home">
+        <div class="results-title text-white text-center block pt-1 pb-1 m-8">
+          Popular Tunes
+        </div>
+        <div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
+          <div
+            v-for="page in $page.allGoogleSheet.edges"
+            :key="page.tuneId"
+            class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-4"
+          >
+            <g-link :to="page.node.path">
+              <div class="px-4 py-2">
+                <div class="font-bold text-lg sm:text-xl text-center">
+                  {{ page.node.title }}
+                </div>
               </div>
-            </div>
-          </g-link>
-          <div class="card-clickables px-6 py-3 bg-gray-200">
-            <div>
+            </g-link>
+            <div class="card-clickables px-2 sm:px-6 py-3 bg-gray-200">
+              <div>
+                <span
+                  class="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                >
+                  {{ page.node.rhythm }}
+                </span>
+                <span
+                  class="inline-block bg-gray-400 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
+                >
+                  {{ page.node.key }}
+                </span>
+              </div>
               <span
-                class="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
               >
-                {{ page.node.rhythm }}
+                <i class="fas fa-share" aria-hidden="true" />
               </span>
               <span
-                class="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
               >
-                {{ page.node.key }}
+                <i class="fas fa-heart" aria-hidden="true" />
               </span>
-            </div>
-            <span
-              class="inline-block rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-            >
-              <i class="fas fa-share" aria-hidden="true" />
-            </span>
-            <span
-              class="inline-block rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-            >
-              <i class="fas fa-heart" aria-hidden="true" />
-            </span>
-            <!--button class="btn btn-blue m-2">
+              <!--button class="btn btn-blue m-2">
                 {{ page.node.title }}
             </button-->
+            </div>
           </div>
         </div>
+        <div class="pagination">
+          <Pager :info="$page.allGoogleSheet.pageInfo" />
+        </div>
       </div>
-    </div>
-    <div class="pagination">
-      <Pager :info="$page.allGoogleSheet.pageInfo" />
-    </div>
-
-    <hr />
-    <!--div
-        class="tune-card"
-        v-for="(page, i) in $page.allGoogleSheet.edges"
-        :key="`${i}-${page.tuneId}`"
-      ></div-->
+    </section>
   </Layout>
 </template>
 <page-query>
@@ -81,7 +79,7 @@
           abc
           rhythm
           key
-          # abcheader
+          abcheader
           path
         }
       }
@@ -185,7 +183,6 @@ h2.title {
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
-  margin: 2rem 1rem;
   height: 1005;
 }
 .container.home {

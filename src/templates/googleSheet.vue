@@ -13,7 +13,6 @@
       rhythm
       abcheader
       path
-      abcheader
       key
     }
   }
