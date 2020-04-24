@@ -75,4 +75,7 @@ query {
   padding: 20px;
   background: #fff;
 }
+input {
+  font-size: 16px;
+}
 </style>
