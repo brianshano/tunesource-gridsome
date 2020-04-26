@@ -24,12 +24,12 @@
       <slot />
     </div>
     <section class="footer py-6 px-4">
-      <container class="flex flex-col items-center justify-center text-gray-200"
-        ><div class="footer-title font-bold text-lg">TuneSource 2020</div>
+      <div class="flex flex-col items-center justify-center text-gray-200">
+        <div class="footer-title font-bold text-lg">TuneSource 2020</div>
         <div class="footer-links text-sm text-center">
           About | Stats | Advanced Search
         </div>
-      </container>
+      </div>
     </section>
   </div>
 </template>

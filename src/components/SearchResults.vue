@@ -22,7 +22,7 @@
               </div>
             </div>
           </g-link>
-          <div class="card-clickables p-1 sm:px-6 sm:py-3 bg-gray-200">
+          <div class="card-clickables p-1 sm:px-4 sm:py-3 bg-gray-200">
             <div>
               <span
                 class="inline-block bg-gray-400 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2 p-2"
