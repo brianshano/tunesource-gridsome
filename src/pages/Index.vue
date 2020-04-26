@@ -143,6 +143,19 @@ export default {
       show: true,
     };
   },
+  mounted: {
+    // var example1 = new Vue({
+    // el: '#example-1',
+    // data: {
+    //   counter: 0
+    // }
+    // })
+  },
+  data() {
+    return {
+      show: true,
+    };
+  },
 };
 </script>
 
