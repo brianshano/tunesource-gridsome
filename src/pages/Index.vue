@@ -182,7 +182,6 @@ export default {
   components: {
     Pager,
   },
-
   data() {
     return {
       show: true,
