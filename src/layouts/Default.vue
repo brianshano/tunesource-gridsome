@@ -5,7 +5,9 @@
         class="header-title logo flex flex-col items-center content-center pt-2 pb-4"
       >
         <g-link to="/">
-          <div class="text-gray-400 text-base sm:text-xl lg:text-2xl">
+          <div
+            class="text-gray-400 text-base sm:text-xl lg:text-2xl xl:text-3xl"
+          >
             {{ $static.metadata.siteName }}
           </div>
         </g-link>

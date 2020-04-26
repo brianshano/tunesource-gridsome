@@ -12,6 +12,7 @@
       id
       rhythm
       abcheader
+      shlug
       path
       key
     }
