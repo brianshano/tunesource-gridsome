@@ -47,7 +47,7 @@ export default {
     searchResults() {
       const searchTerm = this.searchTerm;
       console.log('searchterm', this.searchTerm);
-      if (searchTerm.length < 3) return [];
+      if (searchTerm.length < 2) return [];
       return this.$search.search({ query: searchTerm, limit: 6 });
     },
   },

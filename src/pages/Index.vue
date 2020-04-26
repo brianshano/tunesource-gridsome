@@ -10,7 +10,9 @@
     </section>
     <section>
       <div class="container home">
-        <div class="results-title text-white text-center block pt-1 pb-1 m-8">
+        <div
+          class="results-title text-white text-center block pt-1 pb-1 mt-8 mb-6"
+        >
           Popular Tunes
         </div>
         <div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
@@ -20,8 +22,11 @@
             class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-4"
           >
             <g-link :to="page.node.path">
-              <div class="px-4 py-2">
-                <div class="font-bold text-lg sm:text-xl text-center">
+              <div class="px-4 py-2 relative">
+                <div class="absolute text-base text-gray-500 z-0">
+                  #{{ page.node.tuneId }}
+                </div>
+                <div class="font-bold text-lg sm:text-xl text-center z-10">
                   {{ page.node.title }}
                 </div>
               </div>
@@ -47,7 +52,18 @@
               <span
                 class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
               >
-                <i class="fas fa-heart" aria-hidden="true" />
+                <button v-on:click="show = !show">
+                  <transition name="fade" v-if="show">
+                    <p>
+                      <i class="fas fa-heart fav" aria-hidden="true" />
+                    </p>
+                  </transition>
+                  <transition name="fade" v-else>
+                    <p>
+                      <i class="fas fa-heart" aria-hidden="true" />
+                    </p>
+                  </transition>
+                </button>
               </span>
               <!--button class="btn btn-blue m-2">
                 {{ page.node.title }}
@@ -166,6 +182,19 @@ export default {
   components: {
     Pager,
   },
+  mounted: {
+    // var example1 = new Vue({
+    // el: '#example-1',
+    // data: {
+    //   counter: 0
+    // }
+    // })
+  },
+  data() {
+    return {
+      show: true,
+    };
+  },
 };
 </script>
 
@@ -215,5 +244,15 @@ h2.title {
   color: white;
   margin: 0.5rem;
   padding: 0.5rem;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.fav {
+  color: yellow;
 }
 </style>
