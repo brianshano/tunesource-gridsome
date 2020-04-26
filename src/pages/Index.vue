@@ -23,7 +23,7 @@
           >
             <g-link :to="page.node.path">
               <div class="px-4 py-2 relative">
-                <div class="absolute text-base text-gray-500 z-0">
+                <div class="absolute inset-0 p-1 text-base text-gray-500 z-0">
                   #{{ page.node.tuneId }}
                 </div>
                 <div class="font-bold text-lg sm:text-xl text-center z-10">
@@ -31,7 +31,7 @@
                 </div>
               </div>
             </g-link>
-            <div class="card-clickables px-2 sm:px-6 py-3 bg-gray-200">
+            <div class="card-clickables px-2 sm:px-4 py-3 bg-gray-200">
               <div>
                 <span
                   class="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
