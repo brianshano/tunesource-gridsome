@@ -143,7 +143,6 @@ export default {
       show: true,
     };
   },
-
   data() {
     return {
       show: true,
