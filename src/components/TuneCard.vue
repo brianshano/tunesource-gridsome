@@ -17,17 +17,21 @@
     <section class="section-audio pt-3 pb-2 px-4">
       <div
         id="audio"
-        :class="[{ 'abcjs-large': isMobile }, 'audio', 'tune-container']"
+        :class="[{ 'abcjs-large': showLargePlayer }, 'audio', 'tune-container']"
       ></div>
     </section>
-    <section class="section-audio pt-2 pb-6 px-4">
+    <section class="section-audio pb-2 px-4">
       <div id="audio2" class="text-white tune-container">
         <div class="button-row flex flex-row justify-between">
-          <button class="p-2 y-2" @click="doRestart">
+          <button
+            class="player-button p-2 y-2"
+            @click="doRestart"
+            title="restart"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="44"
-              height="44"
+              width="36"
+              height="36"
               viewBox="0 0 24 24"
               fill="none"
               stroke="#fff"
@@ -40,12 +44,16 @@
               <line x1="5" y1="19" x2="5" y2="5"></line>
             </svg>
           </button>
-          <button class="p-2 y-2" @click="doPlay">
+          <button
+            title="play/pause"
+            class="player-button p-2 y-2 hover:bg-blue-500 focus:bg-green-500"
+            @click="doPlay"
+          >
             <div v-if="isPlaying">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="44"
-                height="44"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="#fff"
@@ -61,8 +69,8 @@
             <div v-else>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="44"
-                height="44"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="#fff"
@@ -96,14 +104,15 @@
             @click="doDownload"
             :class="[
               { 'opacity-50 cursor-not-allowed': !isDownloadable },
-              'p-2 y-2',
+              { 'opacity-50 cursor-not-allowed': isMobile },
+              'player-button p-2 y-2',
             ]"
           >
-            <div v-if="isDownloading">
+            <div v-if="isDownloading" title="download wav">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="44"
-                height="44"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="#fff"
@@ -122,11 +131,11 @@
                 <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
               </svg>
             </div>
-            <div v-else>
+            <div v-else title="download wav - press play first">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="44"
-                height="44"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="#fff"
@@ -151,7 +160,7 @@
     </section>
     <section class="bg-yellow-600">
       <div>
-        <div class="tune-container py-4 m-4 text-xs">
+        <div class="tune-container py-4 m-4 text-xs px-2 sm:text-sm">
           <div>
             {{ $page.googleSheet.abcheader }}{{ $page.googleSheet.abc }}
           </div>
@@ -220,6 +229,7 @@ export default {
     return {
       windowWidth: 0,
       isMobile: false,
+      showLargePlayer: false,
       isPlaying: false,
       isPaused: true,
       isDownloading: false,
@@ -288,7 +298,16 @@ export default {
   methods: {
     getWindowWidth(event) {
       this.windowWidth = document.documentElement.clientWidth;
-      if (document.documentElement.clientWidth > 500) {
+      console.log('get window');
+      if (
+        document.documentElement.clientWidth > 500 &&
+        document.documentElement.clientWidth < 768
+      ) {
+        this.showLargePlayer = true;
+      } else {
+        this.showLargePlayer = false;
+      }
+      if (document.documentElement.clientWidth < 768) {
         this.isMobile = true;
       } else {
         this.isMobile = false;
@@ -311,7 +330,7 @@ export default {
       this.isDownloading = !this.isDownloading;
     },
     doDownload() {
-      if (this.isDownloadable) {
+      if (this.isDownloadable && !this.isMobile) {
         this.doLoader();
         this.synthControl.download(
           `tunesource-${this.tune.rhythm}_${this.tune.shlug}.wav`
@@ -383,6 +402,16 @@ section {
 }
 .abcjs-inline-audio {
   width: 100%;
+}
+.player-button {
+  &:hover {
+    background-color: #5c7997;
+    outline: #5c7997;
+  }
+  &:focus {
+    background-color: #ffffff20;
+    outline: #ffffff20;
+  }
 }
 svg .abcjs-title {
   display: none;

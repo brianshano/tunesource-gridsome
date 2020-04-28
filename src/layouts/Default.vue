@@ -5,9 +5,7 @@
         class="header-title logo flex flex-col items-center content-center pt-2 pb-4"
       >
         <g-link to="/">
-          <div
-            class="text-gray-400 text-base sm:text-xl lg:text-2xl xl:text-3xl"
-          >
+          <div class="text-gray-400 text-lg sm:text-xl lg:text-2xl xl:text-3xl">
             {{ $static.metadata.siteName }}
           </div>
         </g-link>
@@ -33,6 +31,7 @@
         </div>
       </div>
     </section>
+    <BottomNav />
   </div>
 </template>
 
@@ -43,11 +42,19 @@
     }
   }
 </static-query>
+<script>
+import BottomNav from '~/components/BottomNav.vue';
 
+export default {
+  components: {
+    BottomNav,
+  },
+};
+</script>
 <style>
 body {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI',
+    'Helvetica', 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
   padding: 0;
   line-height: 1.5;
