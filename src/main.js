@@ -5,7 +5,7 @@
 import DefaultLayout from '~/layouts/Default.vue';
 import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
-import abcjs from 'abcjs';
+// import abcjs from 'abcjs';
 // const abcjs = require('abcjs');
 // const abcjs = require('abcjs');
 
@@ -43,7 +43,7 @@ export default function (Vue, { router, head, isClient }) {
     // import abcjs from 'abcjs';
     // Vue.use(ScrollReveal);
   }
-  Vue.use(abcjs);
+  // Vue.use(abcjs);
 
   //Use Moment.Js library inside our project
   // Object.defineProperty(Vue.prototype, 'abcjs', {

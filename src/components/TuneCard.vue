@@ -20,7 +20,7 @@
         :class="[{ 'abcjs-large': isMobile }, 'audio', 'tune-container']"
       ></div>
     </section>
-    <section class="section-audio pt-2 pb-6 px-4">
+    <!--section class="section-audio pt-2 pb-6 px-4">
       <div id="audio2" class="text-white tune-container">
         <div class="button-row flex flex-row justify-between">
           <button class="p-2 y-2" @click="doRestart">
@@ -74,8 +74,8 @@
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
             </div>
-          </button>
-          <!--v-btn outline class="p-2 y-2" @click="doOneThird"
+          </button-->
+    <!--v-btn outline class="p-2 y-2" @click="doOneThird"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="44"
@@ -92,7 +92,7 @@
               <line x1="19" y1="5" x2="19" y2="19"></line></svg
           ></v-btn-->
 
-          <button
+    <!--button
             @click="doDownload"
             :class="[
               { 'opacity-50 cursor-not-allowed': !isDownloadable },
@@ -143,7 +143,7 @@
           </button>
         </div>
       </div>
-    </section>
+    </section-->
     <section class="bg-gray-100">
       <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">
         tune
@@ -158,7 +158,7 @@
         </div>
       </div>
     </section>
-    <!--section>
+    <section>
       <div class="suggestions p-2 m-2 py-8 text-xs">
         <div v-if="extractedSuggestions.length > 0">
           <div>Suggestions:</div>
@@ -174,17 +174,17 @@
           </div>
         </div>
       </div>
-    </section-->
+    </section>
   </div>
 </template>
 
 <script>
-import abcjs from 'abcjs';
+// import abcjs from 'abcjs';
 import TuneHeader from '~/components/TuneHeader';
 import TuneLinker from '~/components/TuneLinker.vue';
 // const abcjs = require('abcjs');
 // window.abcjs = require(abcjs);
-const synthControl = new abcjs.synth.SynthController();
+// const synthControl = new abcjs.synth.SynthController();
 // require('/node_modules/abcjs/abcjs-audio.css');
 import '../abcjs-audio.css';
 
@@ -229,7 +229,7 @@ export default {
   },
   mounted: function () {
     // this.abcjs = abcjs();
-    // const abcjs = require('abcjs');
+    const abcjs = require('abcjs');
     const abcTune = this.tune.abcheader + ' ' + this.tune.abc;
     const cursorControl = {}; // see section on CursorControl
     const abcOptions = {
@@ -245,10 +245,11 @@ export default {
 
     if (abcjs.synth.supportsAudio()) {
       console.log('in supportsAudio');
+      const synthControl = new abcjs.synth.SynthController();
       synthControl.load('#audio', cursorControl, {
         displayLoop: true,
-        displayRestart: false,
-        displayPlay: false,
+        displayRestart: true,
+        displayPlay: true,
         displayProgress: true,
         displayWarp: true,
       });
@@ -291,36 +292,36 @@ export default {
         this.isMobile = false;
       }
     },
-    doPlay() {
-      this.isPlaying = !this.isPlaying;
-      this.isDownloadable = true;
-      console.log('do play pause', this.isPlaying);
-      if (synthControl) {
-        synthControl.play();
-      }
-    },
-    doRestart() {
-      if (synthControl) {
-        synthControl.restart();
-      }
-    },
-    doLoader() {
-      this.isDownloading = !this.isDownloading;
-    },
-    doDownload() {
-      if (this.isDownloadable) {
-        this.doLoader();
-        synthControl.download(
-          `tunesource-${this.tune.rhythm}_${this.tune.shlug}.wav`
-        );
-        this.isDownloading = !this.isDownloading;
-      }
-    },
+    // doPlay() {
+    //   this.isPlaying = !this.isPlaying;
+    //   this.isDownloadable = true;
+    //   console.log('do play pause', this.isPlaying);
+    //   if (synthControl) {
+    //     synthControl.play();
+    //   }
+    // },
+    // doRestart() {
+    //   if (synthControl) {
+    //     synthControl.restart();
+    //   }
+    // },
+    // doLoader() {
+    //   this.isDownloading = !this.isDownloading;
+    // },
+    // doDownload() {
+    //   if (this.isDownloadable) {
+    //     this.doLoader();
+    //     synthControl.download(
+    //       `tunesource-${this.tune.rhythm}_${this.tune.shlug}.wav`
+    //     );
+    //     this.isDownloading = !this.isDownloading;
+    //   }
+    // },
   },
   beforeDestroy() {
-    if (synthControl) {
-      synthControl.destroy();
-    }
+    // if (synthControl) {
+    //   synthControl.destroy();
+    // }
   },
 };
 </script>
