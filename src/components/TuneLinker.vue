@@ -11,7 +11,7 @@ export default {
     title: 'TuneSource',
   },
   props: {
-    tuneid: Object,
+    tuneid: String,
   },
 };
 </script>
