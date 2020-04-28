@@ -221,10 +221,8 @@ h2.title {
 }
 
 .pagination {
-  border: 1px solid white;
-  background-color: #444;
   width: 100%;
-  margin: 0 auto;
+  margin: 0.5rem auto;
 }
 .pagination nav {
   width: 100%;
@@ -237,6 +235,11 @@ h2.title {
   margin: 0.5rem;
   padding: 0.5rem;
 }
+.pagination a.active {
+  color: #ccc;
+  background-color: #ffffff10;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;

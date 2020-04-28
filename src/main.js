@@ -5,6 +5,9 @@
 import DefaultLayout from '~/layouts/Default.vue';
 import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
+// import abcjs from 'abcjs';
+// const abcjs = require('abcjs');
+// const abcjs = require('abcjs');
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push({
@@ -23,14 +26,27 @@ export default function (Vue, { router, head, isClient }) {
     name: 'viewport',
     content: 'width=device-width, initial-scale=1, maximum-scale=1',
   });
+  // head.script.push({
+  //   src: 'abcjs',
+  // });
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout);
   Vue.component('Search', Search);
   Vue.component('SearchResults', SearchResults);
 
-  head.htmlAttrs = { lang: 'en' };
+  head.htmlAttrs = {
+    lang: 'en',
+  };
   if (process.isClient) {
-    // browser only code
-    console.log('in isClient');
+    console.log('IN IS CLIENT');
+    // const abcjs = require('abcjs');
+    // import abcjs from 'abcjs';
+    // Vue.use(ScrollReveal);
   }
+  // Vue.use(abcjs);
+
+  //Use Moment.Js library inside our project
+  // Object.defineProperty(Vue.prototype, 'abcjs', {
+  //   value: abcjs,
+  // });
 }
