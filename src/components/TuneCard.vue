@@ -13,143 +13,14 @@
         {{ $page.googleSheet.key }}
       </div>
     </section>
-<<<<<<< HEAD
 
     <section class="section-audio pt-3 pb-2 px-4">
       <div
         id="audio"
         :class="[{ 'abcjs-large': isMobile }, 'audio', 'tune-container']"
       ></div>
-=======
-
-    <section class="section-audio pt-6 pb-2 px-4">
-      <container id="audio" :class="[{ 'abcjs-large': isMobile }, 'audio']">
-      </container>
     </section>
     <section class="section-audio pt-2 pb-6 px-4">
-      <container id="audio2" class="text-white">
-        <div class="button-row flex flex-row justify-between">
-          <v-btn outline class="p-2 y-2" @click="doPlay"
-            ><div v-if="isPlaying">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#fff"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-pause"
-              >
-                <rect x="6" y="4" width="4" height="16"></rect>
-                <rect x="14" y="4" width="4" height="16"></rect>
-              </svg>
-            </div>
-            <div v-else>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#fff"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-play"
-              >
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg></div
-          ></v-btn>
-          <v-btn outline class="p-2 y-2" @click="doRestart"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="44"
-              height="44"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#fff"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-skip-back"
-            >
-              <polygon points="19 20 9 12 19 4 19 20"></polygon>
-              <line x1="5" y1="19" x2="5" y2="5"></line></svg
-          ></v-btn>
-          <!--v-btn outline class="p-2 y-2" @click="doOneThird"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="44"
-              height="44"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#fff"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-skip-forward"
-            >
-              <polygon points="5 4 15 12 5 20 5 4"></polygon>
-              <line x1="19" y1="5" x2="19" y2="19"></line></svg
-          ></v-btn-->
-
-          <v-btn
-            outline
-            @click="doDownload"
-            :class="[
-              { 'opacity-50 cursor-not-allowed': !isDownloadable },
-              'p-2 y-2',
-            ]"
-          >
-            <div v-if="isDownloading">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#fff"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-loader"
-              >
-                <line x1="12" y1="2" x2="12" y2="6"></line>
-                <line x1="12" y1="18" x2="12" y2="22"></line>
-                <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
-                <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
-                <line x1="2" y1="12" x2="6" y2="12"></line>
-                <line x1="18" y1="12" x2="22" y2="12"></line>
-                <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
-                <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
-              </svg>
-            </div>
-            <div v-else>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#fff"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-download"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg></div
-          ></v-btn>
-        </div>
-      </container>
->>>>>>> origin/master
-    </section>
-    <!--section class="section-audio pt-2 pb-6 px-4">
       <div id="audio2" class="text-white tune-container">
         <div class="button-row flex flex-row justify-between">
           <button class="p-2 y-2" @click="doRestart">
@@ -203,8 +74,8 @@
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
             </div>
-          </button-->
-    <!--v-btn outline class="p-2 y-2" @click="doOneThird"
+          </button>
+          <!--v-btn outline class="p-2 y-2" @click="doOneThird"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="44"
@@ -221,7 +92,7 @@
               <line x1="19" y1="5" x2="19" y2="19"></line></svg
           ></v-btn-->
 
-    <!--button
+          <button
             @click="doDownload"
             :class="[
               { 'opacity-50 cursor-not-allowed': !isDownloadable },
@@ -272,7 +143,7 @@
           </button>
         </div>
       </div>
-    </section-->
+    </section>
     <section class="bg-gray-100">
       <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">
         tune
@@ -354,6 +225,7 @@ export default {
       isDownloading: false,
       isDownloadable: false,
       // abcjs: false,
+      synthControl: {},
     };
   },
   mounted: function () {
@@ -374,6 +246,8 @@ export default {
 
     if (abcjs.synth.supportsAudio()) {
       console.log('in supportsAudio');
+      const synthControl = new abcjs.synth.SynthController();
+      this.synthControl = synthControl;
       synthControl.load('#audio', cursorControl, {
         displayLoop: true,
         displayRestart: false,
@@ -420,36 +294,36 @@ export default {
         this.isMobile = false;
       }
     },
-    // doPlay() {
-    //   this.isPlaying = !this.isPlaying;
-    //   this.isDownloadable = true;
-    //   console.log('do play pause', this.isPlaying);
-    //   if (synthControl) {
-    //     synthControl.play();
-    //   }
-    // },
-    // doRestart() {
-    //   if (synthControl) {
-    //     synthControl.restart();
-    //   }
-    // },
-    // doLoader() {
-    //   this.isDownloading = !this.isDownloading;
-    // },
-    // doDownload() {
-    //   if (this.isDownloadable) {
-    //     this.doLoader();
-    //     synthControl.download(
-    //       `tunesource-${this.tune.rhythm}_${this.tune.shlug}.wav`
-    //     );
-    //     this.isDownloading = !this.isDownloading;
-    //   }
-    // },
+    doPlay() {
+      this.isPlaying = !this.isPlaying;
+      this.isDownloadable = true;
+      console.log('do play pause', this.isPlaying);
+      if (this.synthControl) {
+        this.synthControl.play();
+      }
+    },
+    doRestart() {
+      if (this.synthControl) {
+        this.synthControl.restart();
+      }
+    },
+    doLoader() {
+      this.isDownloading = !this.isDownloading;
+    },
+    doDownload() {
+      if (this.isDownloadable) {
+        this.doLoader();
+        this.synthControl.download(
+          `tunesource-${this.tune.rhythm}_${this.tune.shlug}.wav`
+        );
+        this.isDownloading = !this.isDownloading;
+      }
+    },
   },
   beforeDestroy() {
-    // if (synthControl) {
-    //   synthControl.destroy();
-    // }
+    if (this.synthControl) {
+      this.synthControl.destroy();
+    }
   },
 };
 </script>
