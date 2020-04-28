@@ -23,8 +23,10 @@
     <div class="main container1 lg mx-auto">
       <slot />
     </div>
-    <section class="footer py-6 px-4">
-      <div class="flex flex-col items-center justify-center text-gray-200">
+    <section class="footer flex flex-col items-center justify-center py-6 px-4">
+      <div
+        class="footer-container flex flex-col items-center justify-center text-gray-200"
+      >
         <div class="footer-title font-bold text-lg">TuneSource 2020</div>
         <div class="footer-links text-sm text-center">
           About | Stats | Advanced Search
@@ -80,5 +82,12 @@ nav {
 }
 
 .nav__link {
+}
+.footer {
+  background-color: #444;
+}
+
+.footer-container {
+  background-color: #444;
 }
 </style>

@@ -14,15 +14,34 @@
       </div>
     </section>
 
-    <section class="section-audio pt-6 pb-2 px-4">
-      <container id="audio" :class="[{ 'abcjs-large': isMobile }, 'audio']">
-      </container>
+    <section class="section-audio pt-3 pb-2 px-4">
+      <div
+        id="audio"
+        :class="[{ 'abcjs-large': isMobile }, 'audio', 'tune-container']"
+      ></div>
     </section>
     <section class="section-audio pt-2 pb-6 px-4">
-      <container id="audio2" class="text-white">
+      <div id="audio2" class="text-white tune-container">
         <div class="button-row flex flex-row justify-between">
-          <v-btn outline class="p-2 y-2" @click="doPlay"
-            ><div v-if="isPlaying">
+          <button class="p-2 y-2" @click="doRestart">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-skip-back"
+            >
+              <polygon points="19 20 9 12 19 4 19 20"></polygon>
+              <line x1="5" y1="19" x2="5" y2="5"></line>
+            </svg>
+          </button>
+          <button class="p-2 y-2" @click="doPlay">
+            <div v-if="isPlaying">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="44"
@@ -53,24 +72,9 @@
                 class="feather feather-play"
               >
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg></div
-          ></v-btn>
-          <v-btn outline class="p-2 y-2" @click="doRestart"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="44"
-              height="44"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#fff"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-skip-back"
-            >
-              <polygon points="19 20 9 12 19 4 19 20"></polygon>
-              <line x1="5" y1="19" x2="5" y2="5"></line></svg
-          ></v-btn>
+              </svg>
+            </div>
+          </button>
           <!--v-btn outline class="p-2 y-2" @click="doOneThird"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
@@ -88,8 +92,7 @@
               <line x1="19" y1="5" x2="19" y2="19"></line></svg
           ></v-btn-->
 
-          <v-btn
-            outline
+          <button
             @click="doDownload"
             :class="[
               { 'opacity-50 cursor-not-allowed': !isDownloadable },
@@ -135,25 +138,28 @@
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg></div
-          ></v-btn>
+              </svg>
+            </div>
+          </button>
         </div>
-      </container>
+      </div>
     </section>
     <section class="bg-gray-100">
-      <container class="tune-abc py-8 bg-gray-100" id="paper">tune</container>
+      <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">
+        tune
+      </div>
     </section>
     <section class="bg-yellow-600">
-      <container>
-        <div class="py-4 m-4 text-xs">
+      <div>
+        <div class="tune-container py-4 m-4 text-xs">
           <div>
             {{ $page.googleSheet.abcheader }}{{ $page.googleSheet.abc }}
           </div>
         </div>
-      </container>
+      </div>
     </section>
     <!--section>
-      <container class="suggestions p-2 m-2 py-8 text-xs">
+      <div class="suggestions p-2 m-2 py-8 text-xs">
         <div v-if="extractedSuggestions.length > 0">
           <div>Suggestions:</div>
           <div>
@@ -167,19 +173,22 @@
             </div>
           </div>
         </div>
-      </container>
+      </div>
     </section-->
   </div>
 </template>
 
 <script>
-// import abcjs from 'abcjs';
-const abcjs = require('abcjs');
-import '../abcjs-audio.css';
+import abcjs from 'abcjs';
 import TuneHeader from '~/components/TuneHeader';
 import TuneLinker from '~/components/TuneLinker.vue';
+// const abcjs = require('abcjs');
+// window.abcjs = require(abcjs);
 const synthControl = new abcjs.synth.SynthController();
+// require('/node_modules/abcjs/abcjs-audio.css');
+import '../abcjs-audio.css';
 
+// import abcjs from 'abcjs';
 export default {
   metaInfo: {
     title: 'TuneSource',
@@ -215,9 +224,12 @@ export default {
       isPaused: true,
       isDownloading: false,
       isDownloadable: false,
+      // abcjs: false,
     };
   },
   mounted: function () {
+    // this.abcjs = abcjs();
+    // const abcjs = require('abcjs');
     const abcTune = this.tune.abcheader + ' ' + this.tune.abc;
     const cursorControl = {}; // see section on CursorControl
     const abcOptions = {
@@ -341,17 +353,8 @@ section {
   font-weight: bold;
   font-family: 'Encode Sans Expanded', sans-serif;
 }
-.footer {
-  /*text-align: center;
-  font-weight: bold;
-  font-size: 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #f5f5f5;*/
-}
 
-container {
+.tune-container {
   width: 100%;
   max-width: 1024px;
   /*border-bottom: 1px solid #ccc;

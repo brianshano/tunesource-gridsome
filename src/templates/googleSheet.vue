@@ -19,7 +19,7 @@
   }
 </page-query>
 <script>
-import 'abcjs/abcjs-audio.css';
+// import 'abcjs/abcjs-audio.css';
 import TuneCard from '~/components/TuneCard.vue';
 
 export default {
