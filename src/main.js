@@ -5,6 +5,7 @@
 import DefaultLayout from '~/layouts/Default.vue';
 import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
+import BottomNav from '~/components/BottomNav.vue';
 // import abcjs from 'abcjs';
 // const abcjs = require('abcjs');
 // const abcjs = require('abcjs');
@@ -14,13 +15,14 @@ export default function (Vue, { router, head, isClient }) {
     rel: 'stylesheet',
     href: 'https://use.fontawesome.com/releases/v5.2.0/css/all.css',
   });
+  // head.link.push({
+  //   rel: 'stylesheet',
+  //   href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap',
+  // });
   head.link.push({
     rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css?family=Roboto',
-  });
-  head.link.push({
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded',
+    href:
+      'https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded&display=swap',
   });
   head.meta.push({
     name: 'viewport',
@@ -33,6 +35,7 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', DefaultLayout);
   Vue.component('Search', Search);
   Vue.component('SearchResults', SearchResults);
+  Vue.component('BottomNav', BottomNav);
 
   head.htmlAttrs = {
     lang: 'en',
