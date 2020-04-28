@@ -29,6 +29,9 @@ export default function (Vue, { router, head, isClient }) {
     name: 'viewport',
     content: 'width=device-width, initial-scale=1, maximum-scale=1',
   });
+  // head.script.push({
+  //   src: 'abcjs',
+  // });
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout);
   Vue.component('Search', Search);
@@ -41,4 +44,10 @@ export default function (Vue, { router, head, isClient }) {
   if (process.isClient) {
     console.log('IN IS CLIENT');
   }
+  Vue.use(abcjs);
+
+  //Use Moment.Js library inside our project
+  // Object.defineProperty(Vue.prototype, 'abcjs', {
+  //   value: abcjs,
+  // });
 }
