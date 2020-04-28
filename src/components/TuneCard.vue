@@ -82,8 +82,8 @@
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
             </div>
-          </button>
-          <!--v-btn outline class="p-2 y-2" @click="doOneThird"
+          </button-->
+    <!--v-btn outline class="p-2 y-2" @click="doOneThird"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="44"
@@ -100,7 +100,7 @@
               <line x1="19" y1="5" x2="19" y2="19"></line></svg
           ></v-btn-->
 
-          <button
+    <!--button
             @click="doDownload"
             :class="[
               { 'opacity-50 cursor-not-allowed': !isDownloadable },
@@ -152,7 +152,7 @@
           </button>
         </div>
       </div>
-    </section>
+    </section-->
     <section class="bg-gray-100">
       <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">
         tune
@@ -260,8 +260,8 @@ export default {
       this.synthControl = synthControl;
       synthControl.load('#audio', cursorControl, {
         displayLoop: true,
-        displayRestart: false,
-        displayPlay: false,
+        displayRestart: true,
+        displayPlay: true,
         displayProgress: true,
         displayWarp: true,
       });

@@ -5,7 +5,13 @@
 import DefaultLayout from '~/layouts/Default.vue';
 import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
+<<<<<<< HEAD
 import BottomNav from '~/components/BottomNav.vue';
+=======
+// import abcjs from 'abcjs';
+// const abcjs = require('abcjs');
+// const abcjs = require('abcjs');
+>>>>>>> player works but no destroy
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push({
@@ -44,7 +50,7 @@ export default function (Vue, { router, head, isClient }) {
   if (process.isClient) {
     console.log('IN IS CLIENT');
   }
-  Vue.use(abcjs);
+  // Vue.use(abcjs);
 
   //Use Moment.Js library inside our project
   // Object.defineProperty(Vue.prototype, 'abcjs', {
