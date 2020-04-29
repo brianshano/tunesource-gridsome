@@ -10,6 +10,7 @@
       title
       abc
       id
+      tuneId
       rhythm
       abcheader
       shlug

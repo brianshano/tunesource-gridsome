@@ -1,12 +1,12 @@
 <template>
   <div>
-    <g-link :to="page.node.path">
+    <g-link :to="tune.path">
       <div class="px-4 py-2 relative">
         <div class="absolute inset-0 p-1 text-base text-gray-500 z-0">
-          #{{ page.node.tuneId }}
+          #{{ tune.tuneId }}
         </div>
         <div class="font-bold text-lg sm:text-xl text-center z-10">
-          {{ page.node.title }}
+          {{ tune.title }}
         </div>
       </div>
     </g-link>
@@ -15,12 +15,12 @@
         <span
           class="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
         >
-          {{ page.node.rhythm }}
+          {{ tune.rhythm }}
         </span>
         <span
           class="inline-block bg-gray-400 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
         >
-          {{ page.node.key }}
+          {{ tune.key }}
         </span>
       </div>
       <span
@@ -77,7 +77,7 @@
 export default {
   name: 'tune-',
   props: {
-    page: {
+    tune: {
       type: Object,
       default: {},
     },
@@ -93,7 +93,7 @@ export default {
     if (localStorage.favs) {
       // highlight Star if it's already a fav
       this.favs = JSON.parse(localStorage.getItem('favs'));
-      if (this.favs.includes(this.page.node.tuneId)) {
+      if (this.favs.includes(this.tune.tuneId)) {
         this.show = true;
       }
     } else {
@@ -104,13 +104,14 @@ export default {
   },
   methods: {
     favMe(show) {
+      console.log('toggle Fav', show);
       var currentFavs = JSON.parse(localStorage.getItem('favs'));
       if (show) {
         currentFavs = currentFavs.filter((t) => {
-          return t !== this.page.node.tuneId;
+          return t !== this.tune.tuneId;
         });
       } else {
-        currentFavs.push(this.page.node.tuneId);
+        currentFavs.push(this.tune.tuneId);
       }
 
       localStorage.setItem('favs', JSON.stringify(currentFavs));

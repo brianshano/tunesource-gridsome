@@ -1,50 +1,41 @@
 <template>
   <Layout>
-    <div>
-      <div
-        class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2"
-      >
-        <h1>Favourites</h1>
-      </div>
-      <div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
+    <section>
+      <div class="container home">
+        <div
+          class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2"
+        >
+          <h1>Favourites</h1>
+        </div>
+        <!--div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
         <div
           v-for="page in $page.allGoogleSheet.edges"
-          :key="page.tuneId"
+          :key="tune.tuneId"
           class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-4"
         >
-          <Card :page="page" />
+          <Card :tune="page" />
         </div>
       </div>
       <div class="pagination">
         <Pager :info="$page.allGoogleSheet.pageInfo" />
       </div>
-    </div>
+    </div-->
+        <div v-if="this.localFavs" class="tune-list">
+          <div
+            v-for="tuneId in this.localFavs"
+            :key="tuneId"
+            class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-4"
+          >
+            <div v-for="edge in getFavItems(tuneId)">
+              <Card :tune="edge.node" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </Layout>
 </template>
-<page-query>
-  query ($page: Int){
-    # allGoogleSheet(perPage: 15, page: $page, filter: { featured: { eq: "1" }}) @paginate {
-    allGoogleSheet(perPage: 20, page: $page) @paginate {
-      pageInfo {
-        totalPages
-        currentPage
-      }
-      edges {
-        node {
-          tuneId
-          id
-          title
-          shlug
-          abc
-          rhythm
-          key
-          abcheader
-          path
-        }
-      }
-    }
-  }
-</page-query>
+
 <script>
 import { Pager } from 'gridsome';
 import Card from '~/components/Card';
@@ -128,15 +119,61 @@ export default {
     Pager,
     Card,
   },
+
   data() {
     return {
       show: true,
+      localFavs: {},
+      userFavs: {},
     };
   },
-  data() {
-    return {
-      show: true,
-    };
+  mounted() {
+    if (localStorage.favs) {
+      // highlight Star if it's already a fav
+
+      this.localFavs = JSON.parse(localStorage.getItem('favs'));
+    }
+    console.log('mounted', this.localFavs);
+  },
+  methods: {
+    getFavItems(tuneId) {
+      return this.$page.allGoogleSheet.edges.filter((edge) => {
+        return edge.node.tuneId === tuneId;
+      });
+    },
   },
 };
 </script>
+<page-query>
+  query {
+  allGoogleSheet(sortBy: "featured") {
+    edges{
+      node{
+        tuneId
+          id
+          title
+          shlug
+          tuneId
+          abc
+          rhythm
+          key
+          abcheader
+          path
+      }
+    }
+  }
+}
+</page-query>
+<style>
+.tune-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  height: 1005;
+}
+.container.home {
+  margin: 0 auto;
+}
+</style>

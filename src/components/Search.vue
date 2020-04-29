@@ -56,29 +56,13 @@ export default {
   },
 };
 </script>
-<page-query>
-query {
-  allGoogleSheet(sortBy: "featured") {
-    edges{
-      node{
-        title
-        tuneId
-        shlug
-        path
-        rhythm
-        key
-        abcheader
-      }
-    }
-  }
-}
-</page-query>
 <style>
-.search {
-  padding: 20px;
-  background: #fff;
-}
-input {
-  font-size: 16px;
-}
-</style>
+    .search {
+      padding: 20px;
+      background: #fff;
+    }
+    input {
+      font-size: 16px;
+    }
+  </style>
+</page-query>

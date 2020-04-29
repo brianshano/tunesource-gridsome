@@ -12,48 +12,10 @@
       <div class="tune-list">
         <div
           v-for="tune in results"
-          :key="tune.id"
+          :key="tune.tuneId"
           class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-2 sm:m-4 slide-in-fwd-center"
         >
-          <g-link :to="tune.path">
-            <div class="px-2 py-1 sm:px-4">
-              <div class="font-bold text-sm sm:text-md md:text-lg text-center">
-                {{ tune.title }}
-              </div>
-            </div>
-          </g-link>
-          <div class="card-clickables p-1 sm:px-4 sm:py-3 bg-gray-200">
-            <div>
-              <span
-                class="inline-block bg-gray-400 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2 p-2"
-              >
-                {{ tune.rhythm }}
-              </span>
-              <span
-                class="inline-block bg-gray-400 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2 p-2"
-              >
-                {{ tune.key }}
-              </span>
-            </div>
-            <div class="flex flex-row">
-              <span
-                class="inline-block rounded-full text-xl font-semibold text-gray-700 mr-2 flex items-center p-2 hover:bg-gray-300"
-              >
-                <i
-                  class="fas fa-share text-xl hover:text-gray-800"
-                  aria-hidden="true"
-                />
-              </span>
-              <span
-                class="inline-block rounded-full text-xl font-semibold text-gray-700 mr-2 flex items-center p-2 hover:bg-gray-300"
-              >
-                <i
-                  class="fas fa-heart text-xl hover:text-gray-800"
-                  aria-hidden="true"
-                />
-              </span>
-            </div>
-          </div>
+          <Card :tune="tune" />
           <!--div class="p-2 text-xs text-gray-600">
             {{
               tune.abcheader
@@ -76,6 +38,8 @@
   </div-->
 </template>
 <script>
+import Card from '~/components/Card';
+
 export default {
   name: 'Results',
   props: {
@@ -87,6 +51,12 @@ export default {
     return {
       message: 'Try change me!',
     };
+  },
+  components: {
+    Card,
+  },
+  mounted() {
+    console.log('SearfchResults', this.results);
   },
 };
 </script>
