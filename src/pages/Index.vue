@@ -11,7 +11,7 @@
     <section>
       <div class="container home">
         <div
-          class="results-title text-white text-center block pt-1 pb-1 mt-8 mb-6"
+          class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2"
         >
           Popular Tunes
         </div>
@@ -21,54 +21,7 @@
             :key="page.tuneId"
             class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-4"
           >
-            <g-link :to="page.node.path">
-              <div class="px-4 py-2 relative">
-                <div class="absolute inset-0 p-1 text-base text-gray-500 z-0">
-                  #{{ page.node.tuneId }}
-                </div>
-                <div class="font-bold text-lg sm:text-xl text-center z-10">
-                  {{ page.node.title }}
-                </div>
-              </div>
-            </g-link>
-            <div class="card-clickables px-2 sm:px-4 py-3 bg-gray-200">
-              <div>
-                <span
-                  class="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                >
-                  {{ page.node.rhythm }}
-                </span>
-                <span
-                  class="inline-block bg-gray-400 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
-                >
-                  {{ page.node.key }}
-                </span>
-              </div>
-              <span
-                class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
-              >
-                <i class="fas fa-share" aria-hidden="true" />
-              </span>
-              <span
-                class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
-              >
-                <button v-on:click="show = !show">
-                  <transition name="fade" v-if="show">
-                    <p>
-                      <i class="fas fa-heart fav" aria-hidden="true" />
-                    </p>
-                  </transition>
-                  <transition name="fade" v-else>
-                    <p>
-                      <i class="fas fa-heart" aria-hidden="true" />
-                    </p>
-                  </transition>
-                </button>
-              </span>
-              <!--button class="btn btn-blue m-2">
-                {{ page.node.title }}
-            </button-->
-            </div>
+            <Card :page="page" />
           </div>
         </div>
         <div class="pagination">
@@ -104,6 +57,8 @@
 </page-query>
 <script>
 import { Pager } from 'gridsome';
+import Card from '~/components/Card';
+
 export default {
   metaInfo() {
     const title = 'tunesource - irish trad tunes library';
@@ -181,6 +136,7 @@ export default {
   },
   components: {
     Pager,
+    Card,
   },
   data() {
     return {
@@ -248,6 +204,6 @@ h2.title {
   opacity: 0;
 }
 .fav {
-  color: yellow;
+  color: red;
 }
 </style>
