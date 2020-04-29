@@ -5,13 +5,7 @@
 import DefaultLayout from '~/layouts/Default.vue';
 import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
-<<<<<<< HEAD
 import BottomNav from '~/components/BottomNav.vue';
-=======
-// import abcjs from 'abcjs';
-// const abcjs = require('abcjs');
-// const abcjs = require('abcjs');
->>>>>>> player works but no destroy
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push({
