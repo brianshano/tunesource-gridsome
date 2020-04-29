@@ -68,6 +68,7 @@ body {
 }
 .container1 {
   height: 100%;
+  min-height: 100vh;
 }
 .header {
   display: flex;

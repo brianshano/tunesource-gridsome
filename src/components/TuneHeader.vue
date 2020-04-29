@@ -20,10 +20,9 @@ export default {
     // console.log('mounted', this.props.header);
   },
   computed: {
-    parsedHeader: function() {
+    parsedHeader: function () {
       const splitter = this.header.toLowerCase().split(/\r\n|\r|\n/);
       const newLines = splitter.map((line) => {
-        console.log('line', line.substring(2));
         return ` ${line.substring(2)}`;
       });
       return newLines.toString();

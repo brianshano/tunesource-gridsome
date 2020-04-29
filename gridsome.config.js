@@ -102,7 +102,16 @@ module.exports = {
           {
             typeName: 'googleSheet',
             indexName: 'googleSheet',
-            fields: ['title', 'shlug', 'abcheader', 'rhythm', 'key', 'path'],
+            fields: [
+              'title',
+              'shlug',
+              'abcheader',
+              'rhythm',
+              'key',
+              'path',
+              'tuneId',
+              'id',
+            ],
           },
         ],
         searchFields: ['title', 'shlug', 'rhythm'],

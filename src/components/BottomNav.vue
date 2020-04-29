@@ -49,8 +49,8 @@
           >Favourites</span
         >
       </g-link>
-      <a
-        href="#"
+      <g-link
+        to="/"
         class="w-full text-white focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
       >
         <svg
@@ -69,9 +69,9 @@
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
         <span class="tab tab-explore block text-xs text-white">Search</span>
-      </a>
-      <a
-        href="#"
+      </g-link>
+      <g-link
+        to="/"
         class="w-full text-white focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
       >
         <svg
@@ -94,7 +94,7 @@
           <line x1="3" y1="18" x2="3.01" y2="18"></line>
         </svg>
         <span class="tab tab-whishlist block text-xs text-white">Tunes</span>
-      </a>
+      </g-link>
     </div>
   </section>
 </template>

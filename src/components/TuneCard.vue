@@ -3,6 +3,42 @@
     <section class="tune-title py-4">
       <h2 class="text-lg text-xl sm:text-2xl lg:text-3xl xl:text-4xl">
         {{ this.tune.title }}
+        <button @click="favMe(show)" class="star p-2" v-if="show">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#999"
+            stroke="none"
+            stroke-width="0"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-star fav"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            ></polygon>
+          </svg>
+        </button>
+        <button @click="favMe(show)" class="star p-2" v-else>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#ccc"
+            stroke="none"
+            stroke-width="0"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-star"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            ></polygon>
+          </svg>
+        </button>
       </h2>
       <div class="text-sm sm:text-base lg:text-lg">
         {{
@@ -158,9 +194,10 @@
         tune
       </div>
     </section>
-    <section class="bg-red-600">
+    <section class="bg-yellow-600">
       <div>
-        <div class="tune-container py-4 m-4 text-xs px-2 sm:text-sm">
+        <div class="tune-container py-4 m-4 text-xs px-2 sm:px-8 sm:text-sm">
+          <h2 class="font-bold">ABC Notation</h2>
           <div>
             {{ $page.googleSheet.abcheader }}{{ $page.googleSheet.abc }}
           </div>
@@ -215,10 +252,6 @@ export default {
         .split(' ')
         .filter((v) => v.startsWith('#'));
       if (typeof hashtag !== 'undefined') {
-        console.log(
-          'Hi. hastga defined.',
-          hashtag.map((t) => t.replace(/\D/g, ''))
-        );
         return hashtag.map((t) => t.replace(/\D/g, ''));
       } else {
         return 'none';
@@ -236,9 +269,23 @@ export default {
       isDownloadable: false,
       // abcjs: false,
       synthControl: {},
+      show: false,
+      favs: [],
     };
   },
   mounted: function () {
+    // localStorage.clear();
+    if (localStorage.favs) {
+      // highlight Star if it's already a fav
+      this.favs = JSON.parse(localStorage.getItem('favs'));
+      if (this.favs.includes(this.tune.tuneId)) {
+        this.show = true;
+      }
+    } else {
+      // initialise the localStorage Favs array
+      const lsetup = [];
+      localStorage.setItem('favs', JSON.stringify(lsetup));
+    }
     // this.abcjs = abcjs();
     const abcjs = require('abcjs');
     const abcTune = this.tune.abcheader + ' ' + this.tune.abc;
@@ -298,7 +345,6 @@ export default {
   methods: {
     getWindowWidth(event) {
       this.windowWidth = document.documentElement.clientWidth;
-      console.log('get window');
       if (
         document.documentElement.clientWidth > 500 &&
         document.documentElement.clientWidth < 768
@@ -316,7 +362,6 @@ export default {
     doPlay() {
       this.isPlaying = !this.isPlaying;
       this.isDownloadable = true;
-      console.log('do play pause', this.isPlaying);
       if (this.synthControl) {
         this.synthControl.play();
       }
@@ -337,6 +382,19 @@ export default {
         );
         this.isDownloading = !this.isDownloading;
       }
+    },
+    favMe(show) {
+      var currentFavs = JSON.parse(localStorage.getItem('favs'));
+      if (show) {
+        currentFavs = currentFavs.filter((t) => {
+          return t !== this.tune.tuneId;
+        });
+      } else {
+        currentFavs.push(this.tune.tuneId);
+      }
+
+      localStorage.setItem('favs', JSON.stringify(currentFavs));
+      this.show = !this.show;
     },
   },
   beforeDestroy() {

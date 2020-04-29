@@ -21,7 +21,7 @@
             :key="page.tuneId"
             class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-4"
           >
-            <Card :page="page" />
+            <Card :tune="page.node" />
           </div>
         </div>
         <div class="pagination">
