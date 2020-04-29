@@ -1,34 +1,24 @@
 <template>
   <Layout>
-    <h2 class="title text-xs sm:text-sm lg:text-base pt-4">
-      Search the library of traditional and folk tunes.
-    </h2>
-    <section>
-      <div class="container home">
-        <Search />
+    <div>
+      <div
+        class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2"
+      >
+        <h1>Favourites</h1>
       </div>
-    </section>
-    <section>
-      <div class="container home">
+      <div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
         <div
-          class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2"
+          v-for="page in $page.allGoogleSheet.edges"
+          :key="page.tuneId"
+          class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-4"
         >
-          <h1>Popular Tunes</h1>
-        </div>
-        <div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
-          <div
-            v-for="page in $page.allGoogleSheet.edges"
-            :key="page.tuneId"
-            class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-4"
-          >
-            <Card :page="page" />
-          </div>
-        </div>
-        <div class="pagination">
-          <Pager :info="$page.allGoogleSheet.pageInfo" />
+          <Card :page="page" />
         </div>
       </div>
-    </section>
+      <div class="pagination">
+        <Pager :info="$page.allGoogleSheet.pageInfo" />
+      </div>
+    </div>
   </Layout>
 </template>
 <page-query>
@@ -150,65 +140,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.home-links a {
-  margin-right: 1rem;
-}
-h2.title {
-  text-align: center;
-  color: white;
-}
-.tune-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: flex-start;
-  height: 1005;
-}
-.container.home {
-  margin: 0 auto;
-}
-.tune-card {
-  width: 100%;
-  max-width: 23rem;
-}
-
-.card-clickables {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.pagination {
-  width: 100%;
-  margin: 0.5rem auto;
-}
-.pagination nav {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-.pagination a {
-  color: white;
-  margin: 0.5rem;
-  padding: 0.5rem;
-}
-.pagination a.active {
-  color: #ccc;
-  background-color: #ffffff10;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-.fav {
-  color: red;
-}
-</style>

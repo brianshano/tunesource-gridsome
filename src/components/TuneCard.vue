@@ -260,8 +260,8 @@ export default {
       this.synthControl = synthControl;
       synthControl.load('#audio', cursorControl, {
         displayLoop: true,
-        displayRestart: false,
-        displayPlay: false,
+        displayRestart: true,
+        displayPlay: true,
         displayProgress: true,
         displayWarp: true,
       });

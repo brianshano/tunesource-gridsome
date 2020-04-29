@@ -6,9 +6,6 @@ import DefaultLayout from '~/layouts/Default.vue';
 import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
 import BottomNav from '~/components/BottomNav.vue';
-// import abcjs from 'abcjs';
-// const abcjs = require('abcjs');
-// const abcjs = require('abcjs');
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push({
@@ -28,6 +25,10 @@ export default function (Vue, { router, head, isClient }) {
     name: 'viewport',
     content: 'width=device-width, initial-scale=1, maximum-scale=1',
   });
+  head.meta.push({
+    name: 'viewport',
+    content: 'width=device-width, initial-scale=1, maximum-scale=1',
+  });
   // head.script.push({
   //   src: 'abcjs',
   // });
@@ -42,9 +43,6 @@ export default function (Vue, { router, head, isClient }) {
   };
   if (process.isClient) {
     console.log('IN IS CLIENT');
-    // const abcjs = require('abcjs');
-    // import abcjs from 'abcjs';
-    // Vue.use(ScrollReveal);
   }
   // Vue.use(abcjs);
 

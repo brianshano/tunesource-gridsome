@@ -25,8 +25,8 @@
         </svg>
         <span class="tab tab-home block text-xs text-white">Home</span>
       </g-link>
-      <a
-        href="#"
+      <g-link
+        to="/favourites"
         class="w-full text-white focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
       >
         <svg
@@ -48,7 +48,7 @@
         <span class="tab tab-kategori block text-xs text-white"
           >Favourites</span
         >
-      </a>
+      </g-link>
       <a
         href="#"
         class="w-full text-white focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"

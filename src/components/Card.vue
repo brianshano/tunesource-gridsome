@@ -33,52 +33,43 @@
       <span
         class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
       >
-        <button @click="favMe(show)">
-          <transition name="fade" v-if="show">
-            <button class="star p-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="#999"
-                stroke="none"
-                stroke-width="0"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-star fav"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                ></polygon>
-              </svg>
-            </button>
-          </transition>
-          <transition name="fade" v-else>
-            <button class="star p-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="#ccc"
-                stroke="none"
-                stroke-width="0"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-star"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                ></polygon>
-              </svg>
-            </button>
-          </transition>
+        <button @click="favMe(show)" class="star p-2" v-if="show">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#999"
+            stroke="none"
+            stroke-width="0"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-star fav"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            ></polygon>
+          </svg>
+        </button>
+        <button @click="favMe(show)" class="star p-2" v-else>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#ccc"
+            stroke="none"
+            stroke-width="0"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-star"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            ></polygon>
+          </svg>
         </button>
       </span>
-      <!--button class="btn btn-blue m-2">
-                {{ page.node.title }}
-            </button-->
     </div>
   </div>
 </template>
