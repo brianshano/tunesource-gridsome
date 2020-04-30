@@ -175,12 +175,6 @@ h2.title {
   max-width: 23rem;
 }
 
-.card-clickables {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .pagination {
   width: 100%;
   margin: 0.5rem auto;

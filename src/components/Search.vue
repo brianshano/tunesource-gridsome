@@ -3,6 +3,7 @@
     <div
       class="pt-2 relative mx-auto text-gray-600 w-full self-center max-w-sm sm:max-w-1xl md:max-w-3xl"
     >
+    <!--label for="search">Search TuneSource</label-->
       <input
         id="search"
         v-model="searchTerm"
@@ -10,10 +11,10 @@
         type="search"
         name="search"
         placeholder="Search"
-      />
+      /><!--/label-->
       <button
         type="submit"
-        class="absolute right-0 top-0 mt-3 mr-3 sm:mt-4 sm:mr-4"
+        class="absolute right-0 top-0 mt-3 mr-3 sm:mt-4 sm:mr-4" aria-label="Search Tunesource">
       >
         <svg
           class="text-gray-600 h-4 w-4 fill-current"

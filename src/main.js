@@ -8,10 +8,6 @@ import SearchResults from '~/components/SearchResults.vue';
 import BottomNav from '~/components/BottomNav.vue';
 
 export default function (Vue, { router, head, isClient }) {
-  head.link.push({
-    rel: 'stylesheet',
-    href: 'https://use.fontawesome.com/releases/v5.2.0/css/all.css',
-  });
   // head.link.push({
   //   rel: 'stylesheet',
   //   href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap',
@@ -42,7 +38,6 @@ export default function (Vue, { router, head, isClient }) {
     lang: 'en',
   };
   if (process.isClient) {
-    console.log('IN IS CLIENT');
   }
   // Vue.use(abcjs);
 

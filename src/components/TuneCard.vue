@@ -3,7 +3,12 @@
     <section class="tune-title py-4">
       <h2 class="text-lg text-xl sm:text-2xl lg:text-3xl xl:text-4xl">
         {{ this.tune.title }}
-        <button @click="favMe(show)" class="star p-2" v-if="show">
+        <button
+          @click="favMe(show)"
+          class="star p-2"
+          aria-label="Favourite Tune"
+          v-if="show"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -21,7 +26,12 @@
             ></polygon>
           </svg>
         </button>
-        <button @click="favMe(show)" class="star p-2" v-else>
+        <button
+          @click="favMe(show)"
+          class="star p-2"
+          aria-label="Favourite Tune"
+          v-else
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -63,6 +73,7 @@
             class="player-button p-2 y-2"
             @click="doRestart"
             title="restart"
+            aria-label="Restart Tune"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -84,6 +95,7 @@
             title="play/pause"
             class="player-button p-2 y-2 hover:bg-blue-500 focus:bg-green-500"
             @click="doPlay"
+            aria-label="Play/Pause"
           >
             <div v-if="isPlaying">
               <svg
@@ -143,6 +155,7 @@
               { 'opacity-50 cursor-not-allowed': isMobile },
               'player-button p-2 y-2',
             ]"
+            aria-label="Download Wav"
           >
             <div v-if="isDownloading" title="download wav">
               <svg
@@ -231,8 +244,8 @@ import TuneLinker from '~/components/TuneLinker.vue';
 // const abcjs = require('abcjs');
 // window.abcjs = require(abcjs);
 // const synthControl = new abcjs.synth.SynthController();
-// require('/node_modules/abcjs/abcjs-audio.css');
-import '../abcjs-audio.css';
+require('../abcjs-audio.css');
+// import 'abcjs/abcjs-audio.css';
 
 // import abcjs from 'abcjs';
 export default {
@@ -307,8 +320,8 @@ export default {
       this.synthControl = synthControl;
       synthControl.load('#audio', cursorControl, {
         displayLoop: true,
-        displayRestart: true,
-        displayPlay: true,
+        displayRestart: false,
+        displayPlay: false,
         displayProgress: true,
         displayWarp: true,
       });
