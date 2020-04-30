@@ -26,14 +26,36 @@
       <span
         class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
       >
-        <button class="p-2">
-          <i class="fas fa-share" aria-hidden="true" />
+        <button class="share p-2" aria-label="Share Tune">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-share-2"
+          >
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
         </button>
       </span>
       <span
         class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
       >
-        <button @click="favMe(show)" class="star p-2" v-if="show">
+        <button
+          @click="favMe(show)"
+          class="star p-2"
+          v-if="show"
+          aria-label="Favourite Tune"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -51,7 +73,12 @@
             ></polygon>
           </svg>
         </button>
-        <button @click="favMe(show)" class="star p-2" v-else>
+        <button
+          @click="favMe(show)"
+          class="star p-2"
+          v-else
+          aria-label="Favourite Tune"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -126,5 +153,11 @@ export default {
 }
 .star svg.fav {
   fill: #ff8d44;
+}
+
+.card-clickables {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 </style>

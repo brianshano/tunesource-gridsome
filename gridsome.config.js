@@ -6,7 +6,7 @@
 
 module.exports = {
   siteName: 'TuneSource',
-  siteUrl: 'https://tunesourcev2.netlify.app/',
+  siteUrl: 'https://tunesource.net/',
   templates: {
     googleSheet: [
       {
@@ -73,9 +73,9 @@ module.exports = {
         // tailwindConfig: './some/file/js',
         // purgeConfig: {},
         // presetEnvConfig: {},
-        shouldPurge: false /* this was preventing outher library css files loading (abcjs-audio) */,
-        // shouldImport: true,
-        // shouldTimeTravel: true
+        shouldPurge: true /* this was preventing outher library css files loading (abcjs-audio) */,
+        shouldImport: true,
+        shouldTimeTravel: true,
       },
     },
     {

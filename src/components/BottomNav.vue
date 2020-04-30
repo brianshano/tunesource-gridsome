@@ -27,7 +27,7 @@
       </g-link>
       <g-link
         to="/favourites"
-        class="w-full text-white focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
+        class="w-full text-white focus:text-teal-500 focus:bg-black hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
