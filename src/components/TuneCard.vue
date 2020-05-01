@@ -244,8 +244,6 @@ import TuneLinker from '~/components/TuneLinker.vue';
 // const abcjs = require('abcjs');
 // window.abcjs = require(abcjs);
 // const synthControl = new abcjs.synth.SynthController();
-// import '../abcjs-audio.css';
-
 // import 'abcjs/abcjs-audio.css';
 
 // import abcjs from 'abcjs';
