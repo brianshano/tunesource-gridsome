@@ -1,12 +1,24 @@
 // tailwind.config.js
-const plugin = require('tailwindcss/plugin');
+// const plugin = require('tailwindcss/plugin');
 module.exports = {
   theme: {
     extend: {},
   },
   variants: {},
+  // purge: {
+  //   enabled: true,
+  //   content: ['./src/**/*.html'],
+  //   options: {
+  //     whitelist: ['abcjs'],
+  //   },
+  },
+
+  // whitelistPatterns: [/abcjs/],
+  // whitelistPatterns: [/abcjs/],
+  // whitelistPatternsChildren: [/abcjs/],
+
   plugins: [
-    plugin(function({ addComponents }) {
+    plugin(function ({ addComponents }) {
       const buttons = {
         '.btn': {
           padding: '.5rem 1rem',

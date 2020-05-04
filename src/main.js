@@ -6,12 +6,9 @@ import DefaultLayout from '~/layouts/Default.vue';
 import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
 import BottomNav from '~/components/BottomNav.vue';
+// import '~/assets/abcjs-audio.css';
 
 export default function (Vue, { router, head, isClient }) {
-  // head.link.push({
-  //   rel: 'stylesheet',
-  //   href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap',
-  // });
   head.link.push({
     rel: 'stylesheet',
     href:
@@ -25,9 +22,6 @@ export default function (Vue, { router, head, isClient }) {
     name: 'viewport',
     content: 'width=device-width, initial-scale=1, maximum-scale=1',
   });
-  // head.script.push({
-  //   src: 'abcjs',
-  // });
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout);
   Vue.component('Search', Search);
