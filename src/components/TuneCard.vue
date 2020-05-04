@@ -301,9 +301,11 @@ export default {
     };
     const audioParams = {
       chordsOff: true,
-      defaultQpm: 100,
       loopToggle: true,
       tempo: false,
+      options: {
+        defaultQpm: 100,
+      },
     };
 
     if (abcjs.synth.supportsAudio()) {
@@ -463,9 +465,6 @@ section {
 .section-audio {
   background-color: #424242;
 }
-.abcjs-inline-audio {
-  width: 100%;
-}
 .player-button {
   &:hover {
     background-color: #5c7997;
@@ -484,6 +483,10 @@ svg .abcjs-title {
 
 /* Some basic CSS to make the Audio controls in abcjs presentable. */
 /* purgecss start ignore */
+.abcjs-inline-audio {
+  width: 100%;
+}
+
 .abcjs-inline-audio {
   height: 26px;
   padding: 0 5px;
@@ -601,7 +604,7 @@ svg .abcjs-title {
   border-radius: 2px;
   border: none;
   margin: 0 2px 0 4px;
-  width: 35px;
+  width: 45px;
   padding-left: 2px;
   box-sizing: border-box;
 }
