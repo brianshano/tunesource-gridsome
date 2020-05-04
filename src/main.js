@@ -6,6 +6,7 @@ import DefaultLayout from '~/layouts/Default.vue';
 import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
 import BottomNav from '~/components/BottomNav.vue';
+import '~/assets/abcjs-audio.css';
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push({
