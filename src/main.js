@@ -6,7 +6,6 @@ import DefaultLayout from '~/layouts/Default.vue';
 import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
 import BottomNav from '~/components/BottomNav.vue';
-// import '~/assets/abcjs-audio.css';
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push({
@@ -33,10 +32,4 @@ export default function (Vue, { router, head, isClient }) {
   };
   if (process.isClient) {
   }
-  // Vue.use(abcjs);
-
-  //Use Moment.Js library inside our project
-  // Object.defineProperty(Vue.prototype, 'abcjs', {
-  //   value: abcjs,
-  // });
 }
