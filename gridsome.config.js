@@ -73,7 +73,7 @@ module.exports = {
         // tailwindConfig: './some/file/js',
         // purgeConfig: {},
         // presetEnvConfig: {},
-        shouldPurge: false /* this was preventing outher library css files loading (abcjs-audio) */,
+        shouldPurge: true /* this was preventing outher library css files loading (abcjs-audio) */,
         shouldImport: true,
         shouldTimeTravel: true,
       },
