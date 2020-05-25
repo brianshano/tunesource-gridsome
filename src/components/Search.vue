@@ -3,7 +3,7 @@
     <div
       class="pt-2 relative mx-auto text-gray-600 w-full self-center max-w-sm sm:max-w-1xl md:max-w-3xl"
     >
-    <!--label for="search">Search TuneSource</label-->
+      <!--label for="search">Search TuneSource</label-->
       <input
         id="search"
         v-model="searchTerm"
@@ -11,10 +11,12 @@
         type="search"
         name="search"
         placeholder="Search"
-      /><!--/label-->
+      />
+      <!--/label-->
       <button
         type="submit"
-        class="absolute right-0 top-0 mt-3 mr-3 sm:mt-4 sm:mr-4" aria-label="Search Tunesource">
+        class="absolute right-0 top-0 mt-3 mr-3 sm:mt-4 sm:mr-4"
+        aria-label="Search Tunesource"
       >
         <svg
           class="text-gray-600 h-4 w-4 fill-current"
@@ -45,25 +47,25 @@
 <script>
 export default {
   data: () => ({
-    searchTerm: '',
+    searchTerm: ""
   }),
   computed: {
     searchResults() {
       const searchTerm = this.searchTerm;
-      console.log('searchterm', this.searchTerm);
+      console.log("searchterm", this.searchTerm);
       if (searchTerm.length < 2) return [];
       return this.$search.search({ query: searchTerm, limit: 6 });
-    },
-  },
+    }
+  }
 };
 </script>
 <style>
-    .search {
-      padding: 20px;
-      background: #fff;
-    }
-    input {
-      font-size: 16px;
-    }
-  </style>
+.search {
+  padding: 20px;
+  background: #fff;
+}
+input {
+  font-size: 16px;
+}
+</style>
 </page-query>

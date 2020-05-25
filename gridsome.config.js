@@ -11,9 +11,13 @@ module.exports = {
     googleSheet: [
       {
         path: '/tune/:tuneId/:shlug',
-        // path: '/:shlug',
         component: './src/templates/googleSheet.vue',
       },
+      // {
+      //   name: 'rhythms',
+      //   path: '/rhythm/:rhythm',
+      //   component: './src/templates/googleSheetRhythms.vue',
+      // },
     ],
   },
   icon: {

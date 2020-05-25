@@ -2,31 +2,27 @@
   <div>
     <g-link :to="tune.path">
       <div class="px-4 py-2 relative">
-        <div class="absolute inset-0 p-1 text-base text-gray-500 z-0">
-          #{{ tune.tuneId }}
-        </div>
-        <div class="font-bold text-lg sm:text-xl text-center z-10">
-          {{ tune.title }}
-        </div>
+        <div class="absolute inset-0 p-1 text-base text-gray-500 z-0">#{{ tune.tuneId }}</div>
+        <div class="font-bold text-lg sm:text-xl text-center z-10">{{ tune.title }}</div>
       </div>
     </g-link>
     <div class="card-clickables bg-gray-200">
       <div class="p-2">
-        <span
-          class="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-        >
-          {{ tune.rhythm }}
-        </span>
-        <span
-          class="inline-block bg-gray-400 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
-        >
-          {{ tune.key }}
-        </span>
+        <g-link :to="`rhythm/${tune.rhythm}`">
+          <span
+            class="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+          >{{ tune.rhythm }}</span>
+        </g-link>
+        <g-link :to="`key/${tune.key}`">
+          <span
+            class="inline-block bg-gray-400 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
+          >{{ tune.key }}</span>
+        </g-link>
       </div>
       <span
-        class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
+        class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2 share-dialog"
       >
-        <button class="share p-2" aria-label="Share Tune">
+        <button @click="shareMe()" class="share p-2" aria-label="Share Tune">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -39,23 +35,18 @@
             stroke-linejoin="round"
             class="feather feather-share-2"
           >
-            <circle cx="18" cy="5" r="3"></circle>
-            <circle cx="6" cy="12" r="3"></circle>
-            <circle cx="18" cy="19" r="3"></circle>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
           </svg>
         </button>
       </span>
       <span
         class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
       >
-        <button
-          @click="favMe(show)"
-          class="star p-2"
-          v-if="show"
-          aria-label="Favourite Tune"
-        >
+        <button @click="favMe(show)" class="star p-2" v-if="show" aria-label="Favourite Tune">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -70,15 +61,10 @@
           >
             <polygon
               points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-            ></polygon>
+            />
           </svg>
         </button>
-        <button
-          @click="favMe(show)"
-          class="star p-2"
-          v-else
-          aria-label="Favourite Tune"
-        >
+        <button @click="favMe(show)" class="star p-2" v-else aria-label="Favourite Tune">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -93,7 +79,7 @@
           >
             <polygon
               points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-            ></polygon>
+            />
           </svg>
         </button>
       </span>
@@ -102,49 +88,111 @@
 </template>
 <script>
 export default {
-  name: 'tune-',
+  name: "tune-",
   props: {
     tune: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
       show: false,
       favs: [],
+      showShareModal: false
     };
   },
   mounted() {
     // localStorage.clear();
     if (localStorage.favs) {
       // highlight Star if it's already a fav
-      this.favs = JSON.parse(localStorage.getItem('favs'));
+      this.favs = JSON.parse(localStorage.getItem("favs"));
       if (this.favs.includes(this.tune.tuneId)) {
         this.show = true;
       }
     } else {
       // initialise the localStorage Favs array
       const lsetup = [];
-      localStorage.setItem('favs', JSON.stringify(lsetup));
+      localStorage.setItem("favs", JSON.stringify(lsetup));
     }
   },
   methods: {
     favMe(show) {
-      console.log('toggle Fav', show);
-      var currentFavs = JSON.parse(localStorage.getItem('favs'));
+      console.log("toggle Fav", show);
+      var currentFavs = JSON.parse(localStorage.getItem("favs"));
       if (show) {
-        currentFavs = currentFavs.filter((t) => {
+        currentFavs = currentFavs.filter(t => {
           return t !== this.tune.tuneId;
         });
       } else {
         currentFavs.push(this.tune.tuneId);
       }
 
-      localStorage.setItem('favs', JSON.stringify(currentFavs));
+      localStorage.setItem("favs", JSON.stringify(currentFavs));
       this.show = !this.show;
     },
-  },
+    // async asyncCall() {
+    //   console.log('calling');
+    //   try {
+    //         await navigator.share(shareData)
+    //         resultPara.textContent = 'MDN shared successfully'
+    //       } catch(err) {
+    //         resultPara.textContent = 'Error: ' + err
+    //       }
+    //     // console.log(result);
+    //     // expected output: 'resolved'
+    // },
+
+
+    shareMe2() {
+      console.log("Share Me", this.tune.path);
+      // showShareModal = !showShareModal;
+      const shareData = {
+      title: this.tune.title,
+      text: 'Learn web development on MDN!',
+      url: this.tune.path,
+     }
+      asyncCall();
+    // const btn = document.querySelector('button');
+    // const resultPara = document.querySelector('.result');
+
+    // Must be triggered some kind of "user activation"
+    // btn.addEventListener('click', async () => {
+      
+    // });
+    },
+
+    shareMe() {
+      console.log('cliecked')
+        const data = {
+          title: this.tune.title,
+          text: this.tune.title,
+          url: this.tune.path
+        };
+        if (navigator.share) {
+          navigator.share(data)
+            .then((succ) => {
+              if (succ) {
+                console.log('success!', succ)
+                // this.onSuccess(succ);
+              }
+            })
+            .catch((err) => {
+              if (onError) {
+                                console.log('error!', err)
+
+                // this.onError(err);
+              }
+            })
+        } else {
+          console.log('error, no share api here')
+          if (this.onError) {
+            console.log('error!', err)
+            // this.onError('method not supported');
+          }
+        }
+      }
+  }
 };
 </script>
 <style>

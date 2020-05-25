@@ -16,8 +16,23 @@ module.exports = function (api) {
     // },
   });
 
-  api.loadSource(({ addCollection }) => {
-    // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+  // api.loadSource(({ addCollection }) => {
+  // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+  // });
+  api.loadSource((actions) => {
+    // const posts = actions.addCollection('googleSheet');
+    // const tags = actions.addCollection('googleSheet');
+    // makes all ids in the `tags` field reference a `Tag`
+    // tags.addReference('rhythm', 'googleSheet');
+    // tags.addNode({
+    //   id: '1',
+    //   title: 'The author',
+    // });
+    // posts.addNode({
+    //   id: '1',
+    //   title: 'A post',
+    //   tags: ['1'],
+    // });
   });
 
   api.createPages(({ createPage }) => {
