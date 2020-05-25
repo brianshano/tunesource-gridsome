@@ -131,36 +131,7 @@ export default {
       localStorage.setItem("favs", JSON.stringify(currentFavs));
       this.show = !this.show;
     },
-    // async asyncCall() {
-    //   console.log('calling');
-    //   try {
-    //         await navigator.share(shareData)
-    //         resultPara.textContent = 'MDN shared successfully'
-    //       } catch(err) {
-    //         resultPara.textContent = 'Error: ' + err
-    //       }
-    //     // console.log(result);
-    //     // expected output: 'resolved'
-    // },
-
-
-    shareMe2() {
-      console.log("Share Me", this.tune.path);
-      // showShareModal = !showShareModal;
-      const shareData = {
-      title: this.tune.title,
-      text: 'Learn web development on MDN!',
-      url: this.tune.path,
-     }
-      asyncCall();
-    // const btn = document.querySelector('button');
-    // const resultPara = document.querySelector('.result');
-
-    // Must be triggered some kind of "user activation"
-    // btn.addEventListener('click', async () => {
-      
-    // });
-    },
+  
 
     shareMe() {
       console.log('cliecked')
