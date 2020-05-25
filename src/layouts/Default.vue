@@ -15,6 +15,15 @@
       </nav-->
     </header>
     <div class="main container1 lg mx-auto">
+      <h2
+        class="text-center text-white text-xs sm:text-sm lg:text-base pt-4"
+      >Search the library of traditional and folk tunes.</h2>
+      <section>
+        <div class="center mx-auto w-full">
+          <Search />
+        </div>
+      </section>
+
       <slot />
     </div>
 

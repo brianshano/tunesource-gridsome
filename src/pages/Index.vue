@@ -1,18 +1,8 @@
 <template>
   <Layout>
-    <h2 class="title text-xs sm:text-sm lg:text-base pt-4">
-      Search the library of traditional and folk tunes.
-    </h2>
     <section>
-      <div class="container home">
-        <Search />
-      </div>
-    </section>
-    <section>
-      <div class="container home">
-        <div
-          class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2"
-        >
+      <div class="mx-auto">
+        <div class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2">
           <h1>Popular Tunes</h1>
         </div>
         <div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
@@ -138,11 +128,7 @@ export default {
     Pager,
     Card,
   },
-  data() {
-    return {
-      show: true,
-    };
-  },
+  
   data() {
     return {
       show: true,
