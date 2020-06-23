@@ -49,6 +49,7 @@ export default {
   data: () => ({
     searchTerm: ""
   }),
+
   computed: {
     searchResults() {
       const searchTerm = this.searchTerm;

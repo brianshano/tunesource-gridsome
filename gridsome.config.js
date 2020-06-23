@@ -39,6 +39,15 @@ module.exports = {
       },
     },
     {
+      use: 'gridsome-plugin-sentry',
+      options: {
+        dsn:
+          'https://bd4fe81a3ade4af49d4cf7f446bbd4c8@o163653.ingest.sentry.io/5287040',
+        attachProps: true, // defaults to true
+        logErrors: process.env.NODE_ENV === 'development', // defaults to false, see below for further info
+      },
+    },
+    {
       use: 'gridsome-plugin-manifest',
       options: {
         background_color: '#091a28',
@@ -97,6 +106,15 @@ module.exports = {
             priority: 0.7,
           },
         },
+      },
+    },
+    {
+      use: 'gridsome-plugin-nprogress',
+      options: {
+        // Setting a color is optional.
+        color: '#0366d6',
+        // Disable the loading spinner.
+        showSpinner: true,
       },
     },
     {
