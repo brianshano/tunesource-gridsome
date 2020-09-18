@@ -71,7 +71,7 @@
         <span class="tab tab-explore block text-xs text-white">Search</span>
       </g-link>
       <g-link
-        to="/"
+        to="/tunes"
         class="w-full text-white focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
       >
         <svg
