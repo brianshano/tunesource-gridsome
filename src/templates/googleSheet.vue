@@ -44,8 +44,6 @@ export default {
         return `${line.substring(2)},`;
       })
       .join(' ');
-    // return newLines.toString();
-    // const { title } = this.$page.googleSheet;
     console.log('META', title);
     const meta = [
       // open-graph tags

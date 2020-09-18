@@ -56,7 +56,7 @@ export default {
     Card,
   },
   mounted() {
-    console.log('SearfchResults', this.results);
+    console.log('mounted. SearfchResults', this);
   },
 };
 </script>
