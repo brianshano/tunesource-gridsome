@@ -42,7 +42,7 @@ import Card from '~/components/Card';
 
 export default {
   metaInfo() {
-    const title = 'tunesource - irish trad tunes library';
+    const title = 'Tunesource - Your Favourites';
     const meta = [
       {
         key: 'og:title',

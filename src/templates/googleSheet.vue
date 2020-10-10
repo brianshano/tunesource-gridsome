@@ -1,6 +1,5 @@
 <template>
   <Layout>
-    <!--h1>{{ $page.googleSheet.title }}</h1-->
     <TuneCard :tune="$page.googleSheet" />
   </Layout>
 </template>
@@ -20,12 +19,15 @@
   }
 </page-query>
 <script>
-// import 'abcjs/abcjs-audio.css';
 import TuneCard from '~/components/TuneCard.vue';
 
 export default {
-  metaInfo: {
-    title: 'TuneSource!',
+  metaInfo() {
+    const title = `Tunesource - ${
+      this.$page.allGoogleSheet.edges.node.title
+        ? this.$page.allGoogleSheet.edges.node.title
+        : 'Irish trad tunes library'
+    }`;
   },
   components: {
     TuneCard,
@@ -52,7 +54,14 @@ export default {
         name: 'og:title',
         content: `${title} - ${
           rhythm.charAt(0).toUpperCase() + rhythm.slice(1)
-        } on TuneSource`,
+        } on TuneSource trad tunes`,
+      },
+      {
+        key: 'title',
+        name: 'title',
+        content: `${title} - ${
+          rhythm.charAt(0).toUpperCase() + rhythm.slice(1)
+        } on TuneSource trad tunes`,
       },
       {
         key: 'twitter:title',
@@ -75,16 +84,15 @@ export default {
       },
       {
         property: 'og:image',
-        content:
-          'https://res.cloudinary.com/bshano/image/upload/f_auto/v1587633025/tunesource/tunesource-open-graph2.png',
+        content: 'https://www.tunesource.net/tunesource-open-graph2.png',
       },
       {
         property: 'og:url',
-        content: 'http://tunesource.net' + path,
+        content: 'https://www.tunesource.net' + path,
       },
       {
         property: 'og:site_name',
-        content: 'http://tunesource.net',
+        content: 'https://www.tunesource.net',
       },
       {
         property: 'og:type',
@@ -94,7 +102,7 @@ export default {
       // twitter card
       {
         name: 'twitter:card',
-        content: 'https://res.cloudinary.com/bshano/image/upload/f_auto/v1587633025/tunesource/tunesource-open-graph2.png'
+        content: 'https://www.tunesource.net/tunesource-open-graph2.png'
           ? 'summary_large_image'
           : 'summary',
       },
@@ -105,7 +113,7 @@ export default {
     ];
     console.log('METAmeta', meta);
     return {
-      title: title ? title : 'TuneSource',
+      title,
       meta,
     };
   },
