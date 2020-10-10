@@ -2,7 +2,9 @@
   <Layout>
     <section>
       <div class="mx-auto">
-        <div class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2">
+        <div
+          class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2"
+        >
           <h1>Tunes Index</h1>
         </div>
         <div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
@@ -12,21 +14,37 @@
             class="w-full max-w-xl min-w-20 rounded overflow-hidden shadow-lg bg-gray-400 m-2 p-2"
           >
             <div class="w-full flex justify-around">
-            <div class="w-1/12">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-music"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+              <div class="w-1/12">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-music"
+                >
+                  <path d="M9 18V5l12-2v13" />
+                  <circle cx="6" cy="18" r="3" />
+                  <circle cx="18" cy="16" r="3" />
+                </svg>
               </div>
-              <div class="w-6/12"><g-link :to="`${page.node.path}`">
-                {{page.node.title}}
-              </g-link></div>
-              <div class="w-8"><g-link :to="`rhythm/${page.node.rhythm}`">
-                {{page.node.rhythm}}
-              </g-link></div>
+              <div class="w-6/12">
+                <g-link :to="`${page.node.path}`">{{ page.node.title }}</g-link>
+              </div>
+              <div class="w-8">
+                <g-link :to="`rhythm/${page.node.rhythm}`">{{
+                  page.node.rhythm
+                }}</g-link>
+              </div>
               <div class="w-8">
                 <!-- <g-link :to="`key/${page.node.key}`"> -->
-                {{page.node.key}}
-              <!-- </g-link> -->
+                {{ page.node.key }}
+                <!-- </g-link> -->
               </div>
-              
             </div>
           </div>
         </div>
@@ -66,25 +84,35 @@ import Card from '~/components/Card';
 
 export default {
   metaInfo() {
-    const title = 'tunesource - irish trad tunes library';
+    console.log('this', this.$page);
+    const title = `Tunesource - ${
+      this.$page.allGoogleSheet.edges.node.title
+        ? this.$page.allGoogleSheet.edges.node.title
+        : 'Irish trad tunes library'
+    }`;
     const meta = [
       {
-        key: 'og:title',
-        name: 'og:title',
-        content: 'tunesource - irish trad tunes library',
+        key: 'title',
+        name: 'title',
+        content: title,
       },
       {
-        key: 'twitter:title',
-        name: 'twitter:title',
-        content: 'tunesource - irish trad tunes library',
-      },
-      {
-        name: 'twitter:description',
+        name: 'description',
         content:
           'traditional and folk music abc music notation, chords, sheet music and midi audio',
       },
       {
-        name: 'description',
+        key: 'og:title',
+        name: 'og:title',
+        content: title,
+      },
+      {
+        key: 'twitter:title',
+        name: 'twitter:title',
+        content: title,
+      },
+      {
+        name: 'twitter:description',
         content:
           'traditional and folk music abc music notation, chords, sheet music and midi audio',
       },
@@ -135,7 +163,7 @@ export default {
       },
     ];
     return {
-      title: title ? title : 'TuneSource',
+      title: title,
       meta,
     };
   },
@@ -143,7 +171,7 @@ export default {
     Pager,
     Card,
   },
-  
+
   data() {
     return {
       show: true,

@@ -8,7 +8,7 @@
 <script>
 export default {
   metaInfo: {
-    title: 'TuneSource',
+    // title: 'TuneSource',
   },
   props: {
     tuneid: String,

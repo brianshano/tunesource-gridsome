@@ -2,8 +2,12 @@
   <div>
     <g-link :to="tune.path">
       <div class="px-4 py-2 relative">
-        <div class="absolute inset-0 p-1 text-base text-gray-500 z-0">#{{ tune.tuneId }}</div>
-        <div class="font-bold text-lg sm:text-xl text-center z-10">{{ tune.title }}</div>
+        <div class="absolute inset-0 p-1 text-base text-gray-500 z-0">
+          #{{ tune.tuneId }}
+        </div>
+        <div class="font-bold text-lg sm:text-xl text-center z-10">
+          {{ tune.title }}
+        </div>
       </div>
     </g-link>
     <div class="card-clickables bg-gray-200">
@@ -11,12 +15,14 @@
         <g-link :to="`rhythm/${tune.rhythm}`">
           <span
             class="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-          >{{ tune.rhythm }}</span>
+            >{{ tune.rhythm }}</span
+          >
         </g-link>
         <g-link :to="`key/${tune.key}`">
           <span
             class="inline-block bg-gray-400 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
-          >{{ tune.key }}</span>
+            >{{ tune.key }}</span
+          >
         </g-link>
       </div>
       <span
@@ -46,7 +52,12 @@
       <span
         class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
       >
-        <button @click="favMe(show)" class="star p-2" v-if="show" aria-label="Favourite Tune">
+        <button
+          @click="favMe(show)"
+          class="star p-2"
+          v-if="show"
+          aria-label="Favourite Tune"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -64,7 +75,12 @@
             />
           </svg>
         </button>
-        <button @click="favMe(show)" class="star p-2" v-else aria-label="Favourite Tune">
+        <button
+          @click="favMe(show)"
+          class="star p-2"
+          v-else
+          aria-label="Favourite Tune"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -88,82 +104,81 @@
 </template>
 <script>
 export default {
-  name: "tune-",
+  name: 'tune-',
   props: {
     tune: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
       show: false,
       favs: [],
-      showShareModal: false
+      showShareModal: false,
     };
   },
   mounted() {
     // localStorage.clear();
     if (localStorage.favs) {
       // highlight Star if it's already a fav
-      this.favs = JSON.parse(localStorage.getItem("favs"));
+      this.favs = JSON.parse(localStorage.getItem('favs'));
       if (this.favs.includes(this.tune.tuneId)) {
         this.show = true;
       }
     } else {
       // initialise the localStorage Favs array
       const lsetup = [];
-      localStorage.setItem("favs", JSON.stringify(lsetup));
+      localStorage.setItem('favs', JSON.stringify(lsetup));
     }
   },
   methods: {
     favMe(show) {
-      console.log("toggle Fav", show);
-      var currentFavs = JSON.parse(localStorage.getItem("favs"));
+      console.log('toggle Fav', show);
+      var currentFavs = JSON.parse(localStorage.getItem('favs'));
       if (show) {
-        currentFavs = currentFavs.filter(t => {
+        currentFavs = currentFavs.filter((t) => {
           return t !== this.tune.tuneId;
         });
       } else {
         currentFavs.push(this.tune.tuneId);
       }
 
-      localStorage.setItem("favs", JSON.stringify(currentFavs));
+      localStorage.setItem('favs', JSON.stringify(currentFavs));
       this.show = !this.show;
     },
-  
 
     shareMe() {
-      console.log('cliecked')
-        const data = {
-          title: this.tune.title,
-          text: this.tune.title,
-          url: this.tune.path
-        };
-        if (navigator.share) {
-          navigator.share(data)
-            .then((succ) => {
-              if (succ) {
-                console.log('success!', succ)
-                // this.onSuccess(succ);
-              }
-            })
-            .catch((err) => {
-              if (onError) {
-                                console.log('error!', err)
+      console.log('cliecked');
+      const data = {
+        title: this.tune.title,
+        text: this.tune.title,
+        url: this.tune.path,
+      };
+      if (navigator.share) {
+        navigator
+          .share(data)
+          .then((succ) => {
+            if (succ) {
+              // this.onSuccess(succ);
+            }
+          })
+          .catch((err) => {
+            if (onError) {
+              console.log('error!', err);
 
-                // this.onError(err);
-              }
-            })
-        } else {
-          console.log('error, no share api here')
-          if (this.onError) {
-            console.log('error!', err)
-            // this.onError('method not supported');
-          }
+              // this.onError(err);
+            }
+          });
+      } else {
+        console.log('error, no share api here');
+        if (this.onError) {
+          console.log('error!', err);
+          // this.onError('method not supported');
         }
       }
-  }
+    },
+  },
 };
 </script>
 <style>

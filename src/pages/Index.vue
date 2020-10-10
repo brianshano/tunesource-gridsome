@@ -2,7 +2,9 @@
   <Layout>
     <section>
       <div class="mx-auto">
-        <div class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2">
+        <div
+          class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2"
+        >
           <h1>Popular Tunes</h1>
         </div>
         <div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
@@ -23,7 +25,6 @@
 </template>
 <page-query>
   query ($page: Int){
-    # allGoogleSheet(perPage: 15, page: $page, filter: { featured: { eq: "1" }}) @paginate {
     allGoogleSheet(perPage: 20, page: $page) @paginate {
       pageInfo {
         totalPages
@@ -51,17 +52,21 @@ import Card from '~/components/Card';
 
 export default {
   metaInfo() {
-    const title = 'tunesource - irish trad tunes library';
+    const title = `Tunesource - ${
+      this.$page.allGoogleSheet.edges.node.title
+        ? this.$page.allGoogleSheet.edges.node.title
+        : 'Irish trad tunes library'
+    }`;
     const meta = [
       {
         key: 'og:title',
         name: 'og:title',
-        content: 'tunesource - irish trad tunes library',
+        content: title,
       },
       {
         key: 'twitter:title',
         name: 'twitter:title',
-        content: 'tunesource - irish trad tunes library',
+        content: title,
       },
       {
         name: 'twitter:description',
@@ -120,7 +125,7 @@ export default {
       },
     ];
     return {
-      title: title ? title : 'TuneSource',
+      // title: title ? title : 'TuneSource',
       meta,
     };
   },
@@ -128,7 +133,7 @@ export default {
     Pager,
     Card,
   },
-  
+
   data() {
     return {
       show: true,

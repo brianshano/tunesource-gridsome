@@ -24,9 +24,7 @@
 
 export default {
   metaInfo: {
-    title: 'TuneSource!',
+    // title: 'TuneSource!',
   },
-
-  
 };
 </script>

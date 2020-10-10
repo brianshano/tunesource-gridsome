@@ -6,18 +6,13 @@
 
 module.exports = {
   siteName: 'TuneSource',
-  siteUrl: 'https://tunesource.net/',
+  siteUrl: 'https://tunesource.net',
   templates: {
     googleSheet: [
       {
         path: '/tune/:tuneId/:shlug',
         component: './src/templates/googleSheet.vue',
       },
-      // {
-      //   name: 'rhythms',
-      //   path: '/rhythm/:rhythm',
-      //   component: './src/templates/googleSheetRhythms.vue',
-      // },
     ],
   },
   icon: {
@@ -86,20 +81,21 @@ module.exports = {
         // tailwindConfig: './some/file/js',
         // purgeConfig: {},
         // presetEnvConfig: {},
-        shouldPurge: true /* this was preventing outher library css files loading (abcjs-audio) */,
+        shouldPurge: false /* this was preventing outher library css files loading (abcjs-audio) */,
         shouldImport: true,
         shouldTimeTravel: true,
+        whitelist: ['abcjs'],
       },
     },
     {
       use: '@gridsome/plugin-sitemap',
       options: {
-        cacheTime: 600000, // default
         exclude: ['/exclude-me'],
         config: {
           '/tune/*': {
             changefreq: 'weekly',
-            priority: 1,
+            priority: 0.9,
+            lastmod: '2020-09-19',
           },
           '/about': {
             changefreq: 'monthly',

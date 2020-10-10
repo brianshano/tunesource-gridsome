@@ -5,7 +5,7 @@
 <script>
 export default {
   metaInfo: {
-    title: 'TuneSource',
+    // title: 'TuneSource',
   },
   name: 'Card',
   props: {

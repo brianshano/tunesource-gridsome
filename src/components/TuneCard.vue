@@ -242,7 +242,7 @@ import TuneHeader from '~/components/TuneHeader';
 import TuneLinker from '~/components/TuneLinker.vue';
 export default {
   metaInfo: {
-    title: 'TuneSource',
+    // title: 'TuneSource',
   },
   props: {
     tune: Object,
@@ -604,7 +604,7 @@ svg .abcjs-title {
   border-radius: 2px;
   border: none;
   margin: 0 2px 0 4px;
-width: 45px;
+  width: 45px;
   padding-left: 2px;
   box-sizing: border-box;
 }
