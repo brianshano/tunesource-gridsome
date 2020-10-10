@@ -85,32 +85,32 @@ import Card from '~/components/Card';
 export default {
   metaInfo() {
     console.log('this', this.$page);
-    const title = `Tunesource - ${
-      this.$page.allGoogleSheet.edges.node.title
-        ? this.$page.allGoogleSheet.edges.node.title
-        : 'Irish trad tunes library'
-    }`;
+    // const title = `Tunesource - ${
+    //   this.$page.allGoogleSheet.edges.node.title
+    //     ? this.$page.allGoogleSheet.edges.node.title
+    //     : 'Irish trad tunes library'
+    // }`;
     const meta = [
-      {
-        key: 'title',
-        name: 'title',
-        content: title,
-      },
+      // {
+      //   key: 'title',
+      //   name: 'title',
+      //   content: title,
+      // },
       {
         name: 'description',
         content:
           'traditional and folk music abc music notation, chords, sheet music and midi audio',
       },
-      {
-        key: 'og:title',
-        name: 'og:title',
-        content: title,
-      },
-      {
-        key: 'twitter:title',
-        name: 'twitter:title',
-        content: title,
-      },
+      // {
+      //   key: 'og:title',
+      //   name: 'og:title',
+      //   content: title,
+      // },
+      // {
+      //   key: 'twitter:title',
+      //   name: 'twitter:title',
+      //   content: title,
+      // },
       {
         name: 'twitter:description',
         content:
@@ -163,7 +163,7 @@ export default {
       },
     ];
     return {
-      title: title,
+      // title: title,
       meta,
     };
   },

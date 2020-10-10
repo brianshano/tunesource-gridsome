@@ -52,22 +52,22 @@ import Card from '~/components/Card';
 
 export default {
   metaInfo() {
-    const title = `Tunesource - ${
-      this.$page.allGoogleSheet.edges.node.title
-        ? this.$page.allGoogleSheet.edges.node.title
-        : 'Irish trad tunes library'
-    }`;
+    // const title = `Tunesource - ${
+    //   this.$page.allGoogleSheet.edges.node.title
+    //     ? this.$page.allGoogleSheet.edges.node.title
+    //     : 'Irish trad tunes library'
+    // }`;
     const meta = [
-      {
-        key: 'og:title',
-        name: 'og:title',
-        content: title,
-      },
-      {
-        key: 'twitter:title',
-        name: 'twitter:title',
-        content: title,
-      },
+      // {
+      //   key: 'og:title',
+      //   name: 'og:title',
+      //   content: title,
+      // },
+      // {
+      //   key: 'twitter:title',
+      //   name: 'twitter:title',
+      //   content: title,
+      // },
       {
         name: 'twitter:description',
         content:
