@@ -9,7 +9,7 @@
     "file_name": "manifest.json",
     "orientation": "any",
     "scope": "/",
-    "start_url": "/",
+    "start_url": "/?pwa=true",
     "dir": "auto",
     "prefer_related_applications": false,
     "related_applications": [],
