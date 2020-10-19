@@ -223,7 +223,7 @@
         </div>
       </div>
     </section>
-    <section>
+    <section class="flex justify-center p-2 m-2 mb-8">
       <div class="suggestions p-2 m-2 py-8 text-xs">
         <div v-if="extractedSuggestions.length > 0">
           <div>Suggestions:</div>
@@ -239,24 +239,20 @@
           </div>
         </div>
       </div>
+      <div
+        v-if="tune.url !== ''"
+        class="video-container self-center justify-center"
+      >
+        <iframe
+          :src="'https://www.youtube.com/embed/' + tune.url"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
     </section>
   </div>
 </template>
-<!--script v-if="amazon"
-amzn_assoc_placement = "adunit0";
-amzn_assoc_tracking_id = "tunesource0f-20";
-amzn_assoc_ad_mode = "search";
-amzn_assoc_ad_type = "smart";
-amzn_assoc_marketplace = "amazon";
-amzn_assoc_region = "US";
-amzn_assoc_default_search_phrase = "irish whistle";
-amzn_assoc_default_category = "MusicalInstruments";
-amzn_assoc_linkid = "6232407c4c0903b1525149f3356fd4fa";
-amzn_assoc_default_browse_node = "11091801";
-amzn_assoc_search_bar = "true";
-amzn_assoc_search_bar_position = "top";
-amzn_assoc_title = "Shop Related Products";
- src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script-->
 <script>
 import TuneHeader from '~/components/TuneHeader';
 // import TuneLinker from '~/components/TuneLinker.vue';
@@ -300,26 +296,6 @@ export default {
     };
   },
   mounted: function () {
-    const plugin = document.createElement('script');
-    plugin.setAttribute('amzn_assoc_placement', 'adunit0');
-    plugin.setAttribute('amzn_assoc_tracking_id', 'tunesource0f-20');
-    plugin.setAttribute('amzn_assoc_ad_mode', 'search');
-    plugin.setAttribute('amzn_assoc_ad_type', 'smart');
-    plugin.setAttribute('amzn_assoc_marketplace', 'amazon');
-    plugin.setAttribute('amzn_assoc_region', 'US');
-    plugin.setAttribute('amzn_assoc_default_search_phrase', 'irish whistle');
-    plugin.setAttribute('amzn_assoc_default_category', 'MusicalInstruments');
-    plugin.setAttribute(
-      'amzn_assoc_linkid',
-      '6232407c4c0903b1525149f3356fd4fa'
-    );
-    plugin.setAttribute('amzn_assoc_default_browse_node', '11091801');
-    plugin.setAttribute('amzn_assoc_search_bar', 'true');
-    plugin.setAttribute('amzn_assoc_search_bar_position', 'top');
-    plugin.setAttribute('amzn_assoc_title', 'Shop Related Products');
-    plugin.async = true;
-    document.head.appendChild(plugin);
-
     const pluginAws = document.createElement('script');
     pluginAws.setAttribute(
       'src',

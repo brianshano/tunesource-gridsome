@@ -119,6 +119,7 @@ module.exports = {
         searchFields: [
           'title',
           'title2',
+          'url',
           'shlug',
           'rhythm',
           'musicKey',
@@ -131,6 +132,7 @@ module.exports = {
             fields: [
               'title',
               'title2',
+              'url',
               'shlug',
               'abcheader',
               'rhythm',

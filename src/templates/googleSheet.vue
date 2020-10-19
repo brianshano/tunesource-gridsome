@@ -15,6 +15,7 @@
       shlug
       path
       musicKey
+      url
     }
   }
 </page-query>
