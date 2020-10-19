@@ -3,12 +3,7 @@
     <section class="tune-title py-4">
       <h2 class="text-lg text-xl sm:text-2xl lg:text-3xl xl:text-4xl">
         {{ this.tune.title }}
-        <button
-          @click="favMe(show)"
-          class="star p-2"
-          aria-label="Favourite Tune"
-          v-if="show"
-        >
+        <button @click="favMe(show)" class="star p-2" aria-label="Favourite Tune" v-if="show">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -26,12 +21,7 @@
             ></polygon>
           </svg>
         </button>
-        <button
-          @click="favMe(show)"
-          class="star p-2"
-          aria-label="Favourite Tune"
-          v-else
-        >
+        <button @click="favMe(show)" class="star p-2" aria-label="Favourite Tune" v-else>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -51,30 +41,19 @@
         </button>
       </h2>
       <div class="text-sm sm:text-base lg:text-lg">
-        {{
-          $page.googleSheet.rhythm.charAt(0).toUpperCase() +
-          $page.googleSheet.rhythm.slice(1)
-        }}
+        {{ $page.googleSheet.rhythm.charAt(0).toUpperCase() + $page.googleSheet.rhythm.slice(1) }}
         in
         {{ $page.googleSheet.key }}
       </div>
     </section>
 
     <section class="section-audio pt-3 pb-2 px-4">
-      <div
-        id="audio"
-        :class="[{ 'abcjs-large': showLargePlayer }, 'audio', 'tune-container']"
-      ></div>
+      <div id="audio" :class="[{ 'abcjs-large': showLargePlayer }, 'audio', 'tune-container']"></div>
     </section>
     <section class="section-audio pb-2 px-4">
       <div id="audio2" class="text-white tune-container">
         <div class="button-row flex flex-row justify-between">
-          <button
-            class="player-button p-2 y-2"
-            @click="doRestart"
-            title="restart"
-            aria-label="Restart Tune"
-          >
+          <button class="player-button p-2 y-2" @click="doRestart" title="restart" aria-label="Restart Tune">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="36"
@@ -202,18 +181,17 @@
         </div>
       </div>
     </section>
-    <section class="bg-gray-100">
-      <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">
-        tune
-      </div>
+    <section class="bg-gray-100 flex flex-col">
+      <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">tune</div>
+      <br />
+
+        <div id="amzn-assoc-ad-ab2f75e4-cfcb-46d0-9585-78b15bbe8244" class="self-center"></div>
     </section>
     <section class="bg-yellow-600">
       <div>
         <div class="tune-container py-4 m-4 text-xs px-2 sm:px-8 sm:text-sm">
           <h2 class="font-bold">ABC Notation</h2>
-          <div>
-            {{ $page.googleSheet.abcheader }}{{ $page.googleSheet.abc }}
-          </div>
+          <div>{{ $page.googleSheet.abcheader }}{{ $page.googleSheet.abc }}</div>
         </div>
       </div>
     </section>
@@ -223,12 +201,8 @@
           <div>Suggestions:</div>
           <div>
             {{ extractedSuggestions }}
-            <div
-              class="tune-card"
-              v-for="(tuneid, i) in extractedSuggestions"
-              :key="`${i}-${tuneid}`"
-            >
-              <TuneLinker :tuneid="tuneid" />
+            <div class="tune-card" v-for="(tuneid, i) in extractedSuggestions" :key="`${i}-${tuneid}`">
+              <!-- <TuneLinker :tuneid="tuneid" /> -->
             </div>
           </div>
         </div>
@@ -236,10 +210,24 @@
     </section>
   </div>
 </template>
-
+<!--script v-if="amazon"
+amzn_assoc_placement = "adunit0";
+amzn_assoc_tracking_id = "tunesource0f-20";
+amzn_assoc_ad_mode = "search";
+amzn_assoc_ad_type = "smart";
+amzn_assoc_marketplace = "amazon";
+amzn_assoc_region = "US";
+amzn_assoc_default_search_phrase = "irish whistle";
+amzn_assoc_default_category = "MusicalInstruments";
+amzn_assoc_linkid = "6232407c4c0903b1525149f3356fd4fa";
+amzn_assoc_default_browse_node = "11091801";
+amzn_assoc_search_bar = "true";
+amzn_assoc_search_bar_position = "top";
+amzn_assoc_title = "Shop Related Products";
+ src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script-->
 <script>
-import TuneHeader from '~/components/TuneHeader';
-import TuneLinker from '~/components/TuneLinker.vue';
+import TuneHeader from "~/components/TuneHeader";
+// import TuneLinker from '~/components/TuneLinker.vue';
 export default {
   metaInfo: {
     // title: 'TuneSource',
@@ -249,20 +237,19 @@ export default {
   },
   components: {
     TuneHeader,
-    TuneLinker,
+    // TuneLinker,
   },
   computed: {
     extractedSuggestions: function () {
-      const hashtag = this.tune.abcheader
-        .split(' ')
-        .filter((v) => v.startsWith('#'));
-      if (typeof hashtag !== 'undefined') {
-        return hashtag.map((t) => t.replace(/\D/g, ''));
+      const hashtag = this.tune.abcheader.split(" ").filter((v) => v.startsWith("#"));
+      if (typeof hashtag !== "undefined") {
+        return hashtag.map((t) => t.replace(/\D/g, ""));
       } else {
-        return 'none';
+        return "none";
       }
     },
   },
+  amazon: true,
   data: function () {
     return {
       windowWidth: 0,
@@ -279,25 +266,50 @@ export default {
     };
   },
   mounted: function () {
+    const plugin = document.createElement("script");
+    plugin.setAttribute("amzn_assoc_placement", "adunit0");
+    plugin.setAttribute("amzn_assoc_tracking_id", "tunesource0f-20");
+    plugin.setAttribute("amzn_assoc_ad_mode", "search");
+    plugin.setAttribute("amzn_assoc_ad_type", "smart");
+    plugin.setAttribute("amzn_assoc_marketplace", "amazon");
+    plugin.setAttribute("amzn_assoc_region", "US");
+    plugin.setAttribute("amzn_assoc_default_search_phrase", "irish whistle");
+    plugin.setAttribute("amzn_assoc_default_category", "MusicalInstruments");
+    plugin.setAttribute("amzn_assoc_linkid", "6232407c4c0903b1525149f3356fd4fa");
+    plugin.setAttribute("amzn_assoc_default_browse_node", "11091801");
+    plugin.setAttribute("amzn_assoc_search_bar", "true");
+    plugin.setAttribute("amzn_assoc_search_bar_position", "top");
+    plugin.setAttribute("amzn_assoc_title", "Shop Related Products");
+    plugin.async = true;
+    document.head.appendChild(plugin);
+
+    const pluginAws = document.createElement("script");
+    pluginAws.setAttribute(
+      "src",
+      "//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=ab2f75e4-cfcb-46d0-9585-78b15bbe8244"
+    );
+    pluginAws.async = true;
+    document.head.appendChild(pluginAws);
+
     // localStorage.clear();
     if (localStorage.favs) {
       // highlight Star if it's already a fav
-      this.favs = JSON.parse(localStorage.getItem('favs'));
+      this.favs = JSON.parse(localStorage.getItem("favs"));
       if (this.favs.includes(this.tune.tuneId)) {
         this.show = true;
       }
     } else {
       // initialise the localStorage Favs array
       const lsetup = [];
-      localStorage.setItem('favs', JSON.stringify(lsetup));
+      localStorage.setItem("favs", JSON.stringify(lsetup));
     }
     // this.abcjs = abcjs();
-    const abcjs = require('abcjs');
-    const abcTune = this.tune.abcheader + ' ' + this.tune.abc;
+    const abcjs = require("abcjs");
+    const abcTune = this.tune.abcheader + " " + this.tune.abc;
     const cursorControl = {}; // see section on CursorControl
     const abcOptions = {
       add_classes: true,
-      responsive: 'resize',
+      responsive: "resize",
     };
     const audioParams = {
       chordsOff: true,
@@ -309,10 +321,10 @@ export default {
     };
 
     if (abcjs.synth.supportsAudio()) {
-      console.log('in supportsAudio');
+      console.log("in supportsAudio");
       const synthControl = new abcjs.synth.SynthController();
       this.synthControl = synthControl;
-      synthControl.load('#audio', cursorControl, {
+      synthControl.load("#audio", cursorControl, {
         displayLoop: true,
         displayRestart: false,
         displayPlay: false,
@@ -320,7 +332,7 @@ export default {
         displayWarp: true,
       });
 
-      const visualObj = abcjs.renderAbc('paper', abcTune, abcOptions);
+      const visualObj = abcjs.renderAbc("paper", abcTune, abcOptions);
       const createSynth = new abcjs.synth.CreateSynth();
       createSynth
         .init({ visualObj: visualObj[0] })
@@ -328,22 +340,21 @@ export default {
           synthControl
             .setTune(visualObj[0], false, audioParams)
             .then(function () {
-              console.log('Audio successfully loaded.');
+              console.log("Audio successfully loaded.");
             })
             .catch(function (error) {
-              console.warn('Audio problem:', error);
+              console.warn("Audio problem:", error);
             });
         })
         .catch(function (error) {
-          console.warn('Audio problem:', error);
+          console.warn("Audio problem:", error);
         });
     } else {
-      document.querySelector('#audio').innerHTML =
-        'Audio is not supported in this browser.';
+      document.querySelector("#audio").innerHTML = "Audio is not supported in this browser.";
     }
 
     this.$nextTick(function () {
-      window.addEventListener('resize', this.getWindowWidth);
+      window.addEventListener("resize", this.getWindowWidth);
 
       //Init
       this.getWindowWidth();
@@ -352,10 +363,7 @@ export default {
   methods: {
     getWindowWidth(event) {
       this.windowWidth = document.documentElement.clientWidth;
-      if (
-        document.documentElement.clientWidth > 500 &&
-        document.documentElement.clientWidth < 768
-      ) {
+      if (document.documentElement.clientWidth > 500 && document.documentElement.clientWidth < 768) {
         this.showLargePlayer = true;
       } else {
         this.showLargePlayer = false;
@@ -384,14 +392,12 @@ export default {
     doDownload() {
       if (this.isDownloadable && !this.isMobile) {
         this.doLoader();
-        this.synthControl.download(
-          `tunesource-${this.tune.rhythm}_${this.tune.shlug}.wav`
-        );
+        this.synthControl.download(`tunesource-${this.tune.rhythm}_${this.tune.shlug}.wav`);
         this.isDownloading = !this.isDownloading;
       }
     },
     favMe(show) {
-      var currentFavs = JSON.parse(localStorage.getItem('favs'));
+      var currentFavs = JSON.parse(localStorage.getItem("favs"));
       if (show) {
         currentFavs = currentFavs.filter((t) => {
           return t !== this.tune.tuneId;
@@ -400,7 +406,7 @@ export default {
         currentFavs.push(this.tune.tuneId);
       }
 
-      localStorage.setItem('favs', JSON.stringify(currentFavs));
+      localStorage.setItem("favs", JSON.stringify(currentFavs));
       this.show = !this.show;
     },
   },
@@ -428,17 +434,13 @@ section {
   justify-content: center;
   @media (min-width: 768px) {
     background: rgb(255, 255, 255);
-    background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.09) 0%,
-      rgba(92, 121, 151, 1) 77%
-    );
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(92, 121, 151, 1) 77%);
   }
 }
 .tune-title > h2 {
   /* font-size: 1.4rem; */
   font-weight: bold;
-  font-family: 'Encode Sans Expanded', sans-serif;
+  font-family: "Encode Sans Expanded", sans-serif;
 }
 
 .tune-container {
