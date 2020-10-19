@@ -2,7 +2,9 @@
   <Layout>
     <section>
       <div class="container home">
-        <div class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2">
+        <div
+          class="results-title text-white text-center block pt-1 pb-1 mt-4 mb-2"
+        >
           <h1>Hornpipes</h1>
         </div>
         <div v-if="$page.allGoogleSheet.edges.length" class="tune-list">
@@ -49,7 +51,7 @@ export default {
           shlug
           abc
           rhythm
-          key
+          musicKey
           abcheader
           path
         }

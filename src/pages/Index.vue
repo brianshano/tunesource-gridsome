@@ -38,7 +38,7 @@
           shlug
           abc
           rhythm
-          key
+          musicKey
           abcheader
           path
         }

@@ -8,6 +8,12 @@
         <div class="font-bold text-lg sm:text-xl text-center z-10">
           {{ tune.title }}
         </div>
+        <div
+          v-if="tune.title2"
+          class="font-bold text-xs sm:text-sm text-center z-10 text-gray-600"
+        >
+          {{ tune.title2 }}
+        </div>
       </div>
     </g-link>
     <div class="card-clickables bg-gray-200">
@@ -18,10 +24,10 @@
             >{{ tune.rhythm }}</span
           >
         </g-link>
-        <g-link :to="`key/${tune.key}`">
+        <g-link :to="`musicKey/${tune.musicKey}`">
           <span
             class="inline-block bg-gray-400 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
-            >{{ tune.key }}</span
+            >{{ tune.musicKey }}</span
           >
         </g-link>
       </div>
@@ -116,6 +122,7 @@ export default {
       show: false,
       favs: [],
       showShareModal: false,
+      subtitle: false,
     };
   },
   mounted() {

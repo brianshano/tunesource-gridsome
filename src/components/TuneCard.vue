@@ -56,7 +56,7 @@
           $page.googleSheet.rhythm.slice(1)
         }}
         in
-        {{ $page.googleSheet.key }}
+        {{ $page.googleSheet.musicKey }}
       </div>
     </section>
 
@@ -202,10 +202,16 @@
         </div>
       </div>
     </section>
-    <section class="bg-gray-100">
+    <section class="bg-gray-100 flex flex-col">
       <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">
         tune
       </div>
+      <br />
+
+      <div
+        id="amzn-assoc-ad-ab2f75e4-cfcb-46d0-9585-78b15bbe8244"
+        class="self-center"
+      ></div>
     </section>
     <section class="bg-yellow-600">
       <div>
@@ -228,7 +234,7 @@
               v-for="(tuneid, i) in extractedSuggestions"
               :key="`${i}-${tuneid}`"
             >
-              <TuneLinker :tuneid="tuneid" />
+              <!-- <TuneLinker :tuneid="tuneid" /> -->
             </div>
           </div>
         </div>
@@ -236,10 +242,24 @@
     </section>
   </div>
 </template>
-
+<!--script v-if="amazon"
+amzn_assoc_placement = "adunit0";
+amzn_assoc_tracking_id = "tunesource0f-20";
+amzn_assoc_ad_mode = "search";
+amzn_assoc_ad_type = "smart";
+amzn_assoc_marketplace = "amazon";
+amzn_assoc_region = "US";
+amzn_assoc_default_search_phrase = "irish whistle";
+amzn_assoc_default_category = "MusicalInstruments";
+amzn_assoc_linkid = "6232407c4c0903b1525149f3356fd4fa";
+amzn_assoc_default_browse_node = "11091801";
+amzn_assoc_search_bar = "true";
+amzn_assoc_search_bar_position = "top";
+amzn_assoc_title = "Shop Related Products";
+ src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script-->
 <script>
 import TuneHeader from '~/components/TuneHeader';
-import TuneLinker from '~/components/TuneLinker.vue';
+// import TuneLinker from '~/components/TuneLinker.vue';
 export default {
   metaInfo: {
     // title: 'TuneSource',
@@ -249,7 +269,7 @@ export default {
   },
   components: {
     TuneHeader,
-    TuneLinker,
+    // TuneLinker,
   },
   computed: {
     extractedSuggestions: function () {
@@ -263,6 +283,7 @@ export default {
       }
     },
   },
+  amazon: true,
   data: function () {
     return {
       windowWidth: 0,
@@ -279,6 +300,34 @@ export default {
     };
   },
   mounted: function () {
+    const plugin = document.createElement('script');
+    plugin.setAttribute('amzn_assoc_placement', 'adunit0');
+    plugin.setAttribute('amzn_assoc_tracking_id', 'tunesource0f-20');
+    plugin.setAttribute('amzn_assoc_ad_mode', 'search');
+    plugin.setAttribute('amzn_assoc_ad_type', 'smart');
+    plugin.setAttribute('amzn_assoc_marketplace', 'amazon');
+    plugin.setAttribute('amzn_assoc_region', 'US');
+    plugin.setAttribute('amzn_assoc_default_search_phrase', 'irish whistle');
+    plugin.setAttribute('amzn_assoc_default_category', 'MusicalInstruments');
+    plugin.setAttribute(
+      'amzn_assoc_linkid',
+      '6232407c4c0903b1525149f3356fd4fa'
+    );
+    plugin.setAttribute('amzn_assoc_default_browse_node', '11091801');
+    plugin.setAttribute('amzn_assoc_search_bar', 'true');
+    plugin.setAttribute('amzn_assoc_search_bar_position', 'top');
+    plugin.setAttribute('amzn_assoc_title', 'Shop Related Products');
+    plugin.async = true;
+    document.head.appendChild(plugin);
+
+    const pluginAws = document.createElement('script');
+    pluginAws.setAttribute(
+      'src',
+      '//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=ab2f75e4-cfcb-46d0-9585-78b15bbe8244'
+    );
+    pluginAws.async = true;
+    document.head.appendChild(pluginAws);
+
     // localStorage.clear();
     if (localStorage.favs) {
       // highlight Star if it's already a fav

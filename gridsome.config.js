@@ -116,17 +116,25 @@ module.exports = {
     {
       use: 'gridsome-plugin-flexsearch',
       options: {
-        searchFields: ['title', 'shlug', 'rhythm'],
+        searchFields: [
+          'title',
+          'title2',
+          'shlug',
+          'rhythm',
+          'musicKey',
+          'abcheader',
+        ],
         collections: [
           {
             typeName: 'googleSheet',
             indexName: 'googleSheet',
             fields: [
               'title',
+              'title2',
               'shlug',
               'abcheader',
               'rhythm',
-              'key',
+              'musicKey',
               'path',
               'tuneId',
               'id',
