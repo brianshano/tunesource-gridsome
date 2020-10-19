@@ -41,8 +41,8 @@
                 }}</g-link>
               </div>
               <div class="w-8">
-                <!-- <g-link :to="`key/${page.node.key}`"> -->
-                {{ page.node.key }}
+                <!-- <g-link :to="`key/${page.node.musicKey}`"> -->
+                {{ page.node.musicKey }}
                 <!-- </g-link> -->
               </div>
             </div>
@@ -70,7 +70,7 @@
           shlug
           abc
           rhythm
-          key
+          musicKey
           abcheader
           path
         }

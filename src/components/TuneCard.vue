@@ -56,7 +56,7 @@
           $page.googleSheet.rhythm.slice(1)
         }}
         in
-        {{ $page.googleSheet.key }}
+        {{ $page.googleSheet.musicKey }}
       </div>
     </section>
 
@@ -202,10 +202,16 @@
         </div>
       </div>
     </section>
-    <section class="bg-gray-100">
+    <section class="bg-gray-100 flex flex-col">
       <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">
         tune
       </div>
+      <br />
+
+      <div
+        id="amzn-assoc-ad-ab2f75e4-cfcb-46d0-9585-78b15bbe8244"
+        class="self-center"
+      ></div>
     </section>
     <section class="bg-yellow-600">
       <div>
@@ -217,7 +223,7 @@
         </div>
       </div>
     </section>
-    <section>
+    <section class="flex justify-center p-2 m-2 mb-8">
       <div class="suggestions p-2 m-2 py-8 text-xs">
         <div v-if="extractedSuggestions.length > 0">
           <div>Suggestions:</div>
@@ -228,18 +234,28 @@
               v-for="(tuneid, i) in extractedSuggestions"
               :key="`${i}-${tuneid}`"
             >
-              <TuneLinker :tuneid="tuneid" />
+              <!-- <TuneLinker :tuneid="tuneid" /> -->
             </div>
           </div>
         </div>
       </div>
+      <div
+        v-if="tune.url !== ''"
+        class="video-container self-center justify-center"
+      >
+        <iframe
+          :src="'https://www.youtube.com/embed/' + tune.url"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
     </section>
   </div>
 </template>
-
 <script>
 import TuneHeader from '~/components/TuneHeader';
-import TuneLinker from '~/components/TuneLinker.vue';
+// import TuneLinker from '~/components/TuneLinker.vue';
 export default {
   metaInfo: {
     // title: 'TuneSource',
@@ -249,7 +265,7 @@ export default {
   },
   components: {
     TuneHeader,
-    TuneLinker,
+    // TuneLinker,
   },
   computed: {
     extractedSuggestions: function () {
@@ -263,6 +279,7 @@ export default {
       }
     },
   },
+  amazon: true,
   data: function () {
     return {
       windowWidth: 0,
@@ -279,6 +296,14 @@ export default {
     };
   },
   mounted: function () {
+    const pluginAws = document.createElement('script');
+    pluginAws.setAttribute(
+      'src',
+      '//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=ab2f75e4-cfcb-46d0-9585-78b15bbe8244'
+    );
+    pluginAws.async = true;
+    document.head.appendChild(pluginAws);
+
     // localStorage.clear();
     if (localStorage.favs) {
       // highlight Star if it's already a fav

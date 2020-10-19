@@ -156,7 +156,7 @@ export default {
           tuneId
           abc
           rhythm
-          key
+          musicKey
           abcheader
           path
       }
