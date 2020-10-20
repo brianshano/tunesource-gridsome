@@ -182,15 +182,10 @@
       </div>
     </section>
     <section class="bg-gray-100 flex flex-col">
-      <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">
-        tune
-      </div>
+      <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">tune</div>
       <br />
-<div id="ca-pub-9702343433089896">ogogd</div>
-      <div
-        id="amzn-assoc-ad-ab2f75e4-cfcb-46d0-9585-78b15bbe8244"
-        class="self-center"
-      ></div>
+      <div id="ca-pub-9702343433089896"></div>
+      <div id="amzn-assoc-ad-ab2f75e4-cfcb-46d0-9585-78b15bbe8244" class="self-center"></div>
     </section>
     <section class="bg-yellow-600">
       <div>
@@ -206,20 +201,13 @@
           <div>Suggestions:</div>
           <div>
             {{ extractedSuggestions }}
-            <div
-              class="tune-card"
-              v-for="(tuneid, i) in extractedSuggestions"
-              :key="`${i}-${tuneid}`"
-            >
+            <div class="tune-card" v-for="(tuneid, i) in extractedSuggestions" :key="`${i}-${tuneid}`">
               <!-- <TuneLinker :tuneid="tuneid" /> -->
             </div>
           </div>
         </div>
       </div>
-      <div
-        v-if="tune.url !== ''"
-        class="video-container self-center justify-center"
-      >
+      <div v-if="tune.url !== ''" class="video-container self-center justify-center">
         <iframe
           :src="'https://www.youtube.com/embed/' + tune.url"
           frameborder="0"
@@ -231,7 +219,7 @@
   </div>
 </template>
 <script>
-import TuneHeader from '~/components/TuneHeader';
+import TuneHeader from "~/components/TuneHeader";
 // import TuneLinker from '~/components/TuneLinker.vue';
 export default {
   metaInfo: {
@@ -271,19 +259,16 @@ export default {
     };
   },
   mounted: function () {
-    const pluginAws = document.createElement('script');
+    const pluginAws = document.createElement("script");
     pluginAws.setAttribute(
-      'src',
-      '//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=ab2f75e4-cfcb-46d0-9585-78b15bbe8244'
+      "src",
+      "//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=ab2f75e4-cfcb-46d0-9585-78b15bbe8244"
     );
     pluginAws.async = true;
     document.head.appendChild(pluginAws);
 
     const pluginGoog = document.createElement("script");
-    pluginGoog.setAttribute(
-      "src",
-      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    );
+    pluginGoog.setAttribute("src", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
     pluginGoog.setAttribute("data-ad-client", "ca-pub-9702343433089896");
     pluginGoog.async = true;
     document.head.appendChild(pluginGoog);
