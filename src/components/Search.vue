@@ -53,8 +53,9 @@ export default {
   computed: {
     searchResults() {
       const searchTerm = this.searchTerm;
-      console.log("searchterm", this.searchTerm);
+      console.log("search query", this.searchTerm);
       if (searchTerm.length < 2) return [];
+      console.log("searchterm", this.$search, this.$search.search({ query: searchTerm, limit: 6 }));
       return this.$search.search({ query: searchTerm, limit: 6 });
     }
   }

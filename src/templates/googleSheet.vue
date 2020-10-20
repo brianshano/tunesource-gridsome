@@ -14,7 +14,8 @@
       abcheader
       shlug
       path
-      key
+      musicKey
+      url
     }
   }
 </page-query>
