@@ -184,7 +184,7 @@
     <section class="bg-gray-100 flex flex-col">
       <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">tune</div>
       <br />
-
+      <div id="ca-pub-9702343433089896">ogogd</div>
         <div id="amzn-assoc-ad-ab2f75e4-cfcb-46d0-9585-78b15bbe8244" class="self-center"></div>
     </section>
     <section class="bg-yellow-600">
@@ -290,6 +290,15 @@ export default {
     );
     pluginAws.async = true;
     document.head.appendChild(pluginAws);
+
+    const pluginGoog = document.createElement("script");
+    pluginGoog.setAttribute(
+      "src",
+      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    );
+    pluginGoog.setAttribute("data-ad-client", "ca-pub-9702343433089896");
+    pluginGoog.async = true;
+    document.head.appendChild(pluginGoog);
 
     // localStorage.clear();
     if (localStorage.favs) {
