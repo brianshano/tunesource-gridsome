@@ -3,7 +3,12 @@
     <section class="tune-title py-4">
       <h2 class="text-lg text-xl sm:text-2xl lg:text-3xl xl:text-4xl">
         {{ this.tune.title }}
-        <button @click="favMe(show)" class="star p-2" aria-label="Favourite Tune" v-if="show">
+        <button
+          @click="favMe(show)"
+          class="star p-4"
+          aria-label="Favourite Tune"
+          v-if="show"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -21,7 +26,12 @@
             ></polygon>
           </svg>
         </button>
-        <button @click="favMe(show)" class="star p-2" aria-label="Favourite Tune" v-else>
+        <button
+          @click="favMe(show)"
+          class="star p-4"
+          aria-label="Favourite Tune"
+          v-else
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -41,19 +51,30 @@
         </button>
       </h2>
       <div class="text-sm sm:text-base lg:text-lg">
-        {{ $page.googleSheet.rhythm.charAt(0).toUpperCase() + $page.googleSheet.rhythm.slice(1) }}
+        {{
+          $page.googleSheet.rhythm.charAt(0).toUpperCase() +
+          $page.googleSheet.rhythm.slice(1)
+        }}
         in
         {{ $page.googleSheet.musicKey }}
       </div>
     </section>
 
     <section class="section-audio pt-3 pb-2 px-4">
-      <div id="audio" :class="[{ 'abcjs-large': showLargePlayer }, 'audio', 'tune-container']"></div>
+      <div
+        id="audio"
+        :class="[{ 'abcjs-large': showLargePlayer }, 'audio', 'tune-container']"
+      ></div>
     </section>
     <section class="section-audio pb-2 px-4">
       <div id="audio2" class="text-white tune-container">
         <div class="button-row flex flex-row justify-between">
-          <button class="player-button p-2 y-2" @click="doRestart" title="restart" aria-label="Restart Tune">
+          <button
+            class="player-button p-2 y-2"
+            @click="doRestart"
+            title="restart"
+            aria-label="Restart Tune"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="36"
@@ -182,32 +203,57 @@
       </div>
     </section>
     <section class="bg-gray-100 flex flex-col">
-      <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">tune</div>
+      <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">
+        tune
+      </div>
       <br />
       <div id="ca-pub-9702343433089896"></div>
-      <div id="amzn-assoc-ad-ab2f75e4-cfcb-46d0-9585-78b15bbe8244" class="self-center"></div>
+      <div
+        id="amzn-assoc-ad-ab2f75e4-cfcb-46d0-9585-78b15bbe8244"
+        class="self-center"
+      ></div>
     </section>
     <section class="bg-yellow-600">
       <div>
         <div class="tune-container py-4 m-4 text-xs px-2 sm:px-8 sm:text-sm">
           <h2 class="font-bold">ABC Notation</h2>
-          <div>{{ $page.googleSheet.abcheader }}{{ $page.googleSheet.abc }}</div>
+          <div>
+            {{ $page.googleSheet.abcheader }}{{ $page.googleSheet.abc }}
+          </div>
         </div>
       </div>
     </section>
-    <section class="flex justify-center p-2 m-2 mb-8">
-      <div class="suggestions p-2 m-2 py-8 text-xs">
+    <section class="flex flex-col justify-center p-2 mb-4">
+      <!-- <div class="suggestions p-2 m-2 py-8 text-xs">
         <div v-if="extractedSuggestions.length > 0">
           <div>Suggestions:</div>
           <div>
             {{ extractedSuggestions }}
-            <div class="tune-card" v-for="(tuneid, i) in extractedSuggestions" :key="`${i}-${tuneid}`">
-              <!-- <TuneLinker :tuneid="tuneid" /> -->
-            </div>
+            <div
+              class="tune-card"
+              v-for="(tuneid, i) in extractedSuggestions"
+              :key="`${i}-${tuneid}`"
+            > -->
+      <!-- <TuneLinker :tuneid="tuneid" /> -->
+      <!-- </div>
           </div>
         </div>
+      </div> -->
+      <div
+        v-if="tune.url !== ''"
+        class="video-container self-center justify-center"
+      >
+        <iframe
+          :src="'https://www.youtube.com/embed/' + tune.url"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
       </div>
-      <div v-if="tune.url !== ''" class="video-container self-center justify-center">
+      <div
+        v-if="tune.url !== ''"
+        class="video-container self-center justify-center"
+      >
         <iframe
           :src="'https://www.youtube.com/embed/' + tune.url"
           frameborder="0"
@@ -216,10 +262,11 @@
         ></iframe>
       </div>
     </section>
+    <section class="mb-8">spacer</section>
   </div>
 </template>
 <script>
-import TuneHeader from "~/components/TuneHeader";
+import TuneHeader from '~/components/TuneHeader';
 // import TuneLinker from '~/components/TuneLinker.vue';
 export default {
   metaInfo: {
@@ -234,11 +281,13 @@ export default {
   },
   computed: {
     extractedSuggestions: function () {
-      const hashtag = this.tune.abcheader.split(" ").filter((v) => v.startsWith("#"));
-      if (typeof hashtag !== "undefined") {
-        return hashtag.map((t) => t.replace(/\D/g, ""));
+      const hashtag = this.tune.abcheader
+        .split(' ')
+        .filter((v) => v.startsWith('#'));
+      if (typeof hashtag !== 'undefined') {
+        return hashtag.map((t) => t.replace(/\D/g, ''));
       } else {
-        return "none";
+        return 'none';
       }
     },
   },
@@ -259,39 +308,42 @@ export default {
     };
   },
   mounted: function () {
-    const pluginAws = document.createElement("script");
+    const pluginAws = document.createElement('script');
     pluginAws.setAttribute(
-      "src",
-      "//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=ab2f75e4-cfcb-46d0-9585-78b15bbe8244"
+      'src',
+      '//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=ab2f75e4-cfcb-46d0-9585-78b15bbe8244'
     );
     pluginAws.async = true;
     document.head.appendChild(pluginAws);
 
-    const pluginGoog = document.createElement("script");
-    pluginGoog.setAttribute("src", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
-    pluginGoog.setAttribute("data-ad-client", "ca-pub-9702343433089896");
+    const pluginGoog = document.createElement('script');
+    pluginGoog.setAttribute(
+      'src',
+      'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+    );
+    pluginGoog.setAttribute('data-ad-client', 'ca-pub-9702343433089896');
     pluginGoog.async = true;
     document.head.appendChild(pluginGoog);
 
     // localStorage.clear();
     if (localStorage.favs) {
       // highlight Star if it's already a fav
-      this.favs = JSON.parse(localStorage.getItem("favs"));
+      this.favs = JSON.parse(localStorage.getItem('favs'));
       if (this.favs.includes(this.tune.tuneId)) {
         this.show = true;
       }
     } else {
       // initialise the localStorage Favs array
       const lsetup = [];
-      localStorage.setItem("favs", JSON.stringify(lsetup));
+      localStorage.setItem('favs', JSON.stringify(lsetup));
     }
     // this.abcjs = abcjs();
-    const abcjs = require("abcjs");
-    const abcTune = this.tune.abcheader + " " + this.tune.abc;
+    const abcjs = require('abcjs');
+    const abcTune = this.tune.abcheader + ' ' + this.tune.abc;
     const cursorControl = {}; // see section on CursorControl
     const abcOptions = {
       add_classes: true,
-      responsive: "resize",
+      responsive: 'resize',
     };
     const audioParams = {
       chordsOff: true,
@@ -303,18 +355,18 @@ export default {
     };
 
     if (abcjs.synth.supportsAudio()) {
-      console.log("in supportsAudio");
+      console.log('in supportsAudio');
       const synthControl = new abcjs.synth.SynthController();
       this.synthControl = synthControl;
-      synthControl.load("#audio", cursorControl, {
-        displayLoop: true,
+      synthControl.load('#audio', cursorControl, {
+        // displayLoop: true,
         displayRestart: false,
         displayPlay: false,
         displayProgress: true,
         displayWarp: true,
       });
 
-      const visualObj = abcjs.renderAbc("paper", abcTune, abcOptions);
+      const visualObj = abcjs.renderAbc('paper', abcTune, abcOptions);
       const createSynth = new abcjs.synth.CreateSynth();
       createSynth
         .init({ visualObj: visualObj[0] })
@@ -322,21 +374,22 @@ export default {
           synthControl
             .setTune(visualObj[0], false, audioParams)
             .then(function () {
-              console.log("Audio successfully loaded.");
+              console.log('Audio successfully loaded.');
             })
             .catch(function (error) {
-              console.warn("Audio problem:", error);
+              console.warn('Audio problem:', error);
             });
         })
         .catch(function (error) {
-          console.warn("Audio problem:", error);
+          console.warn('Audio problem:', error);
         });
     } else {
-      document.querySelector("#audio").innerHTML = "Audio is not supported in this browser.";
+      document.querySelector('#audio').innerHTML =
+        'Audio is not supported in this browser.';
     }
 
     this.$nextTick(function () {
-      window.addEventListener("resize", this.getWindowWidth);
+      window.addEventListener('resize', this.getWindowWidth);
 
       //Init
       this.getWindowWidth();
@@ -345,7 +398,10 @@ export default {
   methods: {
     getWindowWidth(event) {
       this.windowWidth = document.documentElement.clientWidth;
-      if (document.documentElement.clientWidth > 500 && document.documentElement.clientWidth < 768) {
+      if (
+        document.documentElement.clientWidth > 500 &&
+        document.documentElement.clientWidth < 768
+      ) {
         this.showLargePlayer = true;
       } else {
         this.showLargePlayer = false;
@@ -374,12 +430,14 @@ export default {
     doDownload() {
       if (this.isDownloadable && !this.isMobile) {
         this.doLoader();
-        this.synthControl.download(`tunesource-${this.tune.rhythm}_${this.tune.shlug}.wav`);
+        this.synthControl.download(
+          `tunesource-${this.tune.rhythm}_${this.tune.shlug}.wav`
+        );
         this.isDownloading = !this.isDownloading;
       }
     },
     favMe(show) {
-      var currentFavs = JSON.parse(localStorage.getItem("favs"));
+      var currentFavs = JSON.parse(localStorage.getItem('favs'));
       if (show) {
         currentFavs = currentFavs.filter((t) => {
           return t !== this.tune.tuneId;
@@ -388,7 +446,7 @@ export default {
         currentFavs.push(this.tune.tuneId);
       }
 
-      localStorage.setItem("favs", JSON.stringify(currentFavs));
+      localStorage.setItem('favs', JSON.stringify(currentFavs));
       this.show = !this.show;
     },
   },
@@ -416,13 +474,17 @@ section {
   justify-content: center;
   @media (min-width: 768px) {
     background: rgb(255, 255, 255);
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(92, 121, 151, 1) 77%);
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.09) 0%,
+      rgba(92, 121, 151, 1) 77%
+    );
   }
 }
 .tune-title > h2 {
   /* font-size: 1.4rem; */
   font-weight: bold;
-  font-family: "Encode Sans Expanded", sans-serif;
+  font-family: 'Encode Sans Expanded', sans-serif;
 }
 
 .tune-container {
@@ -461,6 +523,25 @@ section {
 }
 svg .abcjs-title {
   display: none;
+}
+.video-container {
+  overflow: hidden;
+  position: relative;
+  width: 80vw;
+}
+
+.video-container::after {
+  padding-top: 56.25%;
+  display: block;
+  content: '';
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* hacky import of abcjs-audio.css because tailwind wont compress css if i dont or I haven't properly figured it out...bundleRenderer.renderToStream*/

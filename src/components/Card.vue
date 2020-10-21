@@ -60,7 +60,7 @@
       >
         <button
           @click="favMe(show)"
-          class="star p-2"
+          class="star p-4"
           v-if="show"
           aria-label="Favourite Tune"
         >
@@ -83,7 +83,7 @@
         </button>
         <button
           @click="favMe(show)"
-          class="star p-2"
+          class="star p-4"
           v-else
           aria-label="Favourite Tune"
         >
