@@ -14,14 +14,12 @@ export default function (Vue, { router, head, isClient }) {
     href:
       'https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded&display=swap',
   });
+
   head.meta.push({
     name: 'viewport',
-    content: 'width=device-width, initial-scale=1, maximum-scale=1',
+    content: 'width=device-width, initial-scale=1.0, maximum-scale=1',
   });
-  head.meta.push({
-    name: 'viewport',
-    content: 'width=device-width, initial-scale=1, maximum-scale=1',
-  });
+
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout);
   Vue.component('Search', Search);

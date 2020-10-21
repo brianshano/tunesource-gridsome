@@ -5,7 +5,7 @@
         {{ this.tune.title }}
         <button
           @click="favMe(show)"
-          class="star p-2"
+          class="star p-4"
           aria-label="Favourite Tune"
           v-if="show"
         >
@@ -28,7 +28,7 @@
         </button>
         <button
           @click="favMe(show)"
-          class="star p-2"
+          class="star p-4"
           aria-label="Favourite Tune"
           v-else
         >
@@ -223,8 +223,8 @@
         </div>
       </div>
     </section>
-    <section class="flex justify-center p-2 m-2 mb-8">
-      <div class="suggestions p-2 m-2 py-8 text-xs">
+    <section class="flex flex-col justify-center p-2 mb-4">
+      <!-- <div class="suggestions p-2 m-2 py-8 text-xs">
         <div v-if="extractedSuggestions.length > 0">
           <div>Suggestions:</div>
           <div>
@@ -233,12 +233,12 @@
               class="tune-card"
               v-for="(tuneid, i) in extractedSuggestions"
               :key="`${i}-${tuneid}`"
-            >
-              <!-- <TuneLinker :tuneid="tuneid" /> -->
-            </div>
+            > -->
+      <!-- <TuneLinker :tuneid="tuneid" /> -->
+      <!-- </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div
         v-if="tune.url !== ''"
         class="video-container self-center justify-center"
@@ -251,6 +251,7 @@
         ></iframe>
       </div>
     </section>
+    <section class="mb-8">spacer</section>
   </div>
 </template>
 <script>
@@ -338,7 +339,7 @@ export default {
       const synthControl = new abcjs.synth.SynthController();
       this.synthControl = synthControl;
       synthControl.load('#audio', cursorControl, {
-        displayLoop: true,
+        // displayLoop: true,
         displayRestart: false,
         displayPlay: false,
         displayProgress: true,
@@ -502,6 +503,25 @@ section {
 }
 svg .abcjs-title {
   display: none;
+}
+.video-container {
+  overflow: hidden;
+  position: relative;
+  width: 80vw;
+}
+
+.video-container::after {
+  padding-top: 56.25%;
+  display: block;
+  content: '';
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* hacky import of abcjs-audio.css because tailwind wont compress css if i dont or I haven't properly figured it out...bundleRenderer.renderToStream*/
