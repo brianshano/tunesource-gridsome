@@ -207,7 +207,7 @@
         tune
       </div>
       <br />
-
+      <div id="ca-pub-9702343433089896"></div>
       <div
         id="amzn-assoc-ad-ab2f75e4-cfcb-46d0-9585-78b15bbe8244"
         class="self-center"
@@ -239,6 +239,17 @@
           </div>
         </div>
       </div> -->
+      <div
+        v-if="tune.url !== ''"
+        class="video-container self-center justify-center"
+      >
+        <iframe
+          :src="'https://www.youtube.com/embed/' + tune.url"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
       <div
         v-if="tune.url !== ''"
         class="video-container self-center justify-center"
@@ -304,6 +315,15 @@ export default {
     );
     pluginAws.async = true;
     document.head.appendChild(pluginAws);
+
+    const pluginGoog = document.createElement('script');
+    pluginGoog.setAttribute(
+      'src',
+      'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+    );
+    pluginGoog.setAttribute('data-ad-client', 'ca-pub-9702343433089896');
+    pluginGoog.async = true;
+    document.head.appendChild(pluginGoog);
 
     // localStorage.clear();
     if (localStorage.favs) {
