@@ -17,7 +17,7 @@
       </div>
     </g-link>
     <div class="card-clickables bg-gray-200">
-      <div class="p-2">
+      <div class="p-2 self-center">
         <g-link :to="`rhythm/${tune.rhythm}`">
           <span
             class="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
@@ -32,7 +32,7 @@
         </g-link>
       </div>
       <span
-        class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2 share-dialog"
+        class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2 share-dialog self-center"
       >
         <button @click="shareMe()" class="share p-2" aria-label="Share Tune">
           <svg
@@ -56,7 +56,7 @@
         </button>
       </span>
       <span
-        class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2"
+        class="inline-block rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700 mr-2 self-center"
       >
         <button
           @click="favMe(show)"
