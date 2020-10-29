@@ -126,6 +126,8 @@ export default {
     };
   },
   mounted() {
+          console.log('cliecked', this.tune.path);
+
     // localStorage.clear();
     if (localStorage.favs) {
       // highlight Star if it's already a fav
@@ -156,7 +158,6 @@ export default {
     },
 
     shareMe() {
-      console.log('cliecked');
       const data = {
         title: this.tune.title,
         text: this.tune.title,
