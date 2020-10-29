@@ -1,7 +1,7 @@
 <template>
   <div>
-    <section class="tune-title py-4">
-      <h2 class="text-lg text-xl sm:text-2xl lg:text-3xl xl:text-4xl">
+    <section class="tune-title py-4 max-w-4xl">
+      <h1 class="text-lg text-xl sm:text-2xl lg:text-3xl xl:text-4xl">
         {{ this.tune.title }}
         <button @click="favMe(show)" class="star p-4" aria-label="Favourite Tune" v-if="show">
           <svg
@@ -39,18 +39,29 @@
             ></polygon>
           </svg>
         </button>
-      </h2>
+      </h1>
       <div class="text-sm sm:text-base lg:text-lg">
-        {{ $page.googleSheet.rhythm.charAt(0).toUpperCase() + $page.googleSheet.rhythm.slice(1) }}
-        in
+        A {{ $page.googleSheet.rhythm.charAt(0).toUpperCase() + $page.googleSheet.rhythm.slice(1) }}
+        in the key of
         {{ $page.googleSheet.musicKey }}
+      </div>
+
+      <div v-if="$page.googleSheet.composer" class="text-sm sm:text-base lg:text-md">
+        Composer: {{ $page.googleSheet.composer }}
+      </div>
+      <div v-if="$page.googleSheet.title2" class="text-sm sm:text-base lg:text-md">
+        Also known as: {{ $page.googleSheet.title2 }}
+      </div>
+      <div v-if="this.history3" class="text-sm sm:text-base lg:text-md">
+        History:
+        {{ this.history3 }}
       </div>
     </section>
 
-    <section class="section-audio pt-3 pb-2 px-4">
+    <section class="section-audio pt-4 md:pt-6 pb-2 px-4">
       <div id="audio" :class="[{ 'abcjs-large': showLargePlayer }, 'audio', 'tune-container']"></div>
     </section>
-    <section class="section-audio pb-2 px-4">
+    <section class="section-audio pb-2 md:pb-4 px-4">
       <div id="audio2" class="text-white tune-container">
         <div class="button-row flex flex-row justify-between">
           <button class="player-button p-2 y-2" @click="doRestart" title="restart" aria-label="Restart Tune">
@@ -228,15 +239,16 @@
         ></iframe>
       </div>
     </section>
-    <section class="mb-8">spacer</section>
+    <section class="mb-8"></section>
   </div>
 </template>
 <script>
 import TuneHeader from "~/components/TuneHeader";
 // import TuneLinker from '~/components/TuneLinker.vue';
 export default {
-  metaInfo: {
+  metaInfo() {
     // title: 'TuneSource',
+    const { title, rhythm, path, abcheader, composer } = this.$page.googleSheet;
   },
   props: {
     tune: Object,
@@ -256,7 +268,13 @@ export default {
     },
   },
   amazon: true,
-  data: function () {
+  data() {
+    const h3 = this.tune.abcheader.split("\n").filter((text, index) => {
+      return text.substring(0, 2) === "H:";
+    });
+    const h4 = h3.map((text) => {
+      return text.slice(2)
+    })
     return {
       windowWidth: 0,
       isMobile: false,
@@ -265,10 +283,18 @@ export default {
       isPaused: true,
       isDownloading: false,
       isDownloadable: false,
-      // abcjs: false,
       synthControl: {},
       show: false,
       favs: [],
+      history: this.tune.abcheader.split(":"),
+      history2: this.tune.abcheader.split(":").filter((text, index) => {
+        if (text.charAt(text.length - 1) === "H") {
+          return this.tune.abcheader.split(":")[index + 1];
+        } else {
+          return "";
+        }
+      }),
+      history3: h4.join(" "),
     };
   },
   mounted: function () {
@@ -428,11 +454,11 @@ section {
   flex-direction: column;
   justify-content: center;
   @media (min-width: 768px) {
-    background: rgb(255, 255, 255);
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(92, 121, 151, 1) 77%);
+    background: rgba(92, 121, 151, 1);
+    /* background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(92, 121, 151, 1) 77%); */
   }
 }
-.tune-title > h2 {
+.tune-title > h1 {
   /* font-size: 1.4rem; */
   font-weight: bold;
   font-family: "Encode Sans Expanded", sans-serif;

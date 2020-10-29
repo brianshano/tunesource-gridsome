@@ -9,11 +9,11 @@
       <div class="results-title text-white text-center block pt-1 pb-1">
         Search Results
       </div>
-      <div class="tune-list">
+      <div class="tune-list flex justify-center flex-wrap">
         <div
           v-for="tune in results"
           :key="tune.tuneId"
-          class="w-full max-w-xs min-w-10 rounded overflow-hidden shadow-lg bg-gray-400 m-2 sm:m-4 slide-in-fwd-center"
+          class="w-full max-w-xs min-w-0 rounded overflow-hidden shadow-lg bg-gray-400 m-2 sm:m-4 slide-in-fwd-center"
         >
           <Card :tune="tune" />
           <!--div class="p-2 text-xs text-gray-600">
@@ -54,9 +54,6 @@ export default {
   },
   components: {
     Card,
-  },
-  mounted() {
-    console.log('mounted. SearfchResults', this);
   },
 };
 </script>

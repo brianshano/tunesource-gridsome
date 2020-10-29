@@ -126,7 +126,6 @@ export default {
     };
   },
   mounted() {
-    // localStorage.clear();
     if (localStorage.favs) {
       // highlight Star if it's already a fav
       this.favs = JSON.parse(localStorage.getItem('favs'));
@@ -156,7 +155,6 @@ export default {
     },
 
     shareMe() {
-      console.log('cliecked');
       const data = {
         title: this.tune.title,
         text: this.tune.title,

@@ -7,6 +7,7 @@
   query Sheet ($path: String!){
     googleSheet(path: $path) {
       title
+      title2
       abc
       id
       tuneId
@@ -16,6 +17,7 @@
       path
       musicKey
       url
+      composer
     }
   }
 </page-query>
@@ -23,21 +25,19 @@
 import TuneCard from '~/components/TuneCard.vue';
 
 export default {
-  metaInfo() {
-    const title = `Tunesource - ${
-      this.$page.allGoogleSheet.edges.node.title
-        ? this.$page.allGoogleSheet.edges.node.title
-        : 'Irish trad tunes library'
-    }`;
-  },
   components: {
     TuneCard,
   },
+  mounted () {
+    console.log('mounted', this.$page.googleSheet)
+  },
   metaInfo() {
-    const { title } = this.$page.googleSheet;
-    const { rhythm } = this.$page.googleSheet;
-    const { path } = this.$page.googleSheet;
-    const { abcheader } = this.$page.googleSheet;
+    const title = `Tunesource - ${
+      this.$page.googleSheet.title
+        ? this.$page.googleSheet.title
+        : 'Irish trad tunes library'
+    }`;
+    const { rhythm, path, abcheader } = this.$page.googleSheet;
     const descriptionMeta = abcheader
       .split(/\r\n|\r|\n/)
       .filter((line, index) => {
