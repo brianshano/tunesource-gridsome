@@ -58,10 +58,10 @@
       </div>
     </section>
 
-    <section class="section-audio pt-3 pb-2 px-4">
+    <section class="section-audio pt-4 md:pt-6 pb-2 px-4">
       <div id="audio" :class="[{ 'abcjs-large': showLargePlayer }, 'audio', 'tune-container']"></div>
     </section>
-    <section class="section-audio pb-2 px-4">
+    <section class="section-audio pb-2 md:pb-4 px-4">
       <div id="audio2" class="text-white tune-container">
         <div class="button-row flex flex-row justify-between">
           <button class="player-button p-2 y-2" @click="doRestart" title="restart" aria-label="Restart Tune">
@@ -275,7 +275,6 @@ export default {
     const h4 = h3.map((text) => {
       return text.slice(2)
     })
-    console.log("h3 = ", h3);
     return {
       windowWidth: 0,
       isMobile: false,
@@ -289,9 +288,7 @@ export default {
       favs: [],
       history: this.tune.abcheader.split(":"),
       history2: this.tune.abcheader.split(":").filter((text, index) => {
-        console.log(`| text: ${index}, ${text}, [${text.charAt(text.length - 1)}]`);
         if (text.charAt(text.length - 1) === "H") {
-          console.log("IN HERE", this.tune.abcheader.split(":")[index + 1]);
           return this.tune.abcheader.split(":")[index + 1];
         } else {
           return "";

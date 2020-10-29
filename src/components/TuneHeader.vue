@@ -11,14 +11,6 @@ export default {
   props: {
     header: [String],
   },
-  data() {
-    return {
-      // message: header,
-    };
-  },
-  mounted() {
-    // console.log('mounted', this.props.header);
-  },
   computed: {
     parsedHeader: function () {
       const splitter = this.header.toLowerCase().split(/\r\n|\r|\n/);

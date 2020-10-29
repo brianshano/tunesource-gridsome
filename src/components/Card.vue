@@ -126,9 +126,6 @@ export default {
     };
   },
   mounted() {
-          console.log('cliecked', this.tune.path);
-
-    // localStorage.clear();
     if (localStorage.favs) {
       // highlight Star if it's already a fav
       this.favs = JSON.parse(localStorage.getItem('favs'));

@@ -38,7 +38,7 @@
         </svg>
       </button>
     </div>
-    <div>
+    <div v-on:click="cu">
       <SearchResults :results="searchResults" />
     </div>
   </div>
@@ -57,6 +57,12 @@ export default {
       if (searchTerm.length < 2) return [];
       console.log("searchterm", this.$search, this.$search.search({ query: searchTerm, limit: 6 }));
       return this.$search.search({ query: searchTerm, limit: 6 });
+    }
+  },
+
+  methods: {
+    cu: function (event) {
+      this.searchTerm = '';
     }
   }
 };
