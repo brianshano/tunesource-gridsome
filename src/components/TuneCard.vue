@@ -1,9 +1,11 @@
 <template>
   <div>
     <section class="tune-title py-4 max-w-4xl">
-      <h1 class="text-lg text-xl sm:text-2xl lg:text-3xl xl:text-4xl">
-        {{ this.tune.title }}
-        <button @click="favMe(show)" class="star p-4" aria-label="Favourite Tune" v-if="show">
+      <div class="flex flex-col md:flex-row justify-center items-center">
+        <h1 class="text-lg text-xl sm:text-2xl lg:text-3xl xl:text-4xl max-w-xs sm:max-w-md">
+          {{ this.tune.title }}
+        </h1>
+        <button @click="favMe(show)" class="star p-4" aria-label="Favourite Tune2" v-if="show">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -39,7 +41,7 @@
             ></polygon>
           </svg>
         </button>
-      </h1>
+      </div>
       <div class="text-sm sm:text-base lg:text-lg">
         A {{ $page.googleSheet.rhythm.charAt(0).toUpperCase() + $page.googleSheet.rhythm.slice(1) }}
         in the key of
@@ -81,6 +83,7 @@
               <line x1="5" y1="19" x2="5" y2="5"></line>
             </svg>
           </button>
+
           <button
             title="play/pause"
             class="player-button p-2 y-2 hover:bg-blue-500 focus:bg-green-500"
@@ -121,6 +124,26 @@
               </svg>
             </div>
           </button>
+          <button class="player-button p-2 y-2" @click="doToggleLoop" title="restart" aria-label="Restart Tune">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-repeat"
+            >
+              <polyline points="17 1 21 5 17 9"></polyline>
+              <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+              <polyline points="7 23 3 19 7 15"></polyline>
+              <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+          </button>
+
           <!--v-btn outline class="p-2 y-2" @click="doOneThird"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +216,7 @@
       </div>
     </section>
     <section class="bg-gray-100 flex flex-col">
-      <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">tune</div>
+      <div class="tune-abc py-8 bg-gray-100 tune-container" id="paper">&nbsp;</div>
       <br />
       <div id="ca-pub-9702343433089896"></div>
       <div id="amzn-assoc-ad-ab2f75e4-cfcb-46d0-9585-78b15bbe8244" class="self-center"></div>
@@ -273,8 +296,8 @@ export default {
       return text.substring(0, 2) === "H:";
     });
     const h4 = h3.map((text) => {
-      return text.slice(2)
-    })
+      return text.slice(2);
+    });
     return {
       windowWidth: 0,
       isMobile: false,
@@ -335,7 +358,7 @@ export default {
     const audioParams = {
       chordsOff: true,
       loopToggle: true,
-      tempo: false,
+      tempo: true,
       options: {
         defaultQpm: 100,
       },
@@ -402,6 +425,13 @@ export default {
         this.synthControl.play();
       }
     },
+    doToggleLoop() {
+      // this.isPlaying = !this.isPlaying;
+      // this.isDownloadable = true;
+      if (this.synthControl) {
+        this.synthControl.toggleLoop();
+      }
+    },
     doRestart() {
       if (this.synthControl) {
         this.synthControl.restart();
@@ -466,11 +496,11 @@ section {
 
 .tune-container {
   width: 100%;
-  max-width: 1024px;
-  /*border-bottom: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc*/
+  max-width: 98vw;
   margin: 0 auto;
+  @media (min-width: 768px) {
+    max-width: 1024px;
+  }
 }
 
 .audio {

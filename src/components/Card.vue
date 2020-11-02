@@ -62,7 +62,7 @@
           @click="favMe(show)"
           class="star p-4"
           v-if="show"
-          aria-label="Favourite Tune"
+          aria-label="Favourite Tune1"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
