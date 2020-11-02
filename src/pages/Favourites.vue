@@ -31,6 +31,7 @@
             </div>
           </div>
         </div>
+        <div v-else>😢 Star some songs to add them to your favourites</div>
       </div>
     </section>
   </Layout>

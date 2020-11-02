@@ -16,8 +16,9 @@
             <Card :tune="page.node" />
           </div>
         </div>
-        <div class="pagination">
-          <Pager :info="$page.allGoogleSheet.pageInfo" />
+        <div class="pagination mb-8">
+          <Pager :info="$page.allGoogleSheet.pageInfo" :linkClas="pager-link"/>
+          <div class="mb-12">&nbsp;</div>
         </div>
       </div>
     </section>
@@ -166,25 +167,6 @@ h2.title {
   max-width: 23rem;
 }
 
-.pagination {
-  width: 100%;
-  margin: 0.5rem auto;
-}
-.pagination nav {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-.pagination a {
-  color: white;
-  margin: 0.5rem;
-  padding: 0.5rem;
-}
-.pagination a.active {
-  color: #ccc;
-  background-color: #ffffff10;
-}
 
 .fade-enter-active,
 .fade-leave-active {
