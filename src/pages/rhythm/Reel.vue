@@ -16,8 +16,9 @@
             <Card :tune="page.node" />
           </div>
         </div>
-        <div class="pagination">
-          <Pager :info="$page.allGoogleSheet.pageInfo" />
+        <div class="pagination mb-8">
+          <Pager :info="$page.allGoogleSheet.pageInfo" :linkClas="pager-link"/>
+          <div class="mb-12">&nbsp;</div>
         </div>
       </div>
     </section>

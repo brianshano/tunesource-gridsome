@@ -7,6 +7,8 @@ import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
 import BottomNav from '~/components/BottomNav.vue';
 import '~/assets/abcjs-audio.css';
+// import '~/main.css'
+import '~/assets/global-styles.scss'
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push({
@@ -17,7 +19,7 @@ export default function (Vue, { router, head, isClient }) {
 
   head.meta.push({
     name: 'viewport',
-    content: 'width=device-width, initial-scale=1.0, maximum-scale=1',
+    content: 'width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover',
   });
 
   // Set default layout as a global component
