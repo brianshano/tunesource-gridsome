@@ -7,8 +7,8 @@ import Search from '~/components/Search.vue';
 import SearchResults from '~/components/SearchResults.vue';
 import BottomNav from '~/components/BottomNav.vue';
 import '~/assets/abcjs-audio.css';
-// import '~/main.css'
 import '~/assets/global-styles.scss'
+import '~/main.css'
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push({
