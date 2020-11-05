@@ -14,7 +14,8 @@
     "gridsome-plugin-flexsearch": "^1.0.4",
     "gridsome-plugin-nprogress": "^0.0.7",
     "gridsome-plugin-sentry": "^1.1.0",
-    "gridsome-source-google-sheets": "^0.4.1"
+    "gridsome-source-google-sheets": "^0.4.1",
+    "tailwindcss": "^1.9.6"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
