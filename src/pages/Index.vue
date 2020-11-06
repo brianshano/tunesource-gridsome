@@ -63,16 +63,16 @@ export default {
     //     : 'Irish trad tunes library'
     // }`;
     const meta = [
-      // {
-      //   key: 'og:title',
-      //   name: 'og:title',
-      //   content: title,
-      // },
-      // {
-      //   key: 'twitter:title',
-      //   name: 'twitter:title',
-      //   content: title,
-      // },
+      {
+        key: 'og:title',
+        name: 'og:title',
+        content: 'Tunesource - Irish Trad Session Tunes Library',
+      },
+      {
+        key: 'twitter:title',
+        name: 'twitter:title',
+        content: 'Tunesource - Irish Trad Session Tunes Library',
+      },
       {
         name: 'twitter:description',
         content:
