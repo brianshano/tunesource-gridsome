@@ -90,7 +90,11 @@ export default {
       },
       {
         property: 'og:image',
-        content: '/src/assets/celtic-knot-tri-circles.png',
+        content: 'https://www.tunesource.net/tunesource-open-graph2.png',
+      },
+      {
+        property: 'twitter:image',
+        content: 'https://www.tunesource.net/tunesource-open-graph2.png',
       },
       {
         property: 'og:url',
