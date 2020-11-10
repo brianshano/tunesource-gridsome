@@ -1,0 +1,5 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "net.tunesource.twa",
+                   "sha256_cert_fingerprints": ["25:BA:C9:84:F8:2C:46:EA:6D:1C:F7:68:3B:A0:E1:C2:74:75:BC:6D:76:A6:34:0D:73:81:2D:0D:23:E8:EB:DB"] }
+    }]
